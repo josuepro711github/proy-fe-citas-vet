@@ -1,0 +1,19 @@
+<mat-toolbar color="primary" class="mat-elevation-z6 toolbar">
+    <div class="logo">
+        <img src="../../../../../assets/icons/hueso.png" alt="">
+        <span>PET LIFE PER&Uacute;</span>
+    </div>
+    
+    <div class="spacer"></div>
+
+    <a mat-button [disableRipple]="true" *ngFor="let item of listaNavbar; let i = index" (click)="irRuta(i+1)" 
+    [ngClass]="{'bg-hover2': pintar===i+1}">{{ item }}</a>
+
+    <mat-icon (click)="irRuta(7)" [ngClass]="{'bg-hover2': pintar===7}" class="icon-login">account_circle</mat-icon>
+
+<!--     <a mat-button [disableRipple]="true" *ngFor="let item of listaNavbar; let i = index" (click)="irRuta(i+1)" 
+    [ngClass]="{'bg-hover2': ruta===rutaActiva}">{{ item }}</a>
+
+    <mat-icon (click)="irRuta(7)" [ngClass]="{'bg-hover2': ruta===rutaActiva}" routerLinkActive="bg-hover2" class="icon-login">account_circle</mat-icon> -->
+
+</mat-toolbar>

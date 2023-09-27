@@ -1,0 +1,19 @@
+<div class="grid_card">
+  <mat-card *ngFor="let item of listaDoctor" class="card_doctor">
+    <img
+      mat-card-image
+      class="img_card"
+      [src]="item.imagen"
+      alt="Imagen doctor"
+    />
+    <mat-card-content>
+      <h3>{{ item.nombre + ' ' + item.apellido_paterno + ' ' + item.apellido_materno }}</h3>
+      <h4>{{ item.especialidad }}</h4>
+      <hr>
+      <p>
+        {{ item.descripcion_especialidad }}
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>
+

@@ -1,0 +1,35 @@
+<main class="grid_login">
+  <div class="bg_pet"></div>
+  <div class="bg_pet con"></div>
+  <div class="form_login">
+    <form [formGroup]="form">
+      <div class="tipo">
+        <div class="iniciar" (click)="irLogin(1)"><a [ngClass]="{'pintar': tipo===1}">Iniciar Sesi&oacute;n</a></div>
+        <div class="registrar" (click)="irRegistro(2)"><a [ngClass]="{'pintar': tipo===2}">Registrarse</a></div>
+      </div>
+      <h1 class="titulo">{{titulo}} sesión en el portal de mascotas</h1>
+      <span class="descripcion">{{descripcion}} su correo electrónico a continuación para comenzar.</span>
+
+      <div class="tipo_login" *ngIf="tipo === 1">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Direcci&oacute;n de correo electr&oacute;nico</mat-label>
+          <input type="email" matInput>
+        </mat-form-field>
+  
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Contraseña</mat-label>
+          <input type="password" matInput>
+        </mat-form-field>
+      </div>
+
+      <div class="tipo_registro" *ngIf="tipo === 2">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Direcci&oacute;n de correo electr&oacute;nico</mat-label>
+          <input type="email" matInput>
+        </mat-form-field>
+      </div>
+
+      <button mat-raised-button class="btn-login" color="primary"  (click)="executeForm(tipo)">{{nameBtn}}</button>
+    </form>
+  </div>
+</main>

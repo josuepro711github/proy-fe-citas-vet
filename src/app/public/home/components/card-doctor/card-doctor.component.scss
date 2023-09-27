@@ -1,0 +1,82 @@
+.grid_card {
+  display: grid;
+  gap: 20px;
+  grid-template-areas: "card card card card card";
+  justify-content: center;
+  .card_doctor {
+    width: 272px;
+    height: 100%;
+    mat-card-header {
+      justify-content: center;
+    }
+    mat-card-content {
+      hr{
+        width: 60px;
+        height: 2px;
+        background-color: transparent;
+        margin-bottom: 20px;
+        border: 1px solid #6f6f6f;
+        margin-top: 3px;
+      }
+      h3 {
+        font-size: 1.4em;
+        font-weight: 500;
+        line-height: 1.3em;
+        margin-top: 15px;
+        margin-bottom: 10px;
+        font-family: Sailec-Medium !important;
+      }
+      h4 {
+        font-size: 1.1em;
+        font-weight: 500;
+        color: #A4B2BF;
+        margin-bottom: 0;
+        font-family: Sailec-Medium !important;
+      }
+      p {
+        font-size: 16px;
+        line-height: 1.5;
+        color: #003459;
+        
+      }
+    }
+    .img_card {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+//Pantallas muy grandes (desktops de menos de 1540.98px)
+
+@media (max-width: 1540.98px) { 
+  .grid_card {
+    grid-template-areas: "card card card card";
+  }
+ }
+
+//Pantallas grandes (desktops de menos de 1220.98px)
+
+@media (max-width: 1220.98px) { 
+  .grid_card {
+    grid-template-areas: "card card card";
+  }
+ }
+
+
+//Pantallas medianas (tablets de menos de 991.98px)
+
+@media (max-width: 991.98px) { 
+  .grid_card {
+    grid-template-areas: "card card";
+  }
+ }
+
+
+//Pantallas muy pequeñas (móviles en portrait de menos de 690.98px)
+
+@media (max-width: 690.98px) { 
+  .grid_card {
+    grid-template-areas: "card";
+  }
+}

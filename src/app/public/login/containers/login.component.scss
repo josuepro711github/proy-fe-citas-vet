@@ -1,0 +1,113 @@
+.grid_login {
+  display: grid;
+  height: 100%;
+  grid-template-columns: 50% 50%;
+  grid-template-areas: "form imagen";
+  .bg_pet {
+    grid-area: imagen;
+    background-image: url("../../../../assets/imgs/login-clientes.png");
+    height: 100%;
+    background-position: 100%;
+    background-size: cover;
+  }
+  .form_login {
+    grid-area: form;
+    background-color: #faf8f9;
+    form {
+      display: flex;
+      flex-direction: column;
+      margin: 7.6875rem 15% 0;
+      .titulo {
+        margin-top: 15%;
+        margin-bottom: 0;
+        font-size: 2.25rem;
+        line-height: 3.375rem;
+        font-family: Sailec-Bold !important;
+        color: #10365a;
+        text-align: center;
+      }
+      .descripcion {
+        font-family: Sailec-Medium !important;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        text-align: center;
+      }
+      .btn-login {
+        height: 3.75rem;
+        font-weight: bold;
+        color: white;
+        margin-top: 1.875rem;
+        background-color: #10365a;
+      }
+      .btn-login:hover {
+        background-color: #295889;
+        transition: 0.1s;
+      }
+      .tipo {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-areas: "iniciar registrar";
+        .iniciar,
+        .registrar {
+          a {
+            cursor: pointer;
+            text-decoration: none;
+            font-family: Sailec-Medium !important;
+            color: #10365a;
+          }
+          .pintar {
+            color: #ff4d4d !important;
+            border-bottom: 1px solid #ff4d4d;
+          }
+        }
+        .iniciar {
+          grid: iniciar;
+        }
+        .registrar {
+          grid: registrar;
+          display: flex;
+          justify-content: end;
+        }
+      }
+
+      .tipo_login,
+      .tipo_registro {
+        margin-top: 5rem;
+        display: flex;
+        flex-direction: column;
+        mat-form-field {
+          input {
+            color: #10365a;
+            font-weight: bold;
+          }
+          mat-label {
+            color: #10365a;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// Cambiar color al borde al hacer Focus
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing{
+  border-color: #10365A;
+}
+
+@media (max-width: 992px) {
+  .grid_login {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-areas: "form";
+    .bg_pet {
+      display: none;
+    }
+    .form_login {
+      height: 100%;
+    }
+  }
+}

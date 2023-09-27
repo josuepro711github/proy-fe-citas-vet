@@ -1,0 +1,39 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+*:not(mat-icon){
+    margin: 0;
+    padding: 0;
+    font-family: Sailec-Thin !important;
+}
+
+
+@font-face {
+    font-family: 'Silka-Regular';
+    src: url('./assets/fonts/Sillka-regular.ttf') format('truetype');
+}
+
+
+//FONT FAMILY SAILEC
+@font-face {
+    font-family: 'Sailec-Light';
+    src: url('./assets/fonts/Sailec-Light.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Sailec-Medium';
+    src: url('./assets/fonts/Sailec-Medium.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Sailec-Bold';
+    src: url('./assets/fonts/Sailec-Bold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Sailec-Regular-Italic';
+    src: url('./assets/fonts/Sailec-Regular-Italic.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Sailec-Thin';
+    src: url('./assets/fonts/Sailec-Thin.ttf') format('truetype');
+}

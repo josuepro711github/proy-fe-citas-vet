@@ -1,0 +1,94 @@
+.main {
+    padding-top: 3.4%;
+    padding-bottom: 20px;
+  }
+  
+  .img_carrusel {
+    height: 800px;
+    object-fit: cover;
+  }
+  
+  .contenedor {
+    padding-left: 3%;
+    padding-right: 3%;
+    .nosotros,
+    .mision {
+      display: grid;
+      grid-template-columns: 40% 60%;
+      grid-template-areas: "imagen contenido";
+      margin-top: 2.5%;
+      margin-bottom: 2.5%;
+      margin-right: 10%;
+    }
+    .vision {
+      display: grid;
+      grid-template-columns: 40% 60%;
+      grid-template-areas: "imagen contenido";
+      margin-top: 40px;
+      margin-bottom: 40px;
+      padding-left: 30%;
+      background-color: #f7f0eb;
+    }
+  
+    .imagen {
+      grid-area: imagen;
+      text-align: right;
+      img {
+        max-height: 320px;
+        max-width: 100%;
+      }
+    }
+    .contenido {
+      grid-area: contenido;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      .titulo {
+        font-weight: 500;
+        font-size: 1.8rem;
+        color: #103559;
+        font-family: Sailec-Medium !important;
+      }
+      .cuerpo {
+        font-size: 1.2em;
+        line-height: 1.6;
+        color: #103559;
+      }
+    }
+  }
+
+  
+  @media only screen and (max-width: 768px) {
+    .contenedor {
+      padding-left: 6%;
+      padding-right: 6%;
+      .nosotros,
+      .mision,
+      .vision {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "contenido"
+          "imagen";
+        margin-right: 0;
+        margin-left: 0;
+        margin-top: 15%;
+        margin-bottom: 30%;
+      }
+      .vision {
+        padding-left: 0;
+      }
+      .imagen {
+        margin-top: 20px;
+        text-align: center;
+      }
+      .contenido {
+        .titulo {
+          font-size: 1.6rem;
+        }
+        .cuerpo {
+          font-size: 1em;
+        }
+      }
+    }
+  }
