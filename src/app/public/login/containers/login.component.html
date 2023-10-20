@@ -13,23 +13,58 @@
       <div class="tipo_login" *ngIf="tipo === 1">
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label>Direcci&oacute;n de correo electr&oacute;nico</mat-label>
-          <input type="email" matInput>
+          <input formControlName="emailLogin" id="email" type="email" matInput>
+          
+          
+            <div *ngIf="form.get('emailLogin')?.invalid && form.get('emailLogin')?.touched">
+              <mat-error *ngIf="form.get('emailLogin')?.hasError('required')">
+                Este campo es requerido
+              </mat-error>
+              <mat-error *ngIf="form.get('emailLogin')?.hasError('email')">
+                Ingrese un correo válido
+              </mat-error>
+            </div>
         </mat-form-field>
-  
+
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label>Contraseña</mat-label>
-          <input type="password" matInput>
+          <input formControlName="password" type="password" matInput>
+          <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
+            <mat-error *ngIf="form.get('password')?.hasError('required')">
+              Este campo es requerido
+            </mat-error>
+
+          </div>
+          
         </mat-form-field>
       </div>
 
       <div class="tipo_registro" *ngIf="tipo === 2">
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label>Direcci&oacute;n de correo electr&oacute;nico</mat-label>
-          <input type="email" matInput>
+          <input formControlName="emailRegistro" type="email" matInput>
+          <div *ngIf="form.get('emailRegistro')?.invalid && form.get('emailRegistro')?.touched">
+            <mat-error *ngIf="form.get('emailRegistro')?.hasError('required')">
+              Este campo es requerido
+            </mat-error>
+            <mat-error *ngIf="form.get('emailRegistro')?.hasError('email')">
+              Ingrese un correo electr&oacute;nico
+            </mat-error>
+          </div>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Contraseña</mat-label>
+          <input formControlName="passwordregistro" type="passwordregistro" matInput>
+          <div *ngIf="form.get('passwordregistro')?.invalid && form.get('passwordregistro')?.touched">
+            <mat-error *ngIf="form.get('passwordregistro')?.hasError('required')">
+              Este campo es requerido
+            </mat-error>
+          </div>
+
         </mat-form-field>
       </div>
 
-      <button mat-raised-button class="btn-login" color="primary"  (click)="executeForm(tipo)">{{nameBtn}}</button>
+      <button mat-raised-button class="btn-login" color="primary" (click)="executeForm(tipo)">{{nameBtn}}</button>
     </form>
   </div>
 </main>

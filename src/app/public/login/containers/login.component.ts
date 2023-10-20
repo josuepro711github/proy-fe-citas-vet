@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit{
   emailLogin!: FormControl;
   emailRegistro!: FormControl;
   
+  
 
   tipo: number = 1;
   titulo: string = 'Iniciar';
@@ -24,11 +25,18 @@ export class LoginComponent implements OnInit{
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      emailLogin: ['', Validators.required],
-      emailRegistro: ['', Validators.required],
-      password: ['', Validators.required]
+      emailLogin: ['', [Validators.email,  Validators.required]],
+      emailRegistro: ['', [Validators.email, Validators.required]],
+      password: ['', Validators.required],
+      passwordregistro: ['', Validators.required]
     });
+
+    
+
+    
+
   }
+
 
   executeForm(val: number){
     if(val === 1){
