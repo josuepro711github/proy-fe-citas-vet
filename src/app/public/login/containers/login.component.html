@@ -12,29 +12,29 @@
 
       <div class="tipo_login" *ngIf="tipo === 1">
 
-        <mat-form-field class="example-full-width mat_error_color" 
-          [ngClass]="{'mat_error_border_color': form.get('emailLogin')?.invalid && form.get('emailLogin')?.touched}" appearance="outline">
-          <mat-label [ngClass]="{'mat_label_error': form.get('emailLogin')?.invalid && form.get('emailLogin')?.touched}">
-            Direcci&oacute;n de correo electr&oacute;nico
-          </mat-label>
-          <input formControlName="emailLogin" id="email" type="email" matInput>
-        </mat-form-field>
-        <div class="mat_error" *ngIf="form.get('emailLogin')?.invalid && form.get('emailLogin')?.touched">
-          <mat-error *ngIf="form.get('emailLogin')?.hasError('required')">
-            Este campo es requerido
-          </mat-error>
-          <mat-error *ngIf="form.get('emailLogin')?.hasError('email')">
-            Ingrese un correo válido
-          </mat-error>
-        </div>
+      <mat-form-field class="example-full-width mat_error_color" 
+        [ngClass]="{'mat_error_border_color': validFormName('emailLogin') }" appearance="outline">
+        <mat-label [ngClass]="{'mat_label_error': validFormName('emailLogin') }">
+          Direcci&oacute;n de correo electr&oacute;nico
+        </mat-label>
+        <input formControlName="emailLogin" id="email" type="email" matInput>
+      </mat-form-field>
+      <div class="mat_error" *ngIf="validFormName('emailLogin')">
+        <mat-error *ngIf="validHasError('emailLogin')===1">
+          Este campo es requerido
+        </mat-error>
+        <mat-error *ngIf="validHasError('emailLogin')===2">
+          Ingrese un correo válido
+        </mat-error>
+      </div>
 
         <mat-form-field class="example-full-width" appearance="outline" 
-          [ngClass]="{'mat_error_border_color': form.get('password')?.invalid && form.get('password')?.touched}">
-          <mat-label [ngClass]="{'mat_label_error': form.get('password')?.invalid && form.get('password')?.touched}">Contraseña</mat-label>
+          [ngClass]="{'mat_error_border_color': validFormName('password') }">
+          <mat-label [ngClass]="{'mat_label_error': validFormName('password') }">Contraseña</mat-label>
           <input formControlName="password" type="password" matInput>
         </mat-form-field>
         <div class="mat_error" *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
-          <mat-error *ngIf="form.get('password')?.hasError('required')">
+          <mat-error *ngIf="validHasError('password')===1">
             Este campo es requerido
           </mat-error>
         </div>
@@ -44,26 +44,26 @@
       <div class="tipo_registro" *ngIf="tipo === 2">
 
         <mat-form-field class="example-full-width" appearance="outline" 
-          [ngClass]="{'mat_error_border_color': form.get('emailRegistro')?.invalid && form.get('emailRegistro')?.touched}">
+          [ngClass]="{'mat_error_border_color': validFormName('emailRegistro') }">
           <mat-label>Direcci&oacute;n de correo electr&oacute;nico</mat-label>
           <input formControlName="emailRegistro" type="email" matInput>
         </mat-form-field>
-        <div class="mat_error" *ngIf="form.get('emailRegistro')?.invalid && form.get('emailRegistro')?.touched">
-          <mat-error *ngIf="form.get('emailRegistro')?.hasError('required')">
+        <div class="mat_error" *ngIf="validFormName('emailRegistro')">
+          <mat-error *ngIf="validHasError('emailRegistro')===1">
             Este campo es requerido
           </mat-error>
-          <mat-error *ngIf="form.get('emailRegistro')?.hasError('email')">
+          <mat-error *ngIf="validHasError('emailRegistro')===2">
             Ingrese un correo electr&oacute;nico
           </mat-error>
         </div>
 
         <mat-form-field class="example-full-width" appearance="outline" 
-          [ngClass]="{'mat_error_border_color': form.get('passwordregistro')?.invalid && form.get('passwordregistro')?.touched}">
+          [ngClass]="{'mat_error_border_color': validFormName('passwordregistro') }">
           <mat-label>Contraseña</mat-label>
           <input formControlName="passwordregistro" type="passwordregistro" matInput>
         </mat-form-field>
-        <div class="mat_error"  *ngIf="form.get('passwordregistro')?.invalid && form.get('passwordregistro')?.touched">
-          <mat-error *ngIf="form.get('passwordregistro')?.hasError('required')">
+        <div class="mat_error" *ngIf="validFormName('passwordregistro')">
+          <mat-error *ngIf="validHasError('passwordregistro')===1">
             Este campo es requerido
           </mat-error>
         </div>

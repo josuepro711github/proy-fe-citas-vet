@@ -1,60 +1,75 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit{
-
+export class LoginComponent implements OnInit {
   form!: FormGroup;
   emailLogin!: FormControl;
   emailRegistro!: FormControl;
-  
-  
 
   tipo: number = 1;
   titulo: string = 'Iniciar';
   descripcion: string = 'Ingrese';
   nameBtn: string = 'Ingresar';
 
-  constructor(
-    private fb: FormBuilder,
-  ) {}
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      emailLogin: ['', [Validators.email,  Validators.required]],
+      emailLogin: ['', [Validators.email, Validators.required]],
       emailRegistro: ['', [Validators.email, Validators.required]],
       password: ['', Validators.required],
-      passwordregistro: ['', Validators.required]
+      passwordregistro: ['', Validators.required],
     });
-
   }
 
+  validFormName(val: string): boolean {
+    let esInvalido = false;
+    if (this.form.get(val)?.invalid && this.form.get(val)?.touched) {
+      esInvalido = true;
+    }
+    return esInvalido;
+  }
 
-  executeForm(val: number){
-    if(val === 1){
+  validHasError(val: string): number {
+    let error = 0;
+    if (this.form.get(val)?.hasError('required')) {
+      error = 1;
+    }
+    if(this.form.get(val)?.hasError('email')){
+      error = 2;
+    }
+    return error;
+  }
+
+  executeForm(val: number) {
+    if (val === 1) {
       //login
-    }else {
+    } else {
       //registro
     }
   }
 
-  irLogin(val: number){
+  irLogin(val: number) {
     this.tipo = val;
     this.titulo = 'Iniciar';
     this.descripcion = 'Ingrese';
     this.nameBtn = 'Ingresar';
   }
 
-  irRegistro(val: number){
+  irRegistro(val: number) {
     this.tipo = val;
     this.titulo = 'Registrar';
     this.descripcion = 'Registrese';
     this.nameBtn = 'Continuar';
   }
-  
-  
 }
