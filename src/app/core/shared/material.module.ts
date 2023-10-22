@@ -16,7 +16,7 @@ import {MatInputModule} from '@angular/material/input';
     MatIconModule,
     MatCardModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
   ],
   exports: [
     MatTabsModule,
