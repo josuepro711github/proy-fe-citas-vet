@@ -31,10 +31,6 @@ export class LoginComponent implements OnInit{
       passwordregistro: ['', Validators.required]
     });
 
-    
-
-    
-
   }
 
 

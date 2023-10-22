@@ -85,6 +85,13 @@
             font-weight: bold;
           }
         }
+        .mat_error{
+          margin-top: -3%;
+          margin-bottom: 3%;
+        }
+        .mat_label_error{
+          color: red !important;
+        }
       }
     }
   }
