@@ -12,7 +12,8 @@
 
       <div class="tipo_login" *ngIf="tipo === 1">
 
-        <mat-form-field class="example-full-width" appearance="outline">
+        <mat-form-field class="example-full-width mat_error_color" 
+          [ngClass]="{'mat_error_border_color': form.get('emailLogin')?.invalid && form.get('emailLogin')?.touched}" appearance="outline">
           <mat-label [ngClass]="{'mat_label_error': form.get('emailLogin')?.invalid && form.get('emailLogin')?.touched}">
             Direcci&oacute;n de correo electr&oacute;nico
           </mat-label>
@@ -27,7 +28,8 @@
           </mat-error>
         </div>
 
-        <mat-form-field class="example-full-width" appearance="outline">
+        <mat-form-field class="example-full-width" appearance="outline" 
+          [ngClass]="{'mat_error_border_color': form.get('password')?.invalid && form.get('password')?.touched}">
           <mat-label [ngClass]="{'mat_label_error': form.get('password')?.invalid && form.get('password')?.touched}">Contraseña</mat-label>
           <input formControlName="password" type="password" matInput>
         </mat-form-field>
@@ -41,7 +43,8 @@
 
       <div class="tipo_registro" *ngIf="tipo === 2">
 
-        <mat-form-field class="example-full-width" appearance="outline">
+        <mat-form-field class="example-full-width" appearance="outline" 
+          [ngClass]="{'mat_error_border_color': form.get('emailRegistro')?.invalid && form.get('emailRegistro')?.touched}">
           <mat-label>Direcci&oacute;n de correo electr&oacute;nico</mat-label>
           <input formControlName="emailRegistro" type="email" matInput>
         </mat-form-field>
@@ -54,7 +57,8 @@
           </mat-error>
         </div>
 
-        <mat-form-field class="example-full-width" appearance="outline">
+        <mat-form-field class="example-full-width" appearance="outline" 
+          [ngClass]="{'mat_error_border_color': form.get('passwordregistro')?.invalid && form.get('passwordregistro')?.touched}">
           <mat-label>Contraseña</mat-label>
           <input formControlName="passwordregistro" type="passwordregistro" matInput>
         </mat-form-field>
