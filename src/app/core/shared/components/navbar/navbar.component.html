@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" class="mat-elevation-z6 toolbar">
+<mat-toolbar *ngIf="!rolAdmin" color="primary" class="mat-elevation-z6" [ngClass]="{'rol_public': !rolAdmin}">
     <div class="logo">
         <img src="../../../../../assets/icons/hueso.png" alt="">
         <span>PET LIFE PER&Uacute;</span>
@@ -10,10 +10,11 @@
     [ngClass]="{'bg-hover2': pintar===i+1}">{{ item }}</a>
 
     <mat-icon (click)="irRuta(7)" [ngClass]="{'bg-hover2': pintar===7}" class="icon-login">account_circle</mat-icon>
+</mat-toolbar>
 
-<!--     <a mat-button [disableRipple]="true" *ngFor="let item of listaNavbar; let i = index" (click)="irRuta(i+1)" 
-    [ngClass]="{'bg-hover2': ruta===rutaActiva}">{{ item }}</a>
 
-    <mat-icon (click)="irRuta(7)" [ngClass]="{'bg-hover2': ruta===rutaActiva}" routerLinkActive="bg-hover2" class="icon-login">account_circle</mat-icon> -->
-
+<mat-toolbar *ngIf="rolAdmin" color="primary" class="mat-elevation-z6" [ngClass]="{'rol_admin': rolAdmin}">
+    <div class="perfil">
+        <img [src]="" alt="user image"/>
+    </div>
 </mat-toolbar>

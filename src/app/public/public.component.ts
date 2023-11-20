@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
 export class PublicComponent {
   constructor() {}
 
+  rolAdmin: boolean = true;
+
   ngOnInit(){}
   
 }

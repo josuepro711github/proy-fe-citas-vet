@@ -29,7 +29,7 @@ import { CommonModule } from '@angular/common';
     MaterialModule,
     FooterComponent,
     NavbarComponent,
-    CommonModule
+    CommonModule,
   ],
   providers: []
 })

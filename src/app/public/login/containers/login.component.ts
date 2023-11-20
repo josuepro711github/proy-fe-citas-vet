@@ -5,6 +5,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
+import { EventEmitterService } from 'src/app/core/shared/services/event-emitter.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +23,11 @@ export class LoginComponent implements OnInit {
   descripcion: string = 'Ingrese';
   nameBtn: string = 'Ingresar';
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private eventEmitterService: EventEmitterService
+    ) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -45,7 +51,7 @@ export class LoginComponent implements OnInit {
     if (this.form.get(val)?.hasError('required')) {
       error = 1;
     }
-    if(this.form.get(val)?.hasError('email')){
+    if (this.form.get(val)?.hasError('email')) {
       error = 2;
     }
     return error;
@@ -54,6 +60,8 @@ export class LoginComponent implements OnInit {
   executeForm(val: number) {
     if (val === 1) {
       //login
+      this.router.navigate(['/doctores']);
+      this.eventEmitterService.setRol(true);
     } else {
       //registro
     }
