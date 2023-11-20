@@ -7,6 +7,8 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EventEmitterService } from 'src/app/core/shared/services/event-emitter.service';
+import { AuthService } from '../auth.service';
+import { Usuario } from 'src/app/core/models/Usuario';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +28,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private eventEmitterService: EventEmitterService
+    private eventEmitterService: EventEmitterService,
+    private serviceAuth: AuthService
     ) {}
 
   ngOnInit(): void {
@@ -58,12 +61,15 @@ export class LoginComponent implements OnInit {
   }
 
   executeForm(val: number) {
-    if (val === 1) {
-      //login
-      this.router.navigate(['/doctores']);
-      this.eventEmitterService.setRol(true);
-    } else {
-      //registro
+    let usuario:Usuario ={} as Usuario
+    let password = this.form.get('password')?.value
+    if(val === 1){
+      let emailLogin = this.form.get('emailLogin')?.value
+      usuario.email = emailLogin
+      usuario.contrasenia = password
+      this.serviceAuth.login(usuario).subscribe(response => sessionStorage.setItem('token',JSON.stringify(response)));
+      this.router.navigate(['']);
+    }else {
     }
   }
 

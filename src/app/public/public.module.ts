@@ -11,6 +11,7 @@ import { ContactoComponent } from './contacto/containers/contacto.component';
 import { ServiciosComponent } from './servicios/containers/servicios.component';
 import { BlogComponent } from "./blog/containers/blog.component";
 import { ConsultoriosComponent } from "./consultorios/containers/consultorios.component";
+import { AuthService } from "./login/auth.service";
 
 @NgModule({
     imports: [
@@ -30,7 +31,9 @@ import { ConsultoriosComponent } from "./consultorios/containers/consultorios.co
         ConsultoriosComponent
     ],
     exports: [],
-    providers: []
+    providers: [
+        AuthService
+    ]
 })
 
 export class PublicModule {
