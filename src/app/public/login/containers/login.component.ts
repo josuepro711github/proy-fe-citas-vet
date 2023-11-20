@@ -24,7 +24,9 @@ export class LoginComponent implements OnInit {
   titulo: string = 'Iniciar';
   descripcion: string = 'Ingrese';
   nameBtn: string = 'Ingresar';
-
+  imagenFile: File | null = null;
+  fecha_nacimiento = ""
+  
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -32,14 +34,22 @@ export class LoginComponent implements OnInit {
     private serviceAuth: AuthService
     ) {}
 
-  ngOnInit(): void {
-    this.form = this.fb.group({
-      emailLogin: ['', [Validators.email, Validators.required]],
-      emailRegistro: ['', [Validators.email, Validators.required]],
-      password: ['', Validators.required],
-      passwordregistro: ['', Validators.required],
-    });
-  }
+    ngOnInit(): void {
+      this.form = this.fb.group({
+        //Login
+        email: ['', [Validators.email, Validators.required]],
+        password: ['', Validators.required],
+
+        //Registro
+        nombres: ['', Validators.required],
+        apellido_paterno: ['', Validators.required],
+        apellido_materno: ['', Validators.required],
+        fecha_nacimiento: ['', Validators.required],
+        dni: ['', Validators.required],
+        telefono: ['', Validators.required],
+        imagen: [''],
+      });
+    }
 
   validFormName(val: string): boolean {
     let esInvalido = false;
@@ -64,12 +74,36 @@ export class LoginComponent implements OnInit {
     let usuario:Usuario ={} as Usuario
     let password = this.form.get('password')?.value
     if(val === 1){
-      let emailLogin = this.form.get('emailLogin')?.value
+      let emailLogin = this.form.get('email')?.value
       usuario.email = emailLogin
       usuario.contrasenia = password
-      this.serviceAuth.login(usuario).subscribe(response => sessionStorage.setItem('token',JSON.stringify(response)));
-      this.router.navigate(['']);
+      this.serviceAuth.login(usuario).subscribe(response => {
+         sessionStorage.setItem('token',JSON.stringify(response))
+         this.router.navigate(['']);
+         console.log(response);
+      });
     }else {
+      let email  = this.form.get('email')?.value
+      let contrasenia  = this.form.get('password')?.value
+      let nombre  = this.form.get('nombres')?.value
+      let apellido_paterno  = this.form.get('apellido_paterno')?.value
+      let apellido_materno  = this.form.get('apellido_materno')?.value
+      let dni  = this.form.get('dni')?.value
+      let telefono  = this.form.get('telefono')?.value
+
+      let cliente = {
+              id_cliente: 0,
+              usuario:{
+                id_usuario: 0, email: email, contrasenia:contrasenia,nombre:nombre,apellido_paterno:apellido_paterno,
+                apellido_materno:apellido_materno,dni:dni,fecha_nacimiento:this.fecha_nacimiento,telefono:telefono,imagen:"..",rol:{
+                  id_rol:1,
+                  tipo_rol:"Cliente"
+                },}
+              }
+      this.serviceAuth.registrarCliente(cliente,this.imagenFile).subscribe(response=>{
+        this.router.navigate([""])
+      })
+
     }
   }
 
@@ -86,4 +120,38 @@ export class LoginComponent implements OnInit {
     this.descripcion = 'Registrese';
     this.nameBtn = 'Continuar';
   }
+
+  imagenSeleccionada: string | ArrayBuffer | null = null;
+  imagenFileSeleccionado(event: any): void {
+    const file: File = event.target.files[0];
+
+    if (file) {
+      this.imagenFile = file;
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagenSeleccionada = reader.result;
+      };
+      reader.readAsDataURL(file);
+      console.log(file)
+
+    }
+  }
+
+  onDateSelected() {
+    let fecha_nacimiento  = this.form.get('fecha_nacimiento')?.value
+    this.formatoFecha(fecha_nacimiento);
+    console.log(this.fecha_nacimiento);
+  }
+
+  formatoFecha(date: Date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    this.fecha_nacimiento= `${year}-${month}-${day}`;
+
+  }
+
+
+
+
 }
