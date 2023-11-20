@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { EventEmitterService } from '../../services/event-emitter.service';
+import { AuthService } from 'src/app/public/login/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -31,12 +32,28 @@ export class NavbarComponent implements OnInit {
   rutaActiva: string = '';
   rolAdmin: boolean = false;
 
+  imagenSeleccionada: string | ArrayBuffer | null = null;
+
   constructor(
     private router: Router,
     private renderer: Renderer2,
-    private eventEmitterService: EventEmitterService
+    private eventEmitterService: EventEmitterService, private authService:AuthService
   ) {
     this.rutaActiva = this.router.url;
+    let token = this.authService.obtenerToken()
+    console.log(token)
+
+    if(token != null){
+      this.authService.traerImagegnCliente(token.imagen).subscribe(response=>{
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.imagenSeleccionada = reader.result;
+        };
+        reader.readAsDataURL(response);
+      })
+    }
+
+
   }
 
   ngOnInit(): void {
@@ -46,6 +63,8 @@ export class NavbarComponent implements OnInit {
     }
 
   }
+
+
 
   irRuta(valor: number) {
     switch (valor) {
