@@ -25,6 +25,7 @@ export class AuthService {
   }
 
   login(usuario:Usuario):Observable<any>{
+    console.log(usuario)
     let body = 'username='+usuario.email+ '&password=' +usuario.contrasenia + '&grant_type=password';
     let headAuthBas = this.headersAut.set('Authorization', 'Basic ' + btoa('user:user'));
 
@@ -39,8 +40,21 @@ export class AuthService {
     formData.append('cliente', clienteGson);
     formData.append('imagen', imagen);
 
+<<<<<<< HEAD
     return this.http.post<any>(url_api+'api/vet/petlife/v1.0.0/cliente/registrarCliente' ,formData)
   }
 
 
 }
+=======
+    return this.http.post<any>(this.urlApi+'api/vet/petlife/v1.0.0/cliente/registrarCliente' ,formData)
+  }
+
+
+
+  traerImagegnCliente(nombre_imagen:string){
+    return this.http.get(`${this.urlApi}api/vet/petlife/v1.0.0/imagen/clientes/${nombre_imagen}`, { responseType: 'blob' });
+  }
+
+}
+>>>>>>> proy-fe-citas-vet_HV
