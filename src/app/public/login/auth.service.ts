@@ -43,10 +43,8 @@ export class AuthService {
   }
 
 
-
   traerImagegnCliente(nombre_imagen:string){
     return this.http.get(`${this.urlApi}api/vet/petlife/v1.0.0/imagen/clientes/${nombre_imagen}`, { responseType: 'blob' });
   }
 
 }
-

@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
   nameBtn: string = 'Ingresar';
   imagenFile: File | null = null;
   fecha_nacimiento = ""
-
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -74,12 +73,12 @@ export class LoginComponent implements OnInit {
     let usuario:Usuario ={} as Usuario
     let password = this.form.get('password')?.value
     if(val === 1){
-
       let emailLogin = this.form.get('email')?.value
       usuario.email = emailLogin
       usuario.contrasenia = password
       this.serviceAuth.login(usuario).subscribe(response => {
          sessionStorage.setItem('token',JSON.stringify(response))
+
          this.router.navigate(['']);
          console.log(response);
       });
@@ -102,7 +101,6 @@ export class LoginComponent implements OnInit {
                 },}
               }
       this.serviceAuth.registrarCliente(cliente,this.imagenFile).subscribe(response=>{
-
         usuario.email = email
         usuario.contrasenia = contrasenia
         this.serviceAuth.login(usuario).subscribe(response => {
@@ -111,6 +109,7 @@ export class LoginComponent implements OnInit {
           console.log(response);
        });
       })
+
     }
   }
 
@@ -146,9 +145,7 @@ export class LoginComponent implements OnInit {
 
   onDateSelected() {
     let fecha_nacimiento  = this.form.get('fecha_nacimiento')?.value
-    this.formatoFecha(fecha_nacimiento);
-    console.log(this.fecha_nacimiento);
-
+    this.formatoFecha(fecha_nacimiento)
   }
 
   formatoFecha(date: Date) {
@@ -160,4 +157,3 @@ export class LoginComponent implements OnInit {
   }
 
 }
-

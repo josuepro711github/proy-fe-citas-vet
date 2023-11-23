@@ -1,2 +1,27 @@
-<app-navbar></app-navbar>
-<router-outlet></router-outlet>
+<!-- <div class="contenido">
+    <app-sidenav></app-sidenav>
+    <router-outlet></router-outlet>
+</div> -->
+
+
+
+<mat-sidenav-container [style.height]="sidenavHeight">
+  <mat-sidenav #sidenav mode="side" opened="true" [style.width]="sidenavWidth" >
+    <!-- Contenido del sidenav -->
+
+    <div style="background-color: #23282C;position: absolute; color: white;">
+      <mat-icon (click)="closeSidenav()" *ngIf="sidenavOpen">close</mat-icon>
+
+      <mat-icon (click)="closeOpenSidenav()" *ngIf="!sidenavOpen">adjust</mat-icon>
+    </div>
+    <div (click)="closeOpenSidenav()">
+      <app-sidenav></app-sidenav>
+    </div>
+
+  </mat-sidenav>
+  <mat-sidenav-content [style.margin-left]="contentMarginLeft">
+    <!-- Contenido principal -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

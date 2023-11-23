@@ -6,12 +6,9 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-<<<<<<< HEAD
-import {MatDatepickerModule} from '@angular/material/datepicker';
-=======
 import { MatDatepickerModule } from '@angular/material/datepicker';
->>>>>>> proy-fe-citas-vet_HV
 import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 
 @NgModule({
@@ -24,11 +21,8 @@ import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
-<<<<<<< HEAD
-    MatNativeDateModule
-=======
     MatNativeDateModule,
->>>>>>> proy-fe-citas-vet_HV
+    MatSidenavModule,
   ],
   exports: [
     MatTabsModule,
@@ -39,12 +33,8 @@ import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
-<<<<<<< HEAD
-    MatNativeDateModule
-=======
     MatNativeDateModule,
-
->>>>>>> proy-fe-citas-vet_HV
+    MatSidenavModule,
   ],
 })
 
