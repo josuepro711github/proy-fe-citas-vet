@@ -8,6 +8,7 @@ import { MaterialModule } from './material.module';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { CommonModule } from '@angular/common';
   declarations: [
     NotFoundComponent,
     FooterComponent,
-    NavbarComponent
+    NavbarComponent,
+    SidenavComponent
   ],
   exports: [
     HttpClientModule,
@@ -30,6 +32,7 @@ import { CommonModule } from '@angular/common';
     FooterComponent,
     NavbarComponent,
     CommonModule,
+    SidenavComponent
   ],
   providers: []
 })

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../core/shared/shared.module';
-import { DoctoresComponent } from './doctores/doctores.component';
-import { CitasComponent } from './citas/citas.component';
 import { AdminComponent } from './admin.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ListarComponent } from './doctor/listar/listar.component';
+import { RegistrarActualizarComponent } from './doctor/registrar-actualizar/registrar-actualizar.component';
 
 @NgModule({
   imports: [
@@ -14,8 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   declarations: [
     AdminComponent,
-    DoctoresComponent,
-    CitasComponent
+    ListarComponent,
+    RegistrarActualizarComponent,
   ],
   exports: [],
   providers: [],
