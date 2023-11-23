@@ -1,8 +1,8 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AdminComponent } from "./admin.component";
-import { CitasComponent } from "./citas/citas.component";
-import { DoctoresComponent } from "./doctores/doctores.component";
+import { ListarComponent } from "./doctor/listar/listar.component";
+import { RegistrarActualizarComponent } from "./doctor/registrar-actualizar/registrar-actualizar.component";
 
 
 const routes: Routes = [
@@ -10,8 +10,9 @@ const routes: Routes = [
         path: '', component: AdminComponent, children:
         [
             { path: '', redirectTo: 'admin', pathMatch: 'full' },
-            { path: 'citas', component: CitasComponent },
-            { path: 'doctores', component: DoctoresComponent }
+            { path: 'listar-doctor', component: ListarComponent },
+            { path: 'registrar-doctor', component: RegistrarActualizarComponent },
+            { path: 'actualizar-doctor/:id_doctor', component: RegistrarActualizarComponent }
         ]
     }
 ];

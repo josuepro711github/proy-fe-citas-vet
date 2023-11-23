@@ -8,6 +8,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSidenavModule,
   ],
   exports: [
     MatTabsModule,
@@ -32,6 +34,7 @@ import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSidenavModule,
   ],
 })
 

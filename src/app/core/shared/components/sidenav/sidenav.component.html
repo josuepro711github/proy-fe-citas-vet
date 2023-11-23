@@ -1,1 +1,20 @@
-<p>sidenav works!</p>
+
+<div class="sidenav_contenido">
+
+  <ul>
+    <li class="sidenav-nav-item" *ngFor="let item of enlaces">
+      <a href="" class="sidenav-nav-link"  (click)="irEnlace(item.routeLink)"
+          routerLink="active" routerLinkActive="active"
+          [class.active]="true">
+
+          <mat-icon> {{item.icon}}</mat-icon>
+          
+          <span class="sidenav-link-text" >{{item.label}}</span>
+
+
+        </a>
+    </li>
+  </ul>
+
+</div>
+
