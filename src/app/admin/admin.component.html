@@ -9,13 +9,15 @@
   <mat-sidenav #sidenav mode="side" opened="true" [style.width]="sidenavWidth" >
     <!-- Contenido del sidenav -->
 
-    <div style="background-color: #23282C;position: absolute; color: white;">
-      <mat-icon (click)="closeSidenav()" *ngIf="sidenavOpen">close</mat-icon>
+    <div class="sidenav-header" (click)="closeSidenav()" [class.close-in]="sidenavAnimation === 'close-in'" [class.close-out]="sidenavAnimation === 'close-out'" >
+      <!-- animaciones -->
+      <mat-icon  *ngIf="sidenavOpen" >close</mat-icon>
 
-      <mat-icon (click)="closeOpenSidenav()" *ngIf="!sidenavOpen">adjust</mat-icon>
+      <mat-icon  *ngIf="!sidenavOpen" >adjust</mat-icon>
     </div>
-    <div (click)="closeOpenSidenav()">
-      <app-sidenav></app-sidenav>
+    <div >
+      <!-- Contenido del sidenav -->
+      <app-sidenav ></app-sidenav>
     </div>
 
   </mat-sidenav>

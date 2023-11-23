@@ -27,8 +27,18 @@ export class SidenavComponent {
 
   ]
 
+  
+
 
   irEnlace(routeLink:string){
     this.router.navigate([routeLink])
   }
+  // Función para determinar si un enlace está activo
+  esEnlaceActivo(routeLink: string): boolean {
+    return this.router.isActive(routeLink, false);
+  }
+
+
+  
+ 
 }

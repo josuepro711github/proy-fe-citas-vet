@@ -1,5 +1,64 @@
-.sidenav_contenido{
-    background-color: #23282C !important;
-    color: white;
-    height: 100vh;
+.sidenav_contenido {
+  background-color: #23282C !important;
+  color: white;
+  height: 100vh;
+
+  ul {
+    list-style-type: none;
+    padding: 36px 0;
+    /* Ajustado para un mejor espaciado */
+    margin: 0;
+  }
+
+  .sidenav-nav-item {
+    margin: 0 auto;
+    /* Ajustado para un mejor espaciado entre items */
+    cursor: pointer;
+    /* centrar verticalmente */
+
+
+
+
+    &:last-child {
+      margin-bottom: 0;
+      /* Elimina el espacio en blanco en el último elemento */
+    }
+
+
+  }
+
+  .sidenav-nav-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #ffffff;
+    
+    padding: 12px;
+    padding-left: 40px;
+    /* Ajustado para un mejor espaciado y área de clic */
+
+    &:hover {
+      background-color: #37474f;
+    }
+
+    &.active {
+      background-color: #4a6572;
+    }
+
+    mat-icon {
+      margin-right: 16px;
+      /* Espaciado ajustado para un mejor equilibrio visual */
+      font-size: 46px;
+      width: 40px;
+      height: 40px;
+      /* Tamaño del icono ajustado */
+    }
+
+    .sidenav-link-text {
+      font-size: 20px;
+      font-weight: 500;
+      /* Peso de la fuente ajustado para mayor énfasis */
+    }
+  }
+
 }
