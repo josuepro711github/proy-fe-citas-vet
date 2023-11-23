@@ -39,17 +39,8 @@ export class AuthService {
     var formData: any = new FormData();
     formData.append('cliente', clienteGson);
     formData.append('imagen', imagen);
-
-<<<<<<< HEAD
-    return this.http.post<any>(url_api+'api/vet/petlife/v1.0.0/cliente/registrarCliente' ,formData)
-  }
-
-
-}
-=======
     return this.http.post<any>(this.urlApi+'api/vet/petlife/v1.0.0/cliente/registrarCliente' ,formData)
   }
-
 
 
   traerImagegnCliente(nombre_imagen:string){
@@ -57,4 +48,3 @@ export class AuthService {
   }
 
 }
->>>>>>> proy-fe-citas-vet_HV
