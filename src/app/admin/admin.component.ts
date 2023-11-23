@@ -13,8 +13,7 @@ export class AdminComponent {
 
   ngOnInit(){
 
-    // animaciones 
-
+    
 
   }
 

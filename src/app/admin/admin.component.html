@@ -9,7 +9,7 @@
   <mat-sidenav #sidenav mode="side" opened="true" [style.width]="sidenavWidth" >
     <!-- Contenido del sidenav -->
 
-    <div class="sidenav-header" (click)="closeSidenav()" [class.close-in]="sidenavAnimation === 'close-in'" [class.close-out]="sidenavAnimation === 'close-out'" >
+    <div class="sidenav-header" (click)="closeSidenav()" [ngClass]="sidenavOpen ? 'sidenav-open' : 'sidenav-closed'">
       <!-- animaciones -->
       <mat-icon  *ngIf="sidenavOpen" >close</mat-icon>
 
