@@ -10,7 +10,7 @@ const routes: Routes = [
      path: '', component: DoctorComponent,
      children: [
       { path: '', redirectTo: 'doctor', pathMatch: 'full' },
-      { path: 'listar-citas', component: ListarComponent }
+      { path: 'listar-citas', component: ListarComponent },
      ]
   }
   

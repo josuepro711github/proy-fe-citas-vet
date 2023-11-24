@@ -4,20 +4,39 @@
     background-color: #23282C; 
     position: absolute;
     
-    left: 186px;
+    
     // centrar verticalmente
     margin-top: 7px;
     height: 55px;
-    width: 57px;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
     cursor: pointer;
 
+    .custom-icon {
+        width: 45px;
+        height: 45px;
+        
+        svg {
+            width: 100%;
+            height: 100%;
+
+            g{
+                width: 100%;
+                height: 100%;
+
+            }
+
+        }
+        
+        
+       }
+
     mat-icon{
-        font-size: 54px;
-        border-radius: 5px;
-        border: 2px solid #ccc;
+        font-size: 34px;
+        
         width: 100%;
         height: 100%;
         display: block;
@@ -25,16 +44,19 @@
         
 
     }
+    sidenav-icons{
+        margin: 0 auto;
+    }
 
     
 }
 
 .sidenav-open {
-left:186px ;
-transition: left 0.5s;
+margin-left:186px ;
+transition: margin-left 0.5s;
 }
 
 .sidenav-closed {
-left: 15px;
-transition: left 0.1s;
+margin-left: 0px;
+transition: margin-left 0.1s;
 }

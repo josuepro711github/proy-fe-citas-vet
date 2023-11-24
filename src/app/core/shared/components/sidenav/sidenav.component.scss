@@ -30,7 +30,7 @@
   .sidenav-nav-item-closed {
     
 
-      mat-icon{
+      .sidenav-link-icon {
         // centrar 
         margin: 0 auto;
       }
@@ -62,10 +62,10 @@
       background-color: #4a6572;
     }
 
-    mat-icon {
+    .sidenav-link-icon {
       margin-right: 28px;
       /* Espaciado ajustado para un mejor equilibrio visual */
-      font-size: 46px;
+      font-size: 40px;
       width: 40px;
       height: 40px;
       /* Tamaño del icono ajustado */

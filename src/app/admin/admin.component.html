@@ -9,12 +9,15 @@
   <mat-sidenav #sidenav mode="side" opened="true" [style.width]="sidenavWidth" >
     <!-- Contenido del sidenav -->
 
-    <div class="sidenav-header" (click)="closeSidenav()" [ngClass]="sidenavOpen ? 'sidenav-open' : 'sidenav-closed'">
+    <div class="sidenav-header" (click)="closeSidenav()">
       <!-- animaciones -->
-      <mat-icon  *ngIf="sidenavOpen" >close</mat-icon>
+      <div class="sidenav-icons" [ngClass]="sidenavOpen ? 'sidenav-open' : 'sidenav-closed'">
+          <img *ngIf="sidenavOpen" class="custom-icon" src="../../assets/svg/icon-close.svg">
 
-      <mat-icon  *ngIf="!sidenavOpen" >adjust</mat-icon>
-    </div>
+          <mat-icon *ngIf="!sidenavOpen">menu</mat-icon>
+      </div>
+
+  </div>
     <div >
       <!-- Contenido del sidenav -->
       <app-sidenav [sidenavOpen]="sidenavOpen" [enlaces]="enlaces" ></app-sidenav>

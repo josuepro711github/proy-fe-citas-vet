@@ -1,5 +1,16 @@
-import { Component, Input } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnChanges,
+  OnInit,
+  Renderer2,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { Router } from '@angular/router';
+import { EventEmitterService } from '../../services/event-emitter.service';
+import { AuthService } from 'src/app/public/services/auth.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -7,19 +18,43 @@ import { Router } from '@angular/router';
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent {
+  
+  
+  rol: boolean = false;
+  name: string = '';
 
+  imagenSeleccionada: string | ArrayBuffer | null = "../../../../../assets/icons/hueso.png";
   
 
   @Input() sidenavOpen: boolean = false;
-  constructor(private router: Router,){
+  constructor(private router: Router){
+    
+    let token = JSON.parse( sessionStorage.getItem('token')?.toString() || '{}');
+    console.log(token)
 
+    if(token != null){
+      this.rol = token.rol;
+      this.name = token.nombre + ' ' + token['apellido paterno'];
+      
+      
+      
+      
+    }
   }
-
-  @Input() enlaces: any[] = [];
 
   
 
 
+
+
+  logout(){
+    sessionStorage.removeItem('token');
+    this.router.navigate(['/login-registro']);
+  }
+  
+  
+
+  @Input() enlaces: any[] = [];
   irEnlace(routeLink:string){
     this.router.navigate([routeLink])
   }

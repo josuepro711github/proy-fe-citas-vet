@@ -27,7 +27,7 @@ export class AdminComponent {
   },
   {
     routeLink : "registrar-doctor",
-    icon:"",
+    icon:"person_add",
     label: "Registrar Doctor",
     rol:"Admin"
   },
