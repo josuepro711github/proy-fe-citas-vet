@@ -1,5 +1,11 @@
-.contenido2{
-    background-color: red;
-    color: white;
-    height: 100vh;
+.contenido {
+  padding: 2.5%;
+  .titulo {
+    font-size: 2rem;
+    color: #ff4d4d;
+    font-weight: bold;
+    margin-bottom: 2.5%;
+    line-height: 2.5;
+    border-bottom: 2px solid #ff4d4d;
+  }
 }
