@@ -132,12 +132,11 @@ export class RegistrarActualizarComponent {
     let apellido_materno  = this.form.get('apellido_materno')?.value
     let dni  = this.form.get('dni')?.value
     let telefono  = this.form.get('telefono')?.value
-
     let doctor = {
       id_doctor: 0,
       usuario:{
         id_usuario: 0, email: email, contrasenia:contrasenia,nombre:nombre,apellido_paterno:apellido_paterno,
-        apellido_materno:apellido_materno,dni:dni,fecha_nacimiento:this.fecha_nacimiento,telefono:telefono,imagen:this.doctorActualizar.usuario.imagen,rol:{
+        apellido_materno:apellido_materno,dni:dni,fecha_nacimiento:this.fecha_nacimiento,telefono:telefono,imagen:"..",rol:{
           id_rol:2,
           tipo_rol:"DOCTOR"
         }},
@@ -151,6 +150,7 @@ export class RegistrarActualizarComponent {
     }else{
       doctor.id_doctor = this.doctorActualizar.id_doctor
       doctor.usuario.id_usuario = this.doctorActualizar.usuario.id_usuario
+      doctor.usuario.imagen = this.doctorActualizar.usuario.imagen
       console.log(doctor)
       this.serviceDoctor.actualizarDoctor(doctor,this.imagenFile).subscribe(response=>{
         this.router.navigate(['listar-doctor']);

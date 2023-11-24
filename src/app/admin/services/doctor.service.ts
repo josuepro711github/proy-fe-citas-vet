@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Pageable } from 'src/app/core/models/Pageable';
 import { url_api } from 'src/app/core/shared/util/constantes';
 
+
 @Injectable({
   providedIn: 'root'
 })
