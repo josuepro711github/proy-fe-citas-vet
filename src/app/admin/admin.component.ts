@@ -18,6 +18,23 @@ export class AdminComponent {
   }
 
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
+
+  enlaces = [{
+    routeLink : "listar-doctor",
+    icon:"person",
+    label: "Listar Doctor",
+    rol:"Admin"
+  },
+  {
+    routeLink : "registrar-doctor",
+    icon:"",
+    label: "Registrar Doctor",
+    rol:"Admin"
+  },
+
+]
+
+
   sidenavOpen = true;
   sidenavHeight = "100%";
   sidenavWidth = '256px';

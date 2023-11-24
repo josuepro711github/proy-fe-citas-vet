@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { DoctorRoutingModule } from './doctor-routing.module';
 import { ListarComponent } from './citas/listar/listar.component';
 import { DoctorComponent } from './doctor.component';
+import { SharedModule } from '../core/shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,9 +15,10 @@ import { DoctorComponent } from './doctor.component';
     DoctorComponent
   ],
   imports: [
-
+    SharedModule,
     CommonModule,
-    DoctorRoutingModule
+    DoctorRoutingModule,
+    ReactiveFormsModule
   ],
   exports: [],
   providers: [

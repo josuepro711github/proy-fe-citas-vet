@@ -1,4 +1,24 @@
-<p>doctor works!</p>
+<mat-sidenav-container [style.height]="sidenavHeight">
+    <mat-sidenav #sidenav mode="side" opened="true" [style.width]="sidenavWidth" >
+      <!-- Contenido del sidenav -->
+  
+      <div class="sidenav-header" (click)="closeSidenav()" [ngClass]="sidenavOpen ? 'sidenav-open' : 'sidenav-closed'">
+        <!-- animaciones -->
+        <mat-icon  *ngIf="sidenavOpen" >close</mat-icon>
+  
+        <mat-icon  *ngIf="!sidenavOpen" >adjust</mat-icon>
+      </div>
+      <div >
+        <!-- Contenido del sidenav -->
+        <app-sidenav [sidenavOpen]="sidenavOpen" [enlaces]="enlaces" ></app-sidenav>
+      </div>
+  
+    </mat-sidenav>
+    <mat-sidenav-content [style.margin-left]="contentMarginLeft">
+      <!-- Contenido principal -->
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 
 
 

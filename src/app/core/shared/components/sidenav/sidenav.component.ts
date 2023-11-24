@@ -8,25 +8,14 @@ import { Router } from '@angular/router';
 })
 export class SidenavComponent {
 
+  
+
   @Input() sidenavOpen: boolean = false;
   constructor(private router: Router,){
 
   }
 
-  enlaces = [{
-      routeLink : "listar-doctor",
-      icon:"person",
-      label: "Listar Doctor",
-      rol:"Admin"
-    },
-    {
-      routeLink : "registrar-doctor",
-      icon:"",
-      label: "Registrar Doctor",
-      rol:"Admin"
-    },
-
-  ]
+  @Input() enlaces: any[] = [];
 
   
 
