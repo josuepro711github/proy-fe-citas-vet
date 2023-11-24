@@ -78,8 +78,13 @@ export class LoginComponent implements OnInit {
       usuario.contrasenia = password
       this.serviceAuth.login(usuario).subscribe(response => {
          sessionStorage.setItem('token',JSON.stringify(response))
+         
+         if (response.rol === 1) {
+           this.router.navigate(['listar-doctor']);
+         } else {
+           this.router.navigate(['']);
+         }
 
-         this.router.navigate(['']);
          console.log(response);
       });
     }else {
