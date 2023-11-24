@@ -3,8 +3,8 @@
         color: white;
         background-color: #23282C; 
         position: absolute;
-        top: 0;
-        right: 0;
+        
+        left: 186px;
         // centrar verticalmente
         margin-top: 7px;
         height: 55px;
@@ -30,7 +30,7 @@
 }
 
 .sidenav-open {
-  left: 186px;
+  left:186px ;
   transition: left 0.5s;
 }
 

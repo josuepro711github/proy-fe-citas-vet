@@ -20,8 +20,8 @@ export class AdminComponent {
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
   sidenavOpen = true;
   sidenavHeight = "100%";
-  sidenavWidth = '20%';
-  contentMarginLeft = '20%';
+  sidenavWidth = '256px';
+  contentMarginLeft = '256px';
   contentWidth = '80%';
   sidenavAnimation = 'close-in 0.5s ease-out';
 

@@ -14,4 +14,6 @@ import { ListarComponent } from './citas/listar/listar.component';
     DoctorRoutingModule
   ]
 })
-export class DoctorModule { }
+export class DoctorModule {
+  constructor() { }
+ }
