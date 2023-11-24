@@ -1,7 +1,7 @@
-import { DoctorInterface } from './Doctor';
+import { Doctor} from './Doctor';
 
 export var   
-  doctorData: DoctorInterface[] = [
+  doctorData: Doctor[] = [
     {
       id: 1,
       nombre: 'Josue',

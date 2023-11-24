@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Pageable } from 'src/app/core/models/Pageable';
 import { url_api } from 'src/app/core/shared/util/constantes';
 
 @Injectable({
@@ -13,6 +14,11 @@ export class DoctorService {
     this.urlApi = url_api
   }
 
+
+
+  listar(pageable:Pageable):Observable<any>{
+    return this.http.post<any>(this.urlApi+'api/vet/petlife/v1.0.0/doctor/listarDoctores',pageable);
+  }
 
   registrarDoctor(doctor:any,imagen:any):Observable<any>{
     let doctorGson =JSON.stringify(doctor, null, 0);

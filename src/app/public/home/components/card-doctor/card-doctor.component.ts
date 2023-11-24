@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DoctorInterface } from 'src/app/core/models/Doctor';
+import { Doctor } from 'src/app/core/models/Doctor';
 
 @Component({
   selector: 'app-card-doctor',
@@ -8,7 +8,7 @@ import { DoctorInterface } from 'src/app/core/models/Doctor';
 })
 export class CardDoctorComponent implements OnInit{
 
-  @Input() listaDoctor!: DoctorInterface[];
+  @Input() listaDoctor!: Doctor[];
 
 
   ngOnInit(): void {

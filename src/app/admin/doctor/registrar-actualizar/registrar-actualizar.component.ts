@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup,Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventEmitterService } from 'src/app/core/shared/services/event-emitter.service';
-import { DoctorService } from '../doctor.service';
+
 import { lastValueFrom } from 'rxjs';
+import { DoctorService } from '../../services/doctor.service';
 
 @Component({
   selector: 'app-registrar-actualizar',

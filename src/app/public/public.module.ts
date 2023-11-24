@@ -11,7 +11,7 @@ import { ContactoComponent } from './contacto/containers/contacto.component';
 import { ServiciosComponent } from './servicios/containers/servicios.component';
 import { BlogComponent } from "./blog/containers/blog.component";
 import { ConsultoriosComponent } from "./consultorios/containers/consultorios.component";
-import { AuthService } from "./login/auth.service";
+import { AuthService } from "./services/auth.service";
 
 @NgModule({
     imports: [

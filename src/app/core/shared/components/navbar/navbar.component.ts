@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { EventEmitterService } from '../../services/event-emitter.service';
-import { AuthService } from 'src/app/public/login/auth.service';
+import { AuthService } from 'src/app/public/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
