@@ -5,6 +5,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ListarComponent } from './doctor/listar/listar.component';
 import { RegistrarActualizarComponent } from './doctor/registrar-actualizar/registrar-actualizar.component';
+import { DoctorService } from './services/doctor.service';
 
 @NgModule({
   imports: [
@@ -18,7 +19,9 @@ import { RegistrarActualizarComponent } from './doctor/registrar-actualizar/regi
     RegistrarActualizarComponent,
   ],
   exports: [],
-  providers: [],
+  providers: [
+    DoctorService
+  ],
 })
 export class AdminModule {
   constructor() {}

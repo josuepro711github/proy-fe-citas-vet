@@ -1,9 +1,9 @@
-export interface DoctorInterface {
+export interface Doctor{
     id: number,
-    nombre: String,
-    apellido_paterno: String,
-    apellido_materno: String,
-    especialidad: String,
-    descripcion_especialidad: String,
-    imagen: String
+    nombre: string,
+    apellido_paterno: string,
+    apellido_materno: string,
+    especialidad: string,
+    descripcion_especialidad: string,
+    imagen: string
 }
