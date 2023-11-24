@@ -3,7 +3,7 @@
   <div class="formulario">
     <form [formGroup]="form">
 
-      <h1 class="titulo">{{nameBtn}} Doctor</h1>
+      <h1 class="titulo">{{tipo_form}} Doctor</h1>
 
       <div class="tipo_registro" >
         <div class="input_correo">
@@ -27,7 +27,7 @@
           </div>
         </div>
 
-        <div class="input_contrasenia">
+        <div class="input_contrasenia" *ngIf="tipo_form=='Registrar'">
           <mat-form-field
             class="example-full-width"
             appearance="outline"
@@ -152,6 +152,37 @@
           </div>
         </div>
 
+        <div class="input_especialidad">
+          <!-- <mat-form-field
+            class="example-full-width"
+            appearance="outline"
+            [ngClass]="{
+              mat_error_border_color: validFormName('especialidad')
+            }"
+          >
+            <mat-label>Tel&eacute;fono</mat-label>
+            <input formControlName="especialidad" type="number" matInput />
+          </mat-form-field> -->
+
+          <mat-form-field
+            class="example-full-width"
+            appearance="outline"
+            [ngClass]="{
+              mat_error_border_color: validFormName('especialidad')
+            }"
+            >
+            <mat-label>Especialidad</mat-label>
+            <mat-select formControlName="especialidad"  name="especialidad" >
+              <mat-option *ngFor="let es of especialidades" [value]="es">{{es.descripcion}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!-- <div class="mat_error" *ngIf="validFormName('especialidad')">
+            <mat-error *ngIf="validHasError('especialidad') === 1">
+              Este campo es requerido
+            </mat-error>
+          </div> -->
+        </div>
+
         <div class="input_imagen">
           <ng-container>
             <mat-form-field
@@ -188,9 +219,10 @@
         mat-raised-button
         class="btn-login"
         color="primary"
-        (click)="executeForm(tipo)"
+        (click)="executeForm()"
+
       >
-        {{ nameBtn }}
+        {{ tipo_form }}
       </button>
     </form>
   </div>

@@ -6,13 +6,13 @@ import { RegistrarActualizarComponent } from "./doctor/registrar-actualizar/regi
 
 
 const routes: Routes = [
-    { 
+    {
         path: '', component: AdminComponent, children:
         [
             { path: '', redirectTo: 'admin', pathMatch: 'full' },
             { path: 'listar-doctor', component: ListarComponent },
             { path: 'registrar-doctor', component: RegistrarActualizarComponent },
-            { path: 'actualizar-doctor/:id_doctor', component: RegistrarActualizarComponent }
+            { path: 'actualizar-doctor/:idDoctor', component: RegistrarActualizarComponent }
         ]
     }
 ];
