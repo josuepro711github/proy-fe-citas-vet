@@ -1,7 +1,7 @@
 
 <div class="sidenav_contenido">
   <ul>
-    <li class="sidenav-nav-item" *ngFor="let item of enlaces">
+    <li class="sidenav-nav-item" *ngFor="let item of enlaces" [ngClass]="{'sidenav-nav-item-closed': !sidenavOpen}">
       <a class="sidenav-nav-link" (click)="irEnlace(item.routeLink)" [class.active]="esEnlaceActivo(item.routeLink)"
          routerLinkActive="active">
 

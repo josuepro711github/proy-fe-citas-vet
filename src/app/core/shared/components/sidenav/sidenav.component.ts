@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class SidenavComponent {
 
+  @Input() sidenavOpen: boolean = false;
   constructor(private router: Router,){
 
   }
@@ -37,6 +38,9 @@ export class SidenavComponent {
   esEnlaceActivo(routeLink: string): boolean {
     return this.router.isActive(routeLink, false);
   }
+
+  // Cuando se abre el sidenav se oculta el texto con una clase
+  
 
 
   

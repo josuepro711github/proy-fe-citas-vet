@@ -27,14 +27,31 @@
 
   }
 
+  .sidenav-nav-item-closed {
+    
+
+      mat-icon{
+        // centrar 
+        margin: 0 auto;
+      }
+
+      .sidenav-link-text{
+
+        // ocultar
+        display: none;
+      }
+
+  
+    
+   }
+
   .sidenav-nav-link {
     display: flex;
     align-items: center;
     text-decoration: none;
     color: #ffffff;
     
-    padding: 12px;
-    padding-left: 40px;
+    padding: 12px 0px 12px 16px;
     /* Ajustado para un mejor espaciado y área de clic */
 
     &:hover {
@@ -46,7 +63,7 @@
     }
 
     mat-icon {
-      margin-right: 16px;
+      margin-right: 28px;
       /* Espaciado ajustado para un mejor equilibrio visual */
       font-size: 46px;
       width: 40px;
