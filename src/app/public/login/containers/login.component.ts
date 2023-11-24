@@ -81,6 +81,8 @@ export class LoginComponent implements OnInit {
          
          if (response.rol === 1) {
            this.router.navigate(['listar-doctor']);
+         } else if (response.rol === 2){
+           this.router.navigate(['listar-citas']);
          } else {
            this.router.navigate(['']);
          }
