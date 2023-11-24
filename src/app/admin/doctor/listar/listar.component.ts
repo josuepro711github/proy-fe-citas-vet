@@ -12,7 +12,7 @@ import { DoctorService } from '../../services/doctor.service';
   templateUrl: './listar.component.html',
   styleUrls: ['./listar.component.scss'],
 })
-export class ListarComponent implements AfterViewInit, OnInit {
+export class ListarComponent implements OnInit {
   displayedColumns: string[] = [
     'dni',
     'nombres',
@@ -39,10 +39,5 @@ export class ListarComponent implements AfterViewInit, OnInit {
       this.dataSource.paginator = this.paginator;
       console.log('lista doctor: ', this.listaDoctores);
     });
-  }
-
-  ngAfterViewInit(): void {
-    console.log(this.listaDoctores)
-    // this.dataSource.paginator = this.paginator;
   }
 }

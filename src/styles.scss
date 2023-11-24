@@ -9,6 +9,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     font-family: Sailec-Thin !important;
 }
 
+.mat-mdc-cell{
+    font-weight: bold;
+}
+.mat-mdc-header-cell{
+    font-weight: bolder;
+}
 
 @font-face {
     font-family: 'Silka-Regular';
