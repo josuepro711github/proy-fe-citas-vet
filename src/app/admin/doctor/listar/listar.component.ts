@@ -1,17 +1,18 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { DoctorService } from '../../services/doctor.service';
+
 import { Pageable } from 'src/app/core/models/Pageable';
 import { Doctor } from 'src/app/core/models/Doctor';
-import { MatSort } from '@angular/material/sort';
+import { DoctorService } from '../../services/doctor.service';
+
 
 @Component({
   selector: 'app-listar',
   templateUrl: './listar.component.html',
   styleUrls: ['./listar.component.scss'],
 })
-export class ListarComponent implements OnInit {
+export class ListarComponent implements AfterViewInit, OnInit {
   displayedColumns: string[] = [
     'dni',
     'nombres',
@@ -20,11 +21,10 @@ export class ListarComponent implements OnInit {
   ];
   dataSource = new MatTableDataSource<Doctor>();
 
-  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
-
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   pageable: Pageable = {
     page: 0,
-    size: 9,
+    size: 10,
     orderParameter: '',
     typeOrder: '',
   };
@@ -35,13 +35,12 @@ export class ListarComponent implements OnInit {
   ngOnInit(): void {
     this.serviceDoctor.listar(this.pageable).subscribe((resp) => {
       this.listaDoctores = resp.content;
-      this.dataSource = new MatTableDataSource<Doctor>(this.listaDoctores);
-      this.dataSource.paginator = this.paginator;
+      this.dataSource = new MatTableDataSource(this.listaDoctores);
       console.log('lista doctor: ', this.listaDoctores);
     });
   }
 
   ngAfterViewInit(): void {
-    // this.dataSource.paginator = this.paginator;
+    this.dataSource.paginator = this.paginator;
   }
 }

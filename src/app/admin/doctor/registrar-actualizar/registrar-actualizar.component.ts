@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup,Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EventEmitterService } from 'src/app/core/shared/services/event-emitter.service';
+
+import { lastValueFrom } from 'rxjs';
+import { DoctorService } from '../../services/doctor.service';
 
 @Component({
   selector: 'app-registrar-actualizar',
@@ -10,24 +13,73 @@ import { EventEmitterService } from 'src/app/core/shared/services/event-emitter.
 })
 export class RegistrarActualizarComponent {
 
+
   form!: FormGroup;
-  emailLogin!: FormControl;
-  emailRegistro!: FormControl;
 
-  tipo: number = 1;
-  titulo: string = 'Registrar';
 
-  nameBtn: string = 'Registrar';
   imagenFile: File | null = null;
   fecha_nacimiento = ""
+
+  especialidades:any[] =[]
+  tipo_form = "Registrar"
+  doctorActualizar:any
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private eventEmitterService: EventEmitterService,
-    // private serviceAuth: AuthService
-    ) {}
+     private serviceDoctor: DoctorService,
+     private activatedRoute:ActivatedRoute
+    ) {
+
+      this.activatedRoute.params.subscribe(params =>{
+        let idDoctor = params['idDoctor']
+        if(idDoctor){
+          this.tipo_form = "Actualizar"
+          this.buscarDoctor(idDoctor)
+        }
+      });
+    }
+
+    async traerEspecialidades(){
+      this.especialidades =  await lastValueFrom(this.serviceDoctor.listaEspecialidades())
+      if(this.tipo_form == "Actualizar"){
+        const especialidadControl = this.form.get('especialidad') as FormControl;
+        const especialidadSeleccionada= this.especialidades.find(es => es.descripcion === this.doctorActualizar.especialidad.descripcion);
+        console.log(especialidadSeleccionada)
+        if (especialidadSeleccionada) {
+          especialidadControl.setValue(especialidadSeleccionada);
+        }
+      }
+    }
+
+    async buscarDoctor(idDoctor:number){
+      this.doctorActualizar = await lastValueFrom(this.serviceDoctor.buscarDoctor(idDoctor))
+      this.form.get('email')?.setValue(this.doctorActualizar.usuario.email);
+      this.form.get('nombres')?.setValue(this.doctorActualizar.usuario.nombre);
+      this.form.get('apellido_paterno')?.setValue(this.doctorActualizar.usuario.apellido_paterno);
+      this.form.get('apellido_materno')?.setValue(this.doctorActualizar.usuario.apellido_materno);
+      this.form.get('dni')?.setValue(this.doctorActualizar.usuario.dni);
+      this.form.get('telefono')?.setValue(this.doctorActualizar.usuario.telefono);
+
+      this.form.get('password')?.setValue("****");
+      this.form.get('fecha_nacimiento')?.setValue(this.doctorActualizar.usuario.fecha_nacimiento);
+      this.fecha_nacimiento =this.doctorActualizar.usuario.fecha_nacimiento
+
+      try{
+        const response = await lastValueFrom(this.serviceDoctor.traerImagegnDoctor(this.doctorActualizar.usuario.imagen))
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.imagenSeleccionada = reader.result;
+        };
+        reader.readAsDataURL(response);
+      }catch(e){
+        console.log(e)
+      }
+
+    }
 
     ngOnInit(): void {
+      this.traerEspecialidades()
       this.form = this.fb.group({
         //Login
         email: ['', [Validators.email, Validators.required]],
@@ -41,7 +93,10 @@ export class RegistrarActualizarComponent {
         dni: ['', Validators.required],
         telefono: ['', Validators.required],
         imagen: [''],
+        especialidad:['']
       });
+
+
     }
 
   validFormName(val: string): boolean {
@@ -63,48 +118,44 @@ export class RegistrarActualizarComponent {
     return error;
   }
 
-  executeForm(val: number) {
-    // let usuario:Usuario ={} as Usuario
-    // let password = this.form.get('password')?.value
-    // if(val === 1){
-    //   let emailLogin = this.form.get('email')?.value
-    //   usuario.email = emailLogin
-    //   usuario.contrasenia = password
-    //   this.serviceAuth.login(usuario).subscribe(response => {
-    //      sessionStorage.setItem('token',JSON.stringify(response))
+  executeForm() {
+    if(!this.form.valid){
+      return
+    }
+    console.log(this.form.get('especialidad')?.value)
+    console.log(this.tipo_form)
 
-    //      this.router.navigate(['']);
-    //      console.log(response);
-    //   });
-    // }else {
-    //   let email  = this.form.get('email')?.value
-    //   let contrasenia  = this.form.get('password')?.value
-    //   let nombre  = this.form.get('nombres')?.value
-    //   let apellido_paterno  = this.form.get('apellido_paterno')?.value
-    //   let apellido_materno  = this.form.get('apellido_materno')?.value
-    //   let dni  = this.form.get('dni')?.value
-    //   let telefono  = this.form.get('telefono')?.value
+    let email  = this.form.get('email')?.value
+    let contrasenia  = this.form.get('password')?.value
+    let nombre  = this.form.get('nombres')?.value
+    let apellido_paterno  = this.form.get('apellido_paterno')?.value
+    let apellido_materno  = this.form.get('apellido_materno')?.value
+    let dni  = this.form.get('dni')?.value
+    let telefono  = this.form.get('telefono')?.value
+    let doctor = {
+      id_doctor: 0,
+      usuario:{
+        id_usuario: 0, email: email, contrasenia:contrasenia,nombre:nombre,apellido_paterno:apellido_paterno,
+        apellido_materno:apellido_materno,dni:dni,fecha_nacimiento:this.fecha_nacimiento,telefono:telefono,imagen:"..",rol:{
+          id_rol:2,
+          tipo_rol:"DOCTOR"
+        }},
+        especialidad:this.form.get('especialidad')?.value
+    }
 
-    //   let cliente = {
-    //           id_cliente: 0,
-    //           usuario:{
-    //             id_usuario: 0, email: email, contrasenia:contrasenia,nombre:nombre,apellido_paterno:apellido_paterno,
-    //             apellido_materno:apellido_materno,dni:dni,fecha_nacimiento:this.fecha_nacimiento,telefono:telefono,imagen:"..",rol:{
-    //               id_rol:1,
-    //               tipo_rol:"Cliente"
-    //             },}
-    //           }
-    //   this.serviceAuth.registrarCliente(cliente,this.imagenFile).subscribe(response=>{
-    //     usuario.email = email
-    //     usuario.contrasenia = contrasenia
-    //     this.serviceAuth.login(usuario).subscribe(response => {
-    //       sessionStorage.setItem('token',JSON.stringify(response))
-    //       this.router.navigate(['']);
-    //       console.log(response);
-    //    });
-    //   })
-
-    // }
+    if(this.tipo_form == "Registrar"){
+      this.serviceDoctor.registrarDoctor(doctor,this.imagenFile).subscribe(response=>{
+        this.router.navigate(['listar-doctor']);
+      })
+    }else{
+      doctor.id_doctor = this.doctorActualizar.id_doctor
+      doctor.usuario.id_usuario = this.doctorActualizar.usuario.id_usuario
+      doctor.usuario.imagen = this.doctorActualizar.usuario.imagen
+      console.log(doctor)
+      this.serviceDoctor.actualizarDoctor(doctor,this.imagenFile).subscribe(response=>{
+        this.router.navigate(['listar-doctor']);
+      })
+    }
   }
 
 
@@ -117,9 +168,12 @@ export class RegistrarActualizarComponent {
       const reader = new FileReader();
       reader.onload = () => {
         this.imagenSeleccionada = reader.result;
+
       };
       reader.readAsDataURL(file);
-      console.log(file)
+      if(this.tipo_form=="Actualizar"){
+        this.doctorActualizar.usuario.imagen = "cambiado"
+      }
 
     }
   }

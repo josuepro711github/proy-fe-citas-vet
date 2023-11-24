@@ -7,6 +7,8 @@ import { ListarComponent } from './doctor/listar/listar.component';
 import { RegistrarActualizarComponent } from './doctor/registrar-actualizar/registrar-actualizar.component';
 import { DoctorService } from './services/doctor.service';
 
+
+
 @NgModule({
   imports: [
     SharedModule,
