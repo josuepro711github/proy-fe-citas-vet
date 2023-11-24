@@ -7,8 +7,8 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EventEmitterService } from 'src/app/core/shared/services/event-emitter.service';
-import { AuthService } from '../auth.service';
 import { Usuario } from 'src/app/core/models/Usuario';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
