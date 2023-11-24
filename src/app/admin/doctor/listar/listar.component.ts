@@ -36,11 +36,13 @@ export class ListarComponent implements AfterViewInit, OnInit {
     this.serviceDoctor.listar(this.pageable).subscribe((resp) => {
       this.listaDoctores = resp.content;
       this.dataSource = new MatTableDataSource(this.listaDoctores);
+      this.dataSource.paginator = this.paginator;
       console.log('lista doctor: ', this.listaDoctores);
     });
   }
 
   ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
+    console.log(this.listaDoctores)
+    // this.dataSource.paginator = this.paginator;
   }
 }
