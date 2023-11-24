@@ -7,8 +7,8 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EventEmitterService } from 'src/app/core/shared/services/event-emitter.service';
-import { AuthService } from '../../services/auth.service';
 import { Usuario } from 'src/app/core/models/Usuario';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -78,7 +78,13 @@ export class LoginComponent implements OnInit {
       usuario.contrasenia = password
       this.serviceAuth.login(usuario).subscribe(response => {
          sessionStorage.setItem('token',JSON.stringify(response))
-         this.router.navigate(['']);
+         
+         if (response.rol === 1) {
+           this.router.navigate(['listar-doctor']);
+         } else {
+           this.router.navigate(['']);
+         }
+
          console.log(response);
       });
     }else {

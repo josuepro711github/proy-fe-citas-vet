@@ -22,4 +22,6 @@ import { DoctorComponent } from './doctor.component';
     
   ],
 })
-export class DoctorModule { }
+export class DoctorModule {
+  constructor() { }
+ }
