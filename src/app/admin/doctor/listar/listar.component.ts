@@ -40,12 +40,4 @@ export class ListarComponent implements OnInit {
       console.log('lista doctor: ', this.listaDoctores);
     });
   }
-<<<<<<< HEAD
-=======
-
-  ngAfterViewInit(): void {
-    console.log(this.listaDoctores)
-    // this.dataSource.paginator = this.paginator;
-  }
->>>>>>> origin/proy-fe-citas-vet_HV
 }
