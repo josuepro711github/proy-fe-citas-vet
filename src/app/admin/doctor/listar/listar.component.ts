@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatCellDef, MatTableDataSource } from '@angular/material/table';
+import { lastValueFrom } from 'rxjs';
+import Swal from 'sweetalert2';
 
 import { Pageable } from 'src/app/core/models/Pageable';
 import { Doctor } from 'src/app/core/models/Doctor';
@@ -32,6 +34,7 @@ export class ListarComponent implements OnInit {
   };
   listaDoctores: Doctor[] = [];
   element: any;
+  doctor!: Doctor;
 
   constructor(
     private serviceDoctor: DoctorService,
@@ -39,6 +42,10 @@ export class ListarComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
+    this.listarDoctores();
+  }
+
+  listarDoctores(){
     this.serviceDoctor.listar(this.pageable).subscribe((resp) => {
       this.listaDoctores = resp.content;
       this.dataSource = new MatTableDataSource(this.listaDoctores);
@@ -47,13 +54,18 @@ export class ListarComponent implements OnInit {
     });
   }
 
-  eliminar(idDoctor: any){
-    console.log('id doctor: ' , idDoctor)
+  async eliminar(idDoctor:any){
+    let doctorEliminado = await lastValueFrom(this.serviceDoctor.eliminarDoctor(idDoctor))
+    this.listarDoctores();
   }
 
   actualizar(idDoctor: any){
     this.router.navigate(['actualizar-doctor/'+idDoctor]);
     console.log('id doctor: ' , idDoctor)
   }
+
+  // showModalInfo(){
+  //   Swal.fire();
+  // }
 
 }
