@@ -50,4 +50,10 @@ export class DoctorService {
   traerImagegnDoctor(nombre_imagen:string){
     return this.http.get(`${this.urlApi}api/vet/petlife/v1.0.0/imagen/doctores/${nombre_imagen}`, { responseType: 'blob' });
   }
+
+  eliminarDoctor(idDoctor:number):Observable<any>{
+
+    return this.http.delete<any>(this.urlApi+'api/vet/petlife/v1.0.0/doctor/eliminar/'+idDoctor)
+  }
+
 }

@@ -26,9 +26,16 @@ export class SidenavComponent {
       rol:"Admin"
     },
 
+    {
+      routeLink : "listar-citas",
+      icon:"",
+      label: "Listar Citas",
+      rol:"Doctor"
+    },
+
   ]
 
-  
+
 
 
   irEnlace(routeLink:string){
@@ -40,9 +47,9 @@ export class SidenavComponent {
   }
 
   // Cuando se abre el sidenav se oculta el texto con una clase
-  
 
 
-  
- 
+
+
+
 }
