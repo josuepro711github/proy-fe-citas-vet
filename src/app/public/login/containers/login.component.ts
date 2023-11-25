@@ -51,7 +51,6 @@ export class LoginComponent implements OnInit {
         telefono: ['', Validators.required],
         imagen: [''],
       });
-      console.log(this.contraseniaIncorrecta);
     }
 
   validFormName(val: string): boolean {
@@ -98,9 +97,9 @@ export class LoginComponent implements OnInit {
       }, (error) => {
         console.log(error.status.toString());
          if (error.status == 400) {
-          
+          console.log('Contrasenia incorrecta');
            this.contraseniaIncorrecta = true;
-           console.log('Contrasenia incorrecta', this.contraseniaIncorrecta);
+           this.form.get('password')?.setErrors({incorrect: true});
          }
        });
     }else {
