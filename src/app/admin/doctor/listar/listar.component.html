@@ -56,7 +56,7 @@
         <td mat-cell *matCellDef="let element" class="custom-cell">
           <div class="icons">
             <div class="actualizar"><mat-icon (click)="actualizar(element.id_doctor)">edit</mat-icon></div>
-            <div class="eliminar"><mat-icon (click)="eliminar(element.id_doctor)">delete</mat-icon></div>
+            <div class="eliminar"><mat-icon (click)="eliminar(element.id_doctor,element.usuario.nombre)">delete</mat-icon></div>
             <div class="informacion"><mat-icon>info</mat-icon></div>
           </div>
         </td>

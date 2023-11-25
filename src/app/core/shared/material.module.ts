@@ -13,6 +13,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatSidenavModule,
     MatTableModule,
     MatPaginatorModule,
-    MatRadioModule
+    MatRadioModule,
+    MatDialogModule
   ],
   exports: [
     MatTabsModule,
@@ -44,7 +46,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatTableModule,
     MatPaginatorModule,
     MatSelectModule,
-    MatRadioModule
+    MatRadioModule,
+    MatDialogModule
   ],
 })
 

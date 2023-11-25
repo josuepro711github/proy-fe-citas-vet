@@ -1,13 +1,13 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatCellDef, MatTableDataSource } from '@angular/material/table';
 import { lastValueFrom } from 'rxjs';
-import Swal from 'sweetalert2';
 
 import { Pageable } from 'src/app/core/models/Pageable';
 import { Doctor } from 'src/app/core/models/Doctor';
 import { DoctorService } from '../../services/doctor.service';
 import { Router } from '@angular/router';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 
 @Component({
@@ -38,7 +38,8 @@ export class ListarComponent implements OnInit {
 
   constructor(
     private serviceDoctor: DoctorService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
     ) {}
 
   ngOnInit(): void {
@@ -54,8 +55,8 @@ export class ListarComponent implements OnInit {
     });
   }
 
-  async eliminar(idDoctor:any){
-    let doctorEliminado = await lastValueFrom(this.serviceDoctor.eliminarDoctor(idDoctor))
+  async eliminar(idDoctor:any, nombre:any){
+    let doctorEliminado = await lastValueFrom(this.serviceDoctor.eliminarDoctor(idDoctor));
     this.listarDoctores();
   }
 
@@ -64,8 +65,5 @@ export class ListarComponent implements OnInit {
     console.log('id doctor: ' , idDoctor)
   }
 
-  // showModalInfo(){
-  //   Swal.fire();
-  // }
-
 }
+

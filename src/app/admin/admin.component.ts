@@ -13,8 +13,6 @@ export class AdminComponent {
 
   ngOnInit(){
 
-    
-
   }
 
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
@@ -57,10 +55,10 @@ export class AdminComponent {
       this.contentMarginLeft="256px";
       this.sidenavAnimation = 'close-in 0.5s ease-out';
     }
-    
-
 
   }
+
+
 
   
 }

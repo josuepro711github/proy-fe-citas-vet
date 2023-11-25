@@ -34,7 +34,7 @@ export class SidenavComponent {
 
     if(token != null){
       this.rol = token.rol;
-      this.name = token.nombre + ' ' + token['apellido paterno'];
+      this.name = token.nombre + ' ' + token['apellido_paterno'];
       
       
       
@@ -64,9 +64,6 @@ export class SidenavComponent {
   }
 
   // Cuando se abre el sidenav se oculta el texto con una clase
-  
-
-
   
  
 }
