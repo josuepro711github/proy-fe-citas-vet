@@ -25,7 +25,10 @@ export class LoginComponent implements OnInit {
   descripcion: string = 'Ingrese';
   nameBtn: string = 'Ingresar';
   imagenFile: File | null = null;
-  fecha_nacimiento = ""
+  fecha_nacimiento = "";
+
+  contraseniaIncorrecta: boolean = false;
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -48,6 +51,7 @@ export class LoginComponent implements OnInit {
         telefono: ['', Validators.required],
         imagen: [''],
       });
+      console.log(this.contraseniaIncorrecta);
     }
 
   validFormName(val: string): boolean {
@@ -57,6 +61,8 @@ export class LoginComponent implements OnInit {
     }
     return esInvalido;
   }
+
+  
 
   validHasError(val: string): number {
     let error = 0;
@@ -86,7 +92,14 @@ export class LoginComponent implements OnInit {
          }
 
          console.log(response);
-      });
+      }, (error) => {
+        console.log(error.status.toString());
+         if (error.status == 400) {
+          
+           this.contraseniaIncorrecta = true;
+           console.log('Contrasenia incorrecta', this.contraseniaIncorrecta);
+         }
+       });
     }else {
       let email  = this.form.get('email')?.value
       let contrasenia  = this.form.get('password')?.value
