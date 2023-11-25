@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,20 @@ export class EventEmitterService {
     return this.rolAdmin$.asObservable();
   }
 
-  
+
   constructor() { }
+
+
+
+  ///
+  private sesStorageUpdSub = new Subject<string>();
+
+  sessionStorageUpdate$ = this.sesStorageUpdSub.asObservable();
+
+  notificarActualizacion(key: string): void {
+    this.sesStorageUpdSub.next(key);
+  }
+
+
 
 }

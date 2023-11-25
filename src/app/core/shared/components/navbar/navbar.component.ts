@@ -33,16 +33,38 @@ export class NavbarComponent implements OnInit {
   rolAdmin: boolean = false;
 
   imagenSeleccionada: string | ArrayBuffer | null = null;
-
+  token:any
+  
   constructor(
     private router: Router,
     private renderer: Renderer2,
-    private eventEmitterService: EventEmitterService, private authService:AuthService
+    private eventEmitterService: EventEmitterService, private authService:AuthService,
   ) {
     this.rutaActiva = this.router.url;
-    let token = this.authService.obtenerToken()
-    console.log(token)
 
+
+    this.token = this.authService.obtenerToken()
+    console.log(this.token)
+    this.traerImagenCliente(this.token)
+  }
+
+  ngOnInit(): void {
+    this.eventEmitterService.getRol().subscribe((val) => (this.rolAdmin = val));
+    if (this.rolAdmin) {
+    } else {
+    }
+
+    this.eventEmitterService.sessionStorageUpdate$.subscribe((key: string) => {
+      if(key==='token'){
+        this.token = this.authService.obtenerToken()
+        console.log("token",this.token)
+        this.traerImagenCliente(this.token)
+      }
+    });
+
+  }
+
+  traerImagenCliente(token:any){
     if(token != null){
       this.authService.traerImagegnCliente(token.imagen).subscribe(response=>{
         const reader = new FileReader();
@@ -52,18 +74,7 @@ export class NavbarComponent implements OnInit {
         reader.readAsDataURL(response);
       })
     }
-
-
   }
-
-  ngOnInit(): void {
-    this.eventEmitterService.getRol().subscribe((val) => (this.rolAdmin = val));
-    if (this.rolAdmin) {
-    } else {
-    }
-
-  }
-
 
 
   irRuta(valor: number) {
