@@ -43,10 +43,10 @@
           <mat-form-field
             class="example-full-width"
             appearance="outline"
-            [ngClass]="{ mat_error_border_color: validFormName('password') }"
+            [ngClass]="{ mat_error_border_color: (validFormName('password') || contraseniaIncorrecta) }"
           >
             <mat-label
-              [ngClass]="{ mat_label_error: validFormName('password') }"
+              [ngClass]="{ mat_label_error: (validFormName('password') || contraseniaIncorrecta) }"
               >Contraseña</mat-label
             >
             <input formControlName="password" type="password" matInput />
@@ -59,6 +59,12 @@
           >
             <mat-error *ngIf="validHasError('password') === 1">
               Este campo es requerido
+            </mat-error>
+            
+          </div>
+          <div class="mat_error" *ngIf="contraseniaIncorrecta && !validFormName('password')">
+            <mat-error >
+              La contraseña es incorrecta
             </mat-error>
           </div>
         </div>
