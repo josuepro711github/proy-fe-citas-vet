@@ -12,6 +12,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSelectModule} from '@angular/material/select';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatNativeDateModule,
     MatSidenavModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatRadioModule
   ],
   exports: [
     MatTabsModule,
@@ -41,7 +43,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatSidenavModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSelectModule
+    MatSelectModule,
+    MatRadioModule
   ],
 })
 

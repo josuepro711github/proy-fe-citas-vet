@@ -1,41 +1,84 @@
 <div class="contenido">
-
   <h1 class="titulo">LISTAR DOCTORES</h1>
 
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource">
-
       <!-- Position Column -->
       <ng-container matColumnDef="dni">
-        <th mat-header-cell class="custom-header-cell" *matHeaderCellDef> DNI </th>
-        <td mat-cell *matCellDef="let element" class="custom-cell"> {{element.usuario.dni}} </td>
+        <th mat-header-cell class="custom-header-cell" *matHeaderCellDef>
+          DNI
+        </th>
+        <td mat-cell *matCellDef="let element" class="custom-cell">
+          {{ element.usuario.dni }}
+        </td>
       </ng-container>
 
       <!-- Nombre Column -->
       <ng-container matColumnDef="nombres">
-        <th mat-header-cell class="custom-header-cell" *matHeaderCellDef> NOMBRES </th>
-        <td mat-cell *matCellDef="let element" class="custom-cell"> {{element.usuario.nombre}} {{element.usuario.apellido_paterno}} {{element.usuario.apellido_materno}}</td>
+        <th mat-header-cell class="custom-header-cell" *matHeaderCellDef>
+          NOMBRES
+        </th>
+        <td mat-cell *matCellDef="let element" class="custom-cell">
+          {{ element.usuario.nombre }} {{ element.usuario.apellido_paterno }}
+          {{ element.usuario.apellido_materno }}
+        </td>
       </ng-container>
 
       <!-- Weight Column -->
       <ng-container matColumnDef="telefono">
-        <th mat-header-cell class="custom-header-cell" *matHeaderCellDef> TEL&Eacute;FONO </th>
-        <td mat-cell *matCellDef="let element" class="custom-cell"> {{element.usuario.telefono}} </td>
+        <th mat-header-cell class="custom-header-cell" *matHeaderCellDef>
+          TEL&Eacute;FONO
+        </th>
+        <td mat-cell *matCellDef="let element" class="custom-cell">
+          {{ element.usuario.telefono }}
+        </td>
       </ng-container>
 
       <!-- Symbol Column -->
       <ng-container matColumnDef="fecha_nacimiento">
-        <th mat-header-cell class="custom-header-cell" *matHeaderCellDef> FECHA NACIMIENTO </th>
-        <td mat-cell *matCellDef="let element" class="custom-cell"> {{element.usuario.fecha_nacimiento}} </td>
+        <th mat-header-cell class="custom-header-cell" *matHeaderCellDef>
+          FECHA NACIMIENTO
+        </th>
+        <td mat-cell *matCellDef="let element" class="custom-cell">
+          {{ element.usuario.fecha_nacimiento }}
+        </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns" class="custom-header-row"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="custom-row"></tr>
+      <!-- Icons -->
+      <ng-container matColumnDef="icons">
+        <th mat-header-cell class="custom-header-cell" *matHeaderCellDef>
+          <div class="titulo_icons">
+            <div class="actualizar">Actualizar</div>
+            <div class="eliminar">Eliminar</div>
+            <div class="informacion">Informaci&oacute;n</div>
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let element" class="custom-cell">
+          <div class="icons">
+            <div class="actualizar"><mat-icon (click)="actualizar(element.id_doctor)">edit</mat-icon></div>
+            <div class="eliminar"><mat-icon (click)="eliminar(element.id_doctor)">delete</mat-icon></div>
+            <div class="informacion"><mat-icon>info</mat-icon></div>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr
+        mat-header-row
+        *matHeaderRowDef="displayedColumns"
+        class="custom-header-row"
+      ></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        class="custom-row"
+      ></tr>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[3, 6, 9]"
-                   showFirstLastButtons
-                   aria-label="Select page of periodic elements">
+    <mat-paginator
+      [pageSizeOptions]="[3, 6, 9]"
+      showFirstLastButtons
+      aria-label="Select page of periodic elements"
+    >
     </mat-paginator>
   </div>
 </div>

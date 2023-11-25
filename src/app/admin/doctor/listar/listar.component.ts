@@ -1,10 +1,11 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatCellDef, MatTableDataSource } from '@angular/material/table';
 
 import { Pageable } from 'src/app/core/models/Pageable';
 import { Doctor } from 'src/app/core/models/Doctor';
 import { DoctorService } from '../../services/doctor.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class ListarComponent implements OnInit {
     'nombres',
     'telefono',
     'fecha_nacimiento',
+    'icons'
   ];
   dataSource = new MatTableDataSource<Doctor>();
 
@@ -29,8 +31,12 @@ export class ListarComponent implements OnInit {
     typeOrder: '',
   };
   listaDoctores: Doctor[] = [];
+  element: any;
 
-  constructor(private serviceDoctor: DoctorService) {}
+  constructor(
+    private serviceDoctor: DoctorService,
+    private router: Router
+    ) {}
 
   ngOnInit(): void {
     this.serviceDoctor.listar(this.pageable).subscribe((resp) => {
@@ -40,4 +46,14 @@ export class ListarComponent implements OnInit {
       console.log('lista doctor: ', this.listaDoctores);
     });
   }
+
+  eliminar(idDoctor: any){
+    console.log('id doctor: ' , idDoctor)
+  }
+
+  actualizar(idDoctor: any){
+    this.router.navigate(['actualizar-doctor/'+idDoctor]);
+    console.log('id doctor: ' , idDoctor)
+  }
+
 }
