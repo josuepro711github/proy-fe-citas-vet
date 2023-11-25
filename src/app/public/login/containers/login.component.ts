@@ -51,7 +51,6 @@ export class LoginComponent implements OnInit {
         telefono: ['', Validators.required],
         imagen: [''],
       });
-      console.log(this.contraseniaIncorrecta);
     }
 
   validFormName(val: string): boolean {
@@ -84,9 +83,12 @@ export class LoginComponent implements OnInit {
       usuario.contrasenia = password
       this.serviceAuth.login(usuario).subscribe(response => {
          sessionStorage.setItem('token',JSON.stringify(response))
-         this.eventEmitterService.notificarActualizacion('token');
+
+         
          if (response.rol === 1) {
            this.router.navigate(['listar-doctor']);
+         } else if (response.rol === 2){
+           this.router.navigate(['listar-citas']);
          } else {
            this.router.navigate(['']);
          }
@@ -95,9 +97,9 @@ export class LoginComponent implements OnInit {
       }, (error) => {
         console.log(error.status.toString());
          if (error.status == 400) {
-          this.form.get('password')?.invalid;
+          console.log('Contrasenia incorrecta');
            this.contraseniaIncorrecta = true;
-           console.log('Contrasenia incorrecta', this.contraseniaIncorrecta);
+           this.form.get('password')?.setErrors({incorrect: true});
          }
        });
     }else {
@@ -123,10 +125,8 @@ export class LoginComponent implements OnInit {
         usuario.contrasenia = contrasenia
         this.serviceAuth.login(usuario).subscribe(response => {
           sessionStorage.setItem('token',JSON.stringify(response))
-          this.eventEmitterService.notificarActualizacion('token');
           this.router.navigate(['']);
           console.log(response);
-
        });
       })
 
@@ -159,6 +159,7 @@ export class LoginComponent implements OnInit {
       };
       reader.readAsDataURL(file);
       console.log(file)
+
     }
   }
 
