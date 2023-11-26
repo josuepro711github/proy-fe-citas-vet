@@ -1,0 +1,57 @@
+.contenido {
+    padding: 2.5%;
+    .titulo {
+      font-size: 2rem;
+      color: #ff4d4d;
+      font-weight: bold;
+      margin-bottom: 2.5%;
+      line-height: 2.5;
+      border-bottom: 2px solid #ff4d4d;
+    }
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  .titulo_icons {
+    display: flex;
+    .actualizar, .eliminar{
+      margin-right: 15%;
+    }
+  }
+  .icons{
+    display: flex;
+    .actualizar, .eliminar, .informacion{
+      margin-left: 5%;
+      margin-right: 18%;
+    }
+    .actualizar{
+      mat-icon{
+        cursor: pointer;
+        color: #FFC300;
+        &:hover{
+       
+        }
+      }
+    }
+    .eliminar{
+      mat-icon{
+        cursor: pointer;
+        color: red;
+        &:hover{
+          
+        }
+      }
+    }
+    .informacion{
+      mat-icon{
+        cursor: pointer;
+        color: skyblue;
+        &:hover{
+          
+        }
+      }
+    }
+  }
+  
