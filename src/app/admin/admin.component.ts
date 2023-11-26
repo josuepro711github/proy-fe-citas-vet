@@ -18,13 +18,13 @@ export class AdminComponent {
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
 
   enlaces = [{
-    routeLink : "listar-doctor",
+    routeLink : "admin-listar-doctor",
     icon:"person",
     label: "Listar Doctor",
     rol:"Admin"
   },
   {
-    routeLink : "registrar-doctor",
+    routeLink : "admin-registrar-doctor",
     icon:"person_add",
     label: "Registrar Doctor",
     rol:"Admin"

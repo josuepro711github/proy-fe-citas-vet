@@ -12,7 +12,6 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     DoctorComponent,
     ListarComponent,
-    DoctorComponent
   ],
   imports: [
     SharedModule,

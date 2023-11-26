@@ -15,7 +15,7 @@ export class DoctorComponent {
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
 
   enlaces = [{
-    routeLink : "listar-citas",
+    routeLink : "doctor-listar-citas",
     icon:"person",
     label: "Listar Citas",
     rol:"Doctor"

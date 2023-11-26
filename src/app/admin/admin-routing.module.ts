@@ -10,9 +10,9 @@ const routes: Routes = [
         path: '', component: AdminComponent, children:
         [
             { path: '', redirectTo: 'admin', pathMatch: 'full' },
-            { path: 'listar-doctor', component: ListarComponent },
-            { path: 'registrar-doctor', component: RegistrarActualizarComponent },
-            { path: 'actualizar-doctor/:idDoctor', component: RegistrarActualizarComponent }
+            { path: 'admin-listar-doctor', component: ListarComponent },
+            { path: 'admin-registrar-doctor', component: RegistrarActualizarComponent },
+            { path: 'admin-actualizar-doctor/:idDoctor', component: RegistrarActualizarComponent }
         ]
     }
 ];
