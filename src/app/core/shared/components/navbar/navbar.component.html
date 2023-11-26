@@ -1,4 +1,4 @@
-<mat-toolbar *ngIf="!rolAdmin" color="primary" class="mat-elevation-z6" [ngClass]="{'rol_public': !rolAdmin}">
+<mat-toolbar color="primary" class="mat-elevation-z6">
     <div class="logo">
         <img src="../../../../../assets/icons/hueso.png"  alt="">
 
@@ -24,13 +24,5 @@
 
     </div>
 
-
-</mat-toolbar>
-
-
-<mat-toolbar *ngIf="rolAdmin" color="primary" class="mat-elevation-z6" [ngClass]="{'rol_admin': rolAdmin}">
-    <div class="perfil">
-        <img [src]="" alt="user image"/>
-    </div>
 
 </mat-toolbar>

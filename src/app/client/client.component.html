@@ -1,0 +1,23 @@
+<mat-sidenav-container [style.height]="sidenavHeight">
+    <mat-sidenav #sidenav mode="side" opened="true" [style.width]="sidenavWidth">
+        <!-- Contenido del sidenav -->
+
+        <div class="sidenav-header" (click)="closeSidenav()">
+            <!-- animaciones -->
+            <div class="sidenav-icons" [ngClass]="sidenavOpen ? 'sidenav-open' : 'sidenav-closed'">
+                <img *ngIf="sidenavOpen" class="custom-icon" src="../../assets/svg/icon-close.svg">
+
+                <mat-icon *ngIf="!sidenavOpen">menu</mat-icon>
+            </div>
+
+        </div>
+        <div>
+            <!-- Contenido del sidenav -->
+            <app-sidenav [sidenavOpen]="sidenavOpen" [enlaces]="enlaces"></app-sidenav>
+        </div>
+
+    </mat-sidenav>
+    <mat-sidenav-content [style.margin-left]="contentMarginLeft">
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

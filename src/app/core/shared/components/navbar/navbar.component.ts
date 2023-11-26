@@ -22,7 +22,6 @@ export class NavbarComponent implements OnInit {
   ruta: string = '';
   listaNavbar: string[] = [
     'Inicio',
-    'Contacto',
     'Nosotros',
     'Servicios',
     'Consultorios',
@@ -30,52 +29,46 @@ export class NavbarComponent implements OnInit {
   ];
   rutasAdmin: string[] = ['/doctores', '/citas'];
   rutaActiva: string = '';
-  rolAdmin: boolean = false;
+  rol: number = 0;
 
   imagenSeleccionada: string | ArrayBuffer | null = null;
-  token:any
-  
+  token: any;
+
   constructor(
     private router: Router,
-    private renderer: Renderer2,
-    private eventEmitterService: EventEmitterService, private authService:AuthService,
+    private eventEmitterService: EventEmitterService,
+    private authService: AuthService
   ) {
     this.rutaActiva = this.router.url;
 
-
-    this.token = this.authService.obtenerToken()
-    console.log(this.token)
-    this.traerImagenCliente(this.token)
+    this.token = this.authService.obtenerToken();
+    console.log(this.token);
+    this.traerImagenCliente(this.token);
   }
 
   ngOnInit(): void {
-    this.eventEmitterService.getRol().subscribe((val) => (this.rolAdmin = val));
-    if (this.rolAdmin) {
-    } else {
-    }
-
     this.eventEmitterService.sessionStorageUpdate$.subscribe((key: string) => {
-      if(key==='token'){
-        this.token = this.authService.obtenerToken()
-        console.log("token",this.token)
-        this.traerImagenCliente(this.token)
+      if (key === 'token') {
+        this.token = this.authService.obtenerToken();
+        console.log('token', this.token);
+        this.traerImagenCliente(this.token);
       }
     });
-
   }
 
-  traerImagenCliente(token:any){
-    if(token != null){
-      this.authService.traerImagegnCliente(token.imagen).subscribe(response=>{
-        const reader = new FileReader();
-        reader.onload = () => {
-          this.imagenSeleccionada = reader.result;
-        };
-        reader.readAsDataURL(response);
-      })
+  traerImagenCliente(token: any) {
+    if (token != null) {
+      this.authService
+        .traerImagegnCliente(token.imagen)
+        .subscribe((response) => {
+          const reader = new FileReader();
+          reader.onload = () => {
+            this.imagenSeleccionada = reader.result;
+          };
+          reader.readAsDataURL(response);
+        });
     }
   }
-
 
   irRuta(valor: number) {
     switch (valor) {
@@ -85,7 +78,7 @@ export class NavbarComponent implements OnInit {
         break;
       case 2:
         this.pintar = 2;
-        this.ruta = '/contacto';
+        this.ruta = '/pedir-cita';
         break;
       case 3:
         this.pintar = 3;
@@ -110,6 +103,4 @@ export class NavbarComponent implements OnInit {
     }
     this.router.navigate([this.ruta]);
   }
-
-
 }
