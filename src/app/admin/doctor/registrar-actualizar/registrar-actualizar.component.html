@@ -1,19 +1,14 @@
-
 <main class="grid_login">
   <div class="formulario">
     <form [formGroup]="form">
 
       <h1 class="titulo">{{tipo_form}} Doctor</h1>
 
-      <div class="tipo_registro" >
+      <div class="tipo_registro">
         <div class="input_correo">
-          <mat-form-field
-            class="example-full-width"
-            appearance="outline"
-            [ngClass]="{
+          <mat-form-field class="example-full-width" appearance="outline" [ngClass]="{
               mat_error_border_color: validFormName('email')
-            }"
-          >
+            }">
             <mat-label>Direcci&oacute;n de correo electr&oacute;nico</mat-label>
             <input formControlName="email" type="email" matInput />
           </mat-form-field>
@@ -28,13 +23,9 @@
         </div>
 
         <div class="input_contrasenia" *ngIf="tipo_form=='Registrar'">
-          <mat-form-field
-            class="example-full-width"
-            appearance="outline"
-            [ngClass]="{
+          <mat-form-field class="example-full-width" appearance="outline" [ngClass]="{
               mat_error_border_color: validFormName('password')
-            }"
-          >
+            }">
             <mat-label>Contraseña</mat-label>
             <input formControlName="password" type="password" matInput />
           </mat-form-field>
@@ -46,13 +37,9 @@
         </div>
 
         <div class="input_nombres">
-          <mat-form-field
-            class="example-full-width"
-            appearance="outline"
-            [ngClass]="{
+          <mat-form-field class="example-full-width" appearance="outline" [ngClass]="{
               mat_error_border_color: validFormName('nombres')
-            }"
-          >
+            }">
             <mat-label>Nombres</mat-label>
             <input formControlName="nombres" type="text" matInput />
           </mat-form-field>
@@ -64,13 +51,9 @@
         </div>
 
         <div class="input_apellido_paterno">
-          <mat-form-field
-            class="example-full-width"
-            appearance="outline"
-            [ngClass]="{
+          <mat-form-field class="example-full-width" appearance="outline" [ngClass]="{
               mat_error_border_color: validFormName('apellido_paterno')
-            }"
-          >
+            }">
             <mat-label>Apellido Paterno</mat-label>
             <input formControlName="apellido_paterno" type="text" matInput />
           </mat-form-field>
@@ -82,13 +65,9 @@
         </div>
 
         <div class="input_apellido_materno">
-          <mat-form-field
-            class="example-full-width"
-            appearance="outline"
-            [ngClass]="{
+          <mat-form-field class="example-full-width" appearance="outline" [ngClass]="{
               mat_error_border_color: validFormName('apellido_materno')
-            }"
-          >
+            }">
             <mat-label>Apellido Materno</mat-label>
             <input formControlName="apellido_materno" type="text" matInput />
           </mat-form-field>
@@ -102,11 +81,9 @@
         <div class="input_fecha_nacimiento">
           <mat-form-field appearance="outline">
             <mat-label>Fecha de Nacimiento</mat-label>
-            <input matInput [matDatepicker]="picker" (dateChange)="onDateSelected()" formControlName="fecha_nacimiento"/>
-            <mat-datepicker-toggle
-              matIconSuffix
-              [for]="picker"
-            ></mat-datepicker-toggle>
+            <input matInput [matDatepicker]="picker" (dateChange)="onDateSelected()"
+              formControlName="fecha_nacimiento" />
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
           <div class="mat_error" *ngIf="validFormName('fecha_nacimiento')">
@@ -117,13 +94,9 @@
         </div>
 
         <div class="input_dni">
-          <mat-form-field
-            class="example-full-width"
-            appearance="outline"
-            [ngClass]="{
+          <mat-form-field class="example-full-width" appearance="outline" [ngClass]="{
               mat_error_border_color: validFormName('dni')
-            }"
-          >
+            }">
             <mat-label>Dni</mat-label>
             <input formControlName="dni" type="number" matInput />
           </mat-form-field>
@@ -135,13 +108,9 @@
         </div>
 
         <div class="input_telefono">
-          <mat-form-field
-            class="example-full-width"
-            appearance="outline"
-            [ngClass]="{
+          <mat-form-field class="example-full-width" appearance="outline" [ngClass]="{
               mat_error_border_color: validFormName('telefono')
-            }"
-          >
+            }">
             <mat-label>Tel&eacute;fono</mat-label>
             <input formControlName="telefono" type="number" matInput />
           </mat-form-field>
@@ -164,15 +133,11 @@
             <input formControlName="especialidad" type="number" matInput />
           </mat-form-field> -->
 
-          <mat-form-field
-            class="example-full-width"
-            appearance="outline"
-            [ngClass]="{
+          <mat-form-field class="example-full-width" appearance="outline" [ngClass]="{
               mat_error_border_color: validFormName('especialidad')
-            }"
-            >
+            }">
             <mat-label>Especialidad</mat-label>
-            <mat-select formControlName="especialidad"  name="especialidad" >
+            <mat-select formControlName="especialidad" name="especialidad">
               <mat-option *ngFor="let es of especialidades" [value]="es">{{es.descripcion}}</mat-option>
             </mat-select>
           </mat-form-field>
@@ -185,43 +150,24 @@
 
         <div class="input_imagen">
           <ng-container>
-            <mat-form-field
-              class="example-full-width"
-              appearance="outline"
-              [ngClass]="{
+            <mat-form-field class="example-full-width" appearance="outline" [ngClass]="{
                 mat_error_border_color: validFormName('imagen')
-              }"
-            >
+              }">
               <input matInput readonly style="display: none" />
-              <input
-                type="file"
-                (change)="imagenFileSeleccionado($event)"
-                accept="image/*"
-                style="margin-bottom: 5px"
-                formControlName="imagen"
-              />
+              <input type="file" (change)="imagenFileSeleccionado($event)" accept="image/*" style="margin-bottom: 5px"
+                formControlName="imagen" />
             </mat-form-field>
 
             <div class="image-container" style="text-align: center;">
-              <img
-                *ngIf="imagenSeleccionada"
-                [src]="imagenSeleccionada"
-                alt="Imagen seleccionada"
-                style="width: 200px;"
-              />
+              <img *ngIf="imagenSeleccionada" [src]="imagenSeleccionada" alt="Imagen seleccionada"
+                style="width: 200px;" />
             </div>
           </ng-container>
         </div>
       </div>
 
 
-      <button
-        mat-raised-button
-        class="btn-login"
-        color="primary"
-        (click)="executeForm()"
-
-      >
+      <button mat-raised-button class="btn-login" color="primary" (click)="executeForm()">
         {{ tipo_form }}
       </button>
     </form>

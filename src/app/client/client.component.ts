@@ -12,11 +12,16 @@ export class ClientComponent {
 
   enlaces = [
     {
-      routeLink: 'listar-citas',
+      routeLink: 'cliente-ver-perfil',
       icon: 'person',
-      label: 'Listar Citas',
-      rol: 'Doctor',
-    },
+      label: 'Mi Perfil',
+      rol: 'Cliente',
+    },{
+      routeLink: 'cliente-listar-citas',
+      icon: 'calendar_today',
+      label: 'Mi Citas',
+      rol: 'Cliente',
+    }
   ];
 
   sidenavOpen = true;

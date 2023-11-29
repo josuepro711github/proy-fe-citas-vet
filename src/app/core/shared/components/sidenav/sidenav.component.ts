@@ -34,8 +34,8 @@ export class SidenavComponent {
 
     if(token != null){
       this.rol = token.rol;
-      this.name = token.nombre + ' ' + token['apellido_paterno'];
-      
+      this.name = token.nombre + ' ' + token['apellido paterno'];
+      console.log(token);
       
       
       
