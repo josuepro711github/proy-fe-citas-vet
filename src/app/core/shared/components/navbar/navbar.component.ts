@@ -30,6 +30,7 @@ export class NavbarComponent implements OnInit {
   rutasAdmin: string[] = ['/doctores', '/citas'];
   rutaActiva: string = '';
   rol: number = 0;
+  mostrarSubMenu = false;
 
   imagenSeleccionada: string | ArrayBuffer | null = null;
   token: any;
@@ -103,4 +104,5 @@ export class NavbarComponent implements OnInit {
     }
     this.router.navigate([this.ruta]);
   }
+
 }

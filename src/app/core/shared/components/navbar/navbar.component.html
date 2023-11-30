@@ -9,15 +9,26 @@
     <!-- <div class="spacer"></div> -->
     <div class="enlaces-contido">
       <div class="enlaces">
-        <a mat-button [disableRipple]="true" *ngFor="let item of listaNavbar; let i = index" (click)="irRuta(i+1)"
+      <a mat-button [disableRipple]="true" *ngFor="let item of listaNavbar; let i = index" (click)="irRuta(i+1)"
       [ngClass]="{'bg-hover2': pintar===i+1}">{{ item }}</a>
 
       <a class="icono-contenedor" *ngIf="!imagenSeleccionada" >
         <mat-icon   (click)="irRuta(7)" [ngClass]="{'bg-hover2': pintar===7}" class="icon-login" >account_circle</mat-icon>
       </a>
-      <a class="icono-contenedor usuario-contenedor">
-        <span *ngIf="imagenSeleccionada" class="nombre-usuario ">{{token.nombre }}</span>
-        <img *ngIf="imagenSeleccionada" [src]="imagenSeleccionada"  alt="" class="img-usuario">
+
+      <a class="icono-contenedor" (mouseover)="mostrarSubMenu=true" (mouseleave)="mostrarSubMenu=false" >
+        <div class="perfil">
+          <div class="name_img">
+            <span *ngIf="imagenSeleccionada" class="nombre-usuario ">{{token.nombre }}</span>
+            <img *ngIf="imagenSeleccionada" [src]="imagenSeleccionada"  alt="" class="img-usuario">
+          </div>
+          <div  *ngIf="mostrarSubMenu" class="sub_perfil">
+            <ul>
+              <li class="ir_cuenta">Ir a tu cuenta</li>
+              <li class="cerrar_sesion">Cerrar Sesi&oacute;n</li>
+            </ul>
+          </div>
+        </div>
       </a>
 
       </div>

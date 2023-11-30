@@ -88,8 +88,7 @@ export class LoginRegistroComponent {
           } else if (response.rol === 2) {
             this.router.navigate(['doctor-listar-citas']);
           } else {
-  
-            this.router.navigate(['cliente-ver-perfil']);
+            this.router.navigate(['home']);
           }
 
           console.log(response);

@@ -25,6 +25,9 @@ mat-toolbar {
       &:hover {
         transition: 0.1s;
         color: #ff4d4d;
+        .perfil ul li{
+          color: #295889;
+        }
       }
     }
 
@@ -57,6 +60,23 @@ mat-toolbar {
       &:hover .nombre-usuario {
         transition: 0.1s;
         color: #ff4d4d;
+      }
+
+      //INICIAR SESION CLIENTE
+      .perfil {
+        .sub_perfil{
+          background-color: #ECEBE9;
+          z-index: 3;
+          ul li{
+            list-style: none;
+          }
+          .ir_cuenta:hover{
+            color: #ff4d4d;
+          }
+          .cerrar_sesion:hover{
+            color: #ff4d4d;
+          }
+        }
       }
     }
 
