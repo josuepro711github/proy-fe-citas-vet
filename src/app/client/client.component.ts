@@ -10,7 +10,12 @@ export class ClientComponent {
 
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
 
-  enlaces = [
+  enlaces = [{
+    routeLink: 'home',
+    icon: 'home',
+    label: 'Ir al Home',
+    rol: 'Cliente',
+  },
     {
       routeLink: 'cliente-ver-perfil',
       icon: 'person',

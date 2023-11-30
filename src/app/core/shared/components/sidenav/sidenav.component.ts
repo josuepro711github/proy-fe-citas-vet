@@ -42,6 +42,9 @@ export class SidenavComponent {
     }
   }
 
+  irHome(){
+    this.router.navigate(['/home']);
+  }
   
 
 

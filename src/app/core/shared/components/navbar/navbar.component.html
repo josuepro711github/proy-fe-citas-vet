@@ -24,8 +24,8 @@
           </div>
           <div  *ngIf="mostrarSubMenu" class="sub_perfil">
             <ul>
-              <li class="ir_cuenta">Ir a tu cuenta</li>
-              <li class="cerrar_sesion">Cerrar Sesi&oacute;n</li>
+              <li class="ir_cuenta" (click)="cuenta()" >Ir a tu cuenta </li>
+              <li class="cerrar_sesion" (click)="logout()">Cerrar Sesi&oacute;n</li>
             </ul>
           </div>
         </div>

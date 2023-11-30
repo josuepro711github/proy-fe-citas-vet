@@ -79,30 +79,32 @@ export class NavbarComponent implements OnInit {
         break;
       case 2:
         this.pintar = 2;
-        this.ruta = '/pedir-cita';
+        this.ruta = '/nosotros';
         break;
       case 3:
         this.pintar = 3;
-        this.ruta = '/nosotros';
+        this.ruta = '/servicios';
         break;
       case 4:
         this.pintar = 4;
-        this.ruta = '/servicios';
+        this.ruta = '/consultorios';
         break;
       case 5:
         this.pintar = 5;
-        this.ruta = '/consultorios';
-        break;
-      case 6:
-        this.pintar = 6;
         this.ruta = '/blog';
         break;
-      case 7:
-        this.pintar = 7;
-        this.ruta = '/login-registro';
-        break;
+      
     }
     this.router.navigate([this.ruta]);
+  }
+
+  logout(){
+    sessionStorage.removeItem('token');
+    this.router.navigate(['/login-registro']);
+  }
+
+  cuenta(){
+    this.router.navigate(['/cliente-ver-perfil']);
   }
 
 }
