@@ -93,6 +93,9 @@ export class NavbarComponent implements OnInit {
         this.pintar = 5;
         this.ruta = '/blog';
         break;
+      case 6:
+        this.pintar = 6;
+        this.ruta = '/login-registro';
       
     }
     this.router.navigate([this.ruta]);
@@ -101,6 +104,7 @@ export class NavbarComponent implements OnInit {
   logout(){
     sessionStorage.removeItem('token');
     this.router.navigate(['/login-registro']);
+    this.imagenSeleccionada = null;
   }
 
   cuenta(){
