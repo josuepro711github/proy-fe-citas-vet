@@ -7,13 +7,15 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { CitasComponent } from './citas/citas.component';
 import { SharedModule } from '../core/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MascotaComponent } from './mascota/mascota.component';
 
 
 @NgModule({
   declarations: [
     ClientComponent,
     PerfilComponent,
-    CitasComponent
+    CitasComponent,
+    MascotaComponent
   ],
   imports: [
     SharedModule,

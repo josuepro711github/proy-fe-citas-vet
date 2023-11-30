@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ClientComponent } from './client.component';
 import { CitasComponent } from './citas/citas.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { MascotaComponent } from './mascota/mascota.component';
 
 const routes: Routes = [
   
@@ -12,6 +13,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'cliente', pathMatch: 'full' },
       { path: 'cliente-listar-citas', component: CitasComponent },
       { path: 'cliente-ver-perfil', component: PerfilComponent },
+      { path: 'cliente-ver-mascota', component: MascotaComponent },
      ]
   }
   

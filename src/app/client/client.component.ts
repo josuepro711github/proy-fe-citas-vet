@@ -21,6 +21,11 @@ export class ClientComponent {
       icon: 'calendar_today',
       label: 'Mi Citas',
       rol: 'Cliente',
+    },{
+      routeLink: 'cliente-ver-mascota',
+      icon: 'pets',
+      label: 'Mis Mascotas',
+      rol: 'Cliente',
     }
   ];
 
