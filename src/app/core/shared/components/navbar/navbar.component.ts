@@ -83,7 +83,7 @@ export class NavbarComponent implements OnInit {
         break;
       case 3:
         this.pintar = 3;
-        this.ruta = '/servicios';
+        this.ruta = '/pedir-cita';
         break;
       case 4:
         this.pintar = 4;
