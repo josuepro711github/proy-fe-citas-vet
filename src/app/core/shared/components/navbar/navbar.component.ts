@@ -61,7 +61,6 @@ export class NavbarComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    this.eventEmitterService.$rol.subscribe((valor) => {this.rol = valor});
     console.log("rol: ", this.rol)
     if(this.rol===3){
       this.listaNavbar.splice(2,0,'Pedir Cita');
@@ -114,20 +113,7 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    this.eventEmitterService.$rol.subscribe((valor) => {
-      this.rol = valor;
-    });
-    console.log('rol: ', this.rol);
-    if (this.rol === 3) {
-      this.listaNavbar.splice(2, 0, 'Pedir Cita');
-      console.log('Lista navbar: ', this.listaNavbar);
-    }
 
-    sessionStorage.removeItem('token');
-    this.router.navigate(['/login-registro']);
-    this.imagenSeleccionada = null;
-    this.mostrarSubMenu = false
-    this.listaNavbar.splice(2,1);
   }
 
   cuenta() {
