@@ -5,16 +5,15 @@ import { ListarComponent } from './citas/listar/listar.component';
 import { DoctorComponent } from './doctor.component';
 
 const routes: Routes = [
-
-
-    {
-      path: '', component: DoctorComponent, children:
-      [
-          { path: '', redirectTo: 'admin', pathMatch: 'full' },
-          { path: 'listar-citas', component: ListarComponent },
-      ]
+  
+  {
+     path: '', component: DoctorComponent,
+     children: [
+      { path: '', redirectTo: 'doctor', pathMatch: 'full' },
+      { path: 'doctor-listar-citas', component: ListarComponent },
+     ]
   }
-
+  
 ];
 
 @NgModule({

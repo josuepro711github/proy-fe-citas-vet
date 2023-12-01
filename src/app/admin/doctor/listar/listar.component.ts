@@ -1,11 +1,13 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatCellDef, MatTableDataSource } from '@angular/material/table';
+import { lastValueFrom } from 'rxjs';
 
 import { Pageable } from 'src/app/core/models/Pageable';
 import { Doctor } from 'src/app/core/models/Doctor';
 import { DoctorService } from '../../services/doctor.service';
-import { lastValueFrom } from 'rxjs';
+import { Router } from '@angular/router';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 
 @Component({
@@ -19,6 +21,7 @@ export class ListarComponent implements OnInit {
     'nombres',
     'telefono',
     'fecha_nacimiento',
+    'icons'
   ];
   dataSource = new MatTableDataSource<Doctor>();
 
@@ -30,11 +33,20 @@ export class ListarComponent implements OnInit {
     typeOrder: '',
   };
   listaDoctores: Doctor[] = [];
+  element: any;
+  doctor!: Doctor;
 
-  constructor(private serviceDoctor: DoctorService) {}
-
+  constructor(
+    private serviceDoctor: DoctorService,
+    private router: Router,
+    public dialog: MatDialog
+    ) {}
 
   ngOnInit(): void {
+    this.listarDoctores();
+  }
+
+  listarDoctores(){
     this.serviceDoctor.listar(this.pageable).subscribe((resp) => {
       this.listaDoctores = resp.content;
       this.dataSource = new MatTableDataSource(this.listaDoctores);
@@ -43,9 +55,15 @@ export class ListarComponent implements OnInit {
     });
   }
 
-  async eliminarDoctor(idDoctor:number){
-    let doctorEliminado = await lastValueFrom(this.serviceDoctor.eliminarDoctor(idDoctor))
+  async eliminar(idDoctor:any, nombre:any){
+    let doctorEliminado = await lastValueFrom(this.serviceDoctor.eliminarDoctor(idDoctor));
+    this.listarDoctores();
   }
 
+  actualizar(idDoctor: any){
+    this.router.navigate(['admin-actualizar-doctor/'+idDoctor]);
+    console.log('id doctor: ' , idDoctor)
+  }
 
 }
+

@@ -3,115 +3,190 @@ mat-toolbar {
   z-index: 1;
   position: fixed;
   display: flex;
-  justify-content: space-between; /* Coloca los elementos al inicio y al final */
+  justify-content: space-between;
+  /* Coloca los elementos al inicio y al final */
 }
+
 .spacer {
   flex: 1 1 auto;
 }
 
-.rol_public {
+.mat-toolbar {
+  background: #fcfcfc;
+}
 
-  &.mat-toolbar {
-    background: #fcfcfc;
-  }
-  .enlaces-contido{
-    flex-grow: 1; /* Ocupa todo el espacio disponible */
-    display: flex;
-    justify-content: flex-end; /* Centra los elementos del segundo div */
-    .enlaces {
-      margin: 0 auto; /* Centra verticalmente y elimina el margen horizontal */
-      a {
+.enlaces-contido {
+  flex-grow: 1;
+  /* Ocupa todo el espacio disponible */
+  display: flex;
+  justify-content: flex-end;
+
+  /* Centra los elementos del segundo div */
+  .enlaces {
+    margin-right: 12%;
+
+    /* Centra verticalmente y elimina el margen horizontal */
+    a {
+      font-weight: bold;
+      font-size: 1rem;
+      color: #295889;
+
+      &:hover {
+        transition: 0.1s;
+        color: #ff4d4d;
+
+        .perfil ul li {
+          color: #295889;
+        }
+      }
+    }
+
+    .icono-contenedor {
+      cursor: pointer;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      min-width: 130px;
+      border: none;
+      outline: none;
+      line-height: inherit;
+      user-select: none;
+      overflow: visible;
+      vertical-align: middle;
+      text-decoration: none !important;
+      margin: 0 auto;
+
+      .nombre-usuario {
         font-weight: bold;
         font-size: 1rem;
         color: #295889;
-        &:hover {
-          transition: 0.1s;
-          color: #ff4d4d;
-        }
-      }
-
-
-      .icono-contenedor{
         cursor: pointer;
-        position: relative;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        box-sizing: border-box;
-        min-width: 64px;
-        border: none;
-        outline: none;
-        line-height: inherit;
-        user-select: none;
-        overflow: visible;
-        vertical-align: middle;
-        text-decoration: none !important;
-        .nombre-usuario{
-          font-weight: bold;
-          font-size: 1rem;
-          color: #295889;
-          cursor: pointer;
-          margin-right: 2%;
-          margin-left: 5%;
-        }
-        .img-usuario{
-          width: 45px;
-        }
-        &:hover .nombre-usuario {
-          transition: 0.1s;
-          color: #ff4d4d;
+        margin-right: 2%;
+        margin-left: 5%;
+      }
 
+      .img-usuario {
+        width: 45px;
+        margin-right: 0;
+      }
+
+      &:hover .nombre-usuario {
+        transition: 0.1s;
+        color: #ff4d4d;
+      }
+
+      //INICIAR SESION CLIENTE
+      .perfil {
+        position: relative; // Asegúrate de que el contenedor padre tenga una posición relativa
+        width: 100%; // Ancho completo del contenedor padre
+
+        .sub_perfil {
+          box-shadow: 5px 5px 15px gray;
+          border-radius: 10px;
+          background-color: #ecebe9;
+          z-index: 3;
+          display: none;
+          position: absolute; // Asegúrate de que el contenedor padre tenga una ubicación fija
+          top: 100%; // Muestra el menú debajo del contenedor padre
+          left: 0;
+          width: 100%; // Ancho completo del contenedor padre
+
+          ul {
+            padding: 0;
+            margin: 0;
+            
+            list-style: none;
+          }
+
+          li:first-child {
+            border-radius: 10px 10px 0 0;
+          }
+
+          li {
+            
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+
+            &:hover {
+              background-color: #ff4d4d;
+              transition: background-color 0.3s;
+
+              color: white;
+            }
+          }
+          li:last-child {
+            border-radius: 0 0 10px 10px;
+          }
+        }
+
+        &:hover .sub_perfil {
+          display: block;
+        }
+
+        // Otros estilos para el contenedor de la imagen
+        .name_img {
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+        }
+
+        .nombre-usuario {
+          margin-right: 10px;
         }
       }
 
-      .icon-login {
-        font-size: 50px;
-        height: 50px;
-        width: 50px;
-        &:hover {
-          color: #ff4d4d;
-          transition: 0.1s;
-        }
-      }
-      .bg-hover2 {
-        color: #ff4d4d !important;
+
+
+
+    }
+
+    .login-registro{
+      min-width: 70px !important;
+    }
+
+    .icon-login {
+      font-size: 50px;
+      height: 50px;
+      width: 50px;
+
+      &:hover {
+        color: #ff4d4d;
+        transition: 0.1s;
       }
     }
 
-
-
-  }
-
-  .logo {
-    padding-left: 25px !important;
-    span {
-      color: #295889;
-      padding-left: 12%;
-      font-family: Sailec-Medium !important;
-    }
-    img {
-      width: 90px;
-      filter: invert(50%) sepia(32%) saturate(3543%) hue-rotate(329deg)
-        brightness(99%) contrast(104%);
+    .bg-hover2 {
+      color: #ff4d4d !important;
     }
   }
 }
 
-.rol_admin {
-  &.mat-toolbar {
-    background: #23282c;
+.logo {
+  padding-left: 25px !important;
+
+  span {
+    color: #295889;
+    padding-left: 12%;
+    font-family: Sailec-Medium !important;
+  }
+
+  img {
+    width: 90px;
+    filter: invert(50%) sepia(32%) saturate(3543%) hue-rotate(329deg) brightness(99%) contrast(104%);
   }
 }
 
 .mat-mdc-button {
   --mat-mdc-button-persistent-ripple-color: none;
 }
+
 .mdc-button {
   height: 100%;
 }
 
-
-
-.img-usuario:hover + .nombre-usuario {
+.img-usuario:hover+.nombre-usuario {
   color: #ff4d4d !important;
 }

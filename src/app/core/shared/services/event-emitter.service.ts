@@ -1,27 +1,15 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, ReplaySubject, Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EventEmitterService {
+  private rol = new BehaviorSubject<number>(0);
+  public rol$ = this.rol.asObservable();
 
-  private rolAdmin$ = new BehaviorSubject<boolean>(false);
+  constructor() {}
 
-  setRol(rolAdmin: boolean){
-    this.rolAdmin$.next(rolAdmin);
-  }
-
-  getRol(){
-    return this.rolAdmin$.asObservable();
-  }
-
-
-  constructor() { }
-
-
-
-  ///
   private sesStorageUpdSub = new Subject<string>();
 
   sessionStorageUpdate$ = this.sesStorageUpdSub.asObservable();
@@ -30,6 +18,14 @@ export class EventEmitterService {
     this.sesStorageUpdSub.next(key);
   }
 
+  private mensajero = new ReplaySubject<number>(1)
+  
+  public get recibir() {
+    return this.mensajero.asObservable()
+  }
 
+  public enviar(id: number): void {
+    this.mensajero.next(id);
+  }
 
 }

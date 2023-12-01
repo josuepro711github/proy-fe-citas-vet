@@ -9,20 +9,19 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
-  imports: [
-    SharedModule,
-    DoctorRoutingModule,
-    ReactiveFormsModule,
-
-  ],
   declarations: [
     DoctorComponent,
-    ListarComponent
+    ListarComponent,
   ],
-
+  imports: [
+    SharedModule,
+    CommonModule,
+    DoctorRoutingModule,
+    ReactiveFormsModule
+  ],
   exports: [],
   providers: [
-
+    
   ],
 })
 export class DoctorModule {

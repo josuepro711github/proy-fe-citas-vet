@@ -52,7 +52,7 @@ export class DoctorService {
   }
 
   eliminarDoctor(idDoctor:number):Observable<any>{
-
+    
     return this.http.delete<any>(this.urlApi+'api/vet/petlife/v1.0.0/doctor/eliminar/'+idDoctor)
   }
 

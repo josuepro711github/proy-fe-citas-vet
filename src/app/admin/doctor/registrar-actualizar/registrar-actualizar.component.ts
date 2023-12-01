@@ -147,7 +147,7 @@ export class RegistrarActualizarComponent {
 
     if(this.tipo_form == "Registrar"){
       this.serviceDoctor.registrarDoctor(doctor,this.imagenFile).subscribe(response=>{
-        this.router.navigate(['listar-doctor']);
+        this.router.navigate(['admin-listar-doctor']);
       })
     }else{
       doctor.id_doctor = this.doctorActualizar.id_doctor
@@ -155,7 +155,7 @@ export class RegistrarActualizarComponent {
       doctor.usuario.imagen = this.doctorActualizar.usuario.imagen
       console.log(doctor)
       this.serviceDoctor.actualizarDoctor(doctor,this.imagenFile).subscribe(response=>{
-        this.router.navigate(['listar-doctor']);
+        this.router.navigate(['admin-listar-doctor']);
       })
     }
   }

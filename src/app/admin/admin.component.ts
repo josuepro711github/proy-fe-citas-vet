@@ -13,11 +13,26 @@ export class AdminComponent {
 
   ngOnInit(){
 
-    
-
   }
 
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
+
+  enlaces = [{
+    routeLink : "admin-listar-doctor",
+    icon:"person",
+    label: "Listar Doctor",
+    rol:"Admin"
+  },
+  {
+    routeLink : "admin-registrar-doctor",
+    icon:"person_add",
+    label: "Registrar Doctor",
+    rol:"Admin"
+  },
+
+]
+
+
   sidenavOpen = true;
   sidenavHeight = "100%";
   sidenavWidth = '256px';
@@ -40,10 +55,10 @@ export class AdminComponent {
       this.contentMarginLeft="256px";
       this.sidenavAnimation = 'close-in 0.5s ease-out';
     }
-    
-
 
   }
+
+
 
   
 }
