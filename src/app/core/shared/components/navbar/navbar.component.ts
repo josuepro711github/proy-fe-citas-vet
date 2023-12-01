@@ -11,6 +11,7 @@ import {
 import { Router } from '@angular/router';
 import { EventEmitterService } from '../../services/event-emitter.service';
 import { AuthService } from 'src/app/public/services/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -20,13 +21,7 @@ import { AuthService } from 'src/app/public/services/auth.service';
 export class NavbarComponent implements OnInit {
   pintar: number = 0;
   ruta: string = '';
-  listaNavbar: string[] = [
-    'Inicio',
-    'Nosotros',
-    'Pedir Cita',
-    'Servicios',
-    'Consultorios'
-  ];
+  listaNavbar: string[] = ['Inicio', 'Nosotros', 'Servicios', 'Consultorios'];
   rutasAdmin: string[] = ['/doctores', '/citas'];
   rutaActiva: string = '';
   rol: number = 0;
@@ -48,13 +43,12 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.eventEmitterService.sessionStorageUpdate$.subscribe((key: string) => {
-    //   if (key === 'token') {
-    //     this.token = this.authService.obtenerToken();
-    //     console.log('token', this.token);
-    //     this.traerImagenCliente(this.token);
-    //   }
-    // });
+    this.eventEmitterService.$rol.subscribe((valor) => {this.rol = valor});
+    console.log("rol: ", this.rol)
+    if(this.rol===3){
+      this.listaNavbar.splice(2,0,'Pedir Cita');
+      console.log("Lista navbar: ", this.listaNavbar)
+    }
   }
 
   traerImagenCliente(token: any) {
@@ -102,6 +96,15 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
+    this.eventEmitterService.$rol.subscribe((valor) => {
+      this.rol = valor;
+    });
+    console.log('rol: ', this.rol);
+    if (this.rol === 3) {
+      this.listaNavbar.splice(2, 0, 'Pedir Cita');
+      console.log('Lista navbar: ', this.listaNavbar);
+    }
+
     sessionStorage.removeItem('token');
     this.router.navigate(['/login-registro']);
     this.imagenSeleccionada = null;

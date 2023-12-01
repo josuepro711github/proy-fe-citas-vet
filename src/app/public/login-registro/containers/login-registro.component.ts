@@ -88,10 +88,10 @@ export class LoginRegistroComponent {
           } else if (response.rol === 2) {
             this.router.navigate(['doctor-listar-citas']);
           } else {
-            this.eventEmitterService.enviar(3);
+            this.eventEmitterService.$rol.emit(3);
             this.router.navigate(['home']).then(() => {
               // Recargar la página después de la navegación
-              window.location.reload();
+              // window.location.reload();
             });
           }
 
