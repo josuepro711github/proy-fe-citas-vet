@@ -23,9 +23,9 @@ export class NavbarComponent implements OnInit {
   listaNavbar: string[] = [
     'Inicio',
     'Nosotros',
+    'Pedir Cita',
     'Servicios',
-    'Consultorios',
-    'Blog',
+    'Consultorios'
   ];
   rutasAdmin: string[] = ['/doctores', '/citas'];
   rutaActiva: string = '';
@@ -48,13 +48,13 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.eventEmitterService.sessionStorageUpdate$.subscribe((key: string) => {
-      if (key === 'token') {
-        this.token = this.authService.obtenerToken();
-        console.log('token', this.token);
-        this.traerImagenCliente(this.token);
-      }
-    });
+    // this.eventEmitterService.sessionStorageUpdate$.subscribe((key: string) => {
+    //   if (key === 'token') {
+    //     this.token = this.authService.obtenerToken();
+    //     console.log('token', this.token);
+    //     this.traerImagenCliente(this.token);
+    //   }
+    // });
   }
 
   traerImagenCliente(token: any) {
@@ -83,32 +83,31 @@ export class NavbarComponent implements OnInit {
         break;
       case 3:
         this.pintar = 3;
-        this.ruta = '/servicios';
+        this.ruta = '/pedir-cita';
         break;
       case 4:
         this.pintar = 4;
-        this.ruta = '/consultorios';
+        this.ruta = '/servicios';
         break;
       case 5:
         this.pintar = 5;
-        this.ruta = '/blog';
+        this.ruta = '/consultorios';
         break;
       case 6:
         this.pintar = 6;
         this.ruta = '/login-registro';
-      
+        break;
     }
     this.router.navigate([this.ruta]);
   }
 
-  logout(){
+  logout() {
     sessionStorage.removeItem('token');
     this.router.navigate(['/login-registro']);
     this.imagenSeleccionada = null;
   }
 
-  cuenta(){
+  cuenta() {
     this.router.navigate(['/cliente-ver-perfil']);
   }
-
 }

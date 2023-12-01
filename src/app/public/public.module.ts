@@ -7,7 +7,6 @@ import { CardDoctorComponent } from './home/components/card-doctor/card-doctor.c
 import { NosotrosComponent } from './nosotros/containers/nosotros.component';
 import { ReactiveFormsModule } from "@angular/forms";
 import { ServiciosComponent } from './servicios/containers/servicios.component';
-import { BlogComponent } from "./blog/containers/blog.component";
 import { ConsultoriosComponent } from "./consultorios/containers/consultorios.component";
 import { AuthService } from "./services/auth.service";
 import { PedirCitaComponent } from './pedir-cita/containers/pedir-cita.component';
@@ -26,7 +25,6 @@ import { LoginRegistroComponent } from './login-registro/containers/login-regist
         NosotrosComponent,
         PedirCitaComponent,
         ServiciosComponent,
-        BlogComponent,
         ConsultoriosComponent,
         PedirCitaComponent,
         LoginRegistroComponent
