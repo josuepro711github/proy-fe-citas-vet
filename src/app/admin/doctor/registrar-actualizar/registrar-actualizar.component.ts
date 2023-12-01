@@ -68,6 +68,8 @@ export class RegistrarActualizarComponent {
       try{
         const response = await lastValueFrom(this.serviceDoctor.traerImagegnDoctor(this.doctorActualizar.usuario.imagen))
         const reader = new FileReader();
+        //aqui↓
+        this.imagenFile = new File([response], this.doctorActualizar.usuario.imagen, { type: response.type });
         reader.onload = () => {
           this.imagenSeleccionada = reader.result;
         };

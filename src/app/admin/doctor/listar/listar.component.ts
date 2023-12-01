@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Pageable } from 'src/app/core/models/Pageable';
 import { Doctor } from 'src/app/core/models/Doctor';
 import { DoctorService } from '../../services/doctor.service';
+import { lastValueFrom } from 'rxjs';
 
 
 @Component({
@@ -32,6 +33,7 @@ export class ListarComponent implements OnInit {
 
   constructor(private serviceDoctor: DoctorService) {}
 
+
   ngOnInit(): void {
     this.serviceDoctor.listar(this.pageable).subscribe((resp) => {
       this.listaDoctores = resp.content;
@@ -40,4 +42,10 @@ export class ListarComponent implements OnInit {
       console.log('lista doctor: ', this.listaDoctores);
     });
   }
+
+  async eliminarDoctor(idDoctor:number){
+    let doctorEliminado = await lastValueFrom(this.serviceDoctor.eliminarDoctor(idDoctor))
+  }
+
+
 }
