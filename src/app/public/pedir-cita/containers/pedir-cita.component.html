@@ -1,3 +1,94 @@
-<p>pedir-cita works!</p>
+<main class="grid_login">
+    <div class="formulario">
+        <form [formGroup]="form" (ngSubmit)="submitForm()">
+
+            <h1 class="titulo">{{ tipo_form }} Cita</h1>
+
+            <div class="tipo_registro">
+
+
+
+                <div class="input_fecha">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Fecha de la cita</mat-label>
+                        <input matInput [matDatepicker]="fechaPicker" (dateChange)="onDateSelected()" />
+                        <mat-datepicker-toggle matIconSuffix [for]="fechaPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #fechaPicker></mat-datepicker>
+                    </mat-form-field>
+                    <div class="mat_error" *ngIf="validFormName('fecha')">
+                        <mat-error *ngIf="validHasError('fecha') === 1">Este campo es requerido</mat-error>
+                    </div>
+                </div>
+
+                <div class="input_hora">
+                    <!-- Selector de hora -->
+                    <mat-form-field class="example-full-width input_hora" appearance="outline">
+                        <mat-label>Hora</mat-label>
+                        <mat-select formControlName="hora" name="hora">
+                            <mat-option *ngFor="let hour of hours" [value]="hour">{{ hour | number:'2.0' }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <!-- Selector de minuto -->
+                    <mat-form-field class="example-full-width input_minuto" appearance="outline">
+                        <mat-label>Minuto</mat-label>
+                        <mat-select formControlName="minuto" name="minuto">
+                            <mat-option *ngFor="let minute of minutes" [value]="minute">{{ minute | number:'2.0'
+                                }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <!-- Selector de AM/PM -->
+                    <mat-form-field class="example-full-width input_am_pm" appearance="outline">
+                        <mat-label>AM/PM</mat-label>
+                        <mat-select formControlName="amPm" name="amPm">
+                            <mat-option value="AM">AM</mat-option>
+                            <mat-option value="PM">PM</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                
+
+                <div class="input_mascota">
+                    <!-- Selector de mascotas -->
+                    <mat-form-field class="example-full-width input_nombre" appearance="outline">
+                      <mat-label>Mascota</mat-label>
+                      <mat-select formControlName="mascota" name="mascota">
+                        <!-- Generar opciones de mascotas desde la lista definida en TypeScript -->
+                        <mat-option *ngFor="let mascota of mascotas" [value]="mascota">{{ mascota }}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  
+                    <!-- Botón de agregar mascota -->
+                    <button mat-raised-button class="btn_agregar btn-login" color="primary" (click)="agregarMascota()">
+                      <mat-icon>add</mat-icon>
+                    </button>
+                  
+                    <!-- Error si el nombre del paciente es requerido -->
+                    <div class="mat_error" *ngIf="validFormName('nombrePaciente')">
+                      <mat-error *ngIf="validHasError('nombrePaciente') === 1">Este campo es requerido</mat-error>
+                    </div>
+                  </div>
+                  
+                  <div class="input_motivo">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Motivo de la cita</mat-label>
+                        <textarea matInput rows="3" formControlName="motivo" > </textarea>
+                    </mat-form-field>
+                    <div class="mat_error" *ngIf="validFormName('motivo')">
+                        <mat-error *ngIf="validHasError('motivo') === 1">Este campo es requerido</mat-error>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+            <button mat-raised-button class="btn-login" color="primary" type="submit">Enviar</button>
+        </form>
+    </div>
+</main>
 
 <app-footer></app-footer>

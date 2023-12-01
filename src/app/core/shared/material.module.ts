@@ -32,6 +32,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatPaginatorModule,
     MatRadioModule,
     MatDialogModule
+    
   ],
   exports: [
     MatTabsModule,
