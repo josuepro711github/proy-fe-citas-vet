@@ -142,7 +142,8 @@ export class RegistrarActualizarComponent {
           id_rol:2,
           tipo_rol:"DOCTOR"
         }},
-        especialidad:this.form.get('especialidad')?.value
+        especialidad:this.form.get('especialidad')?.value,
+        estado:"activo"
     }
 
     if(this.tipo_form == "Registrar"){

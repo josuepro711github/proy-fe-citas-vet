@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ListarComponent } from './doctor/listar/listar.component';
 import { RegistrarActualizarComponent } from './doctor/registrar-actualizar/registrar-actualizar.component';
 import { DoctorService } from './services/doctor.service';
+import { ModalInfoComponent } from './doctor/modal-info/modal-info.component';
 
 
 
@@ -19,6 +20,7 @@ import { DoctorService } from './services/doctor.service';
     AdminComponent,
     ListarComponent,
     RegistrarActualizarComponent,
+    ModalInfoComponent,
   ],
   exports: [],
   providers: [

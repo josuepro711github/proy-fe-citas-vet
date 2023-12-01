@@ -10,22 +10,14 @@ export class EventEmitterService {
 
   constructor() {}
 
-  private sesStorageUpdSub = new Subject<string>();
+  private localStorageUpdateSubject = new Subject<string>();
 
-  sessionStorageUpdate$ = this.sesStorageUpdSub.asObservable();
+  localStorageUpdate$ = this.localStorageUpdateSubject.asObservable();
 
   notificarActualizacion(key: string): void {
-    this.sesStorageUpdSub.next(key);
+    this.localStorageUpdateSubject.next(key);
   }
 
-  private mensajero = new ReplaySubject<number>(1)
-  
-  public get recibir() {
-    return this.mensajero.asObservable()
-  }
 
-  public enviar(id: number): void {
-    this.mensajero.next(id);
-  }
 
 }

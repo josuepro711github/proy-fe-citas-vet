@@ -18,17 +18,17 @@ import { AuthService } from 'src/app/public/services/auth.service';
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent {
-  
-  
+
+
   rol: boolean = false;
   name: string = '';
 
   imagenSeleccionada: string | ArrayBuffer | null = "../../../../../assets/icons/hueso.png";
-  
+
 
   @Input() sidenavOpen: boolean = false;
   constructor(private router: Router){
-    
+
     let token = JSON.parse( sessionStorage.getItem('token')?.toString() || '{}');
     console.log(token)
 
@@ -36,16 +36,14 @@ export class SidenavComponent {
       this.rol = token.rol;
       this.name = token.nombre + ' ' + token['apellido paterno'];
       console.log(token);
-      
-      
-      
+
     }
   }
 
   irHome(){
     this.router.navigate(['/home']);
   }
-  
+
 
 
 
@@ -54,8 +52,8 @@ export class SidenavComponent {
     sessionStorage.removeItem('token');
     this.router.navigate(['/login-registro']);
   }
-  
-  
+
+
 
   @Input() enlaces: any[] = [];
   irEnlace(routeLink:string){
@@ -67,6 +65,6 @@ export class SidenavComponent {
   }
 
   // Cuando se abre el sidenav se oculta el texto con una clase
-  
- 
+
+
 }
