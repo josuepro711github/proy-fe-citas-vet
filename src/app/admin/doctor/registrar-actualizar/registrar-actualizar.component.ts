@@ -68,6 +68,8 @@ export class RegistrarActualizarComponent {
       try{
         const response = await lastValueFrom(this.serviceDoctor.traerImagegnDoctor(this.doctorActualizar.usuario.imagen))
         const reader = new FileReader();
+        //aqui↓
+        this.imagenFile = new File([response], this.doctorActualizar.usuario.imagen, { type: response.type });
         reader.onload = () => {
           this.imagenSeleccionada = reader.result;
         };
@@ -140,7 +142,8 @@ export class RegistrarActualizarComponent {
           id_rol:2,
           tipo_rol:"DOCTOR"
         }},
-        especialidad:this.form.get('especialidad')?.value
+        especialidad:this.form.get('especialidad')?.value,
+        estado:"activo"
     }
 
     if(this.tipo_form == "Registrar"){

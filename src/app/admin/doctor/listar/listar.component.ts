@@ -8,6 +8,8 @@ import { Doctor } from 'src/app/core/models/Doctor';
 import { DoctorService } from '../../services/doctor.service';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ModalInfoComponent } from '../modal-info/modal-info.component';
+import { AlertComponent } from 'src/app/core/shared/components/alert/alert.component';
 
 
 @Component({
@@ -52,12 +54,25 @@ export class ListarComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.listaDoctores);
       this.dataSource.paginator = this.paginator;
       console.log('lista doctor: ', this.listaDoctores);
+
+      // this.dialog.open(AlertComponent, {
+      //   data: {tipo:"successful",mensaje:"se abrio la lista correctamente!!"},
+      //   disableClose: true,
+      // });
     });
   }
 
   async eliminar(idDoctor:any, nombre:any){
-    let doctorEliminado = await lastValueFrom(this.serviceDoctor.eliminarDoctor(idDoctor));
-    this.listarDoctores();
+    // let doctorEliminado = await lastValueFrom(this.serviceDoctor.eliminarDoctor(idDoctor));
+
+    const dialogRef = this.dialog.open(AlertComponent, {
+      data: {tipo:"warning",mensaje:"Desea eliminar al usuario "+nombre,idDoctor:idDoctor},
+      disableClose: true,
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.listarDoctores();
+    });
+
   }
 
   actualizar(idDoctor: any){
@@ -65,5 +80,15 @@ export class ListarComponent implements OnInit {
     console.log('id doctor: ' , idDoctor)
   }
 
-}
 
+  abrirDetalle(doctor:any){
+    this.dialog.open(ModalInfoComponent, {
+      data: doctor,
+      disableClose: true,
+    });
+  }
+}
+// interface alerta{
+//   tipo:string,
+//   mensaje:string,
+// }

@@ -1,0 +1,13 @@
+
+<div *ngIf="data.tipo=='successful'">
+  <p>alerta successful</p>
+</div>
+
+<div *ngIf="data.tipo=='warning'">
+  <p>alerta warning!!! {{data.mensaje}}</p>
+  <div>
+    <button (click)="eliminarDoctor()">eliminar</button>
+  </div>
+</div>
+
+<button (click)="onNoClick()">close</button>

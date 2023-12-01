@@ -32,16 +32,34 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private eventEmitterService: EventEmitterService,
+    public eventEmitterService: EventEmitterService,
     private authService: AuthService
   ) {
     this.rutaActiva = this.router.url;
 
     this.token = this.authService.obtenerToken();
     console.log(this.token);
-    this.traerImagenCliente(this.token);
+
+    if(this.token!=null){
+      this.traerImagenCliente(this.token);
+      this.mostrarPedirCita(this.token.rol)
+    }
+    this.eventEmitterService.localStorageUpdate$.subscribe((key: string) => {
+      if(key==='token'){
+        this.token = this.authService.obtenerToken();
+        this.traerImagenCliente(this.token);
+        this.mostrarPedirCita(this.token.rol)
+      }
+    });
+
   }
 
+  mostrarPedirCita(rol:number){
+    if(rol===3 || this.token !=null){
+      this.listaNavbar.splice(2,0,'Pedir Cita');
+      console.log("Lista navbar: ", this.listaNavbar)
+    }
+  }
   ngOnInit(): void {
     this.eventEmitterService.$rol.subscribe((valor) => {this.rol = valor});
     console.log("rol: ", this.rol)
@@ -108,6 +126,8 @@ export class NavbarComponent implements OnInit {
     sessionStorage.removeItem('token');
     this.router.navigate(['/login-registro']);
     this.imagenSeleccionada = null;
+    this.mostrarSubMenu = false
+    this.listaNavbar.splice(2,1);
   }
 
   cuenta() {

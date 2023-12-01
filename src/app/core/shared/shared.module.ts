@@ -9,6 +9,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     NotFoundComponent,
     FooterComponent,
     NavbarComponent,
-    SidenavComponent
+    SidenavComponent,
+    AlertComponent
   ],
   exports: [
     HttpClientModule,
@@ -32,7 +34,8 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     FooterComponent,
     NavbarComponent,
     CommonModule,
-    SidenavComponent
+    SidenavComponent,
+    AlertComponent
   ],
   providers: []
 })
