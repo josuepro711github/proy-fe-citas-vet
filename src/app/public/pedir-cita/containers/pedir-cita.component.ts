@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalMascotaComponent } from '../modal-mascota/modal-mascota.component';
 
 @Component({
   selector: 'app-pedir-cita',
@@ -22,7 +24,9 @@ export class PedirCitaComponent {
 
 
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder,public dialog: MatDialog) {
+
+  }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -39,6 +43,16 @@ export class PedirCitaComponent {
   
   agregarMascota() {
     // Lógica para agregar una nueva mascota
+    
+    const dialogRef = this.dialog.open(ModalMascotaComponent,
+      {
+       
+        // width: '500px',
+        width: '40%',
+        // backdrop
+        panelClass: 'custom-dialog-container',
+        
+      });
     console.log('Agregar mascota:', this.form.value.mascota);
   }
 

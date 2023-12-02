@@ -1,0 +1,58 @@
+<!-- Modal registro mascota-->
+<h2 class="modal-title">Registre su mascota</h2>
+<button mat-button mat-dialog-close color="primary" class="btn-close" (click)="onNoClick()">
+    <mat-icon>close</mat-icon>
+</button>
+<div mat-dialog-content class="modal-content">
+
+    <form [formGroup]="form" class="registration-form">
+
+        <div class="input_mascota">
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Alias</mat-label>
+                <input formControlName="alias" type="text" matInput />
+            </mat-form-field>
+    
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Género</mat-label>
+                <input formControlName="genero" type="text" matInput />
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Fecha de Nacimiento</mat-label>
+                <input matInput [matDatepicker]="fechaPicker" (dateChange)="onDateSelected()" />
+                <mat-datepicker-toggle matSuffix [for]="fechaPicker"></mat-datepicker-toggle>
+                <mat-datepicker #fechaPicker></mat-datepicker>
+            </mat-form-field>
+    
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Raza</mat-label>
+                <input formControlName="raza" type="text" matInput />
+            </mat-form-field>
+    
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Especie</mat-label>
+                <input formControlName="especie" type="text" matInput />
+            </mat-form-field>
+        </div>
+
+        <div class="input_imagen">
+            <mat-form-field class="full-width" appearance="outline">
+                <input matInput readonly style="display: none" />
+                <input type="file" (change)="imagenFileSeleccionado($event)" accept="image/*" style="margin-bottom: 5px"
+                    formControlName="imagen" />
+            </mat-form-field>
+    
+            <div class="image-container full-width" style="text-align: center;">
+                <img *ngIf="imagenSeleccionada" [src]="imagenSeleccionada" alt="Imagen seleccionada"
+                    style="width: 200px;" />
+            </div>
+        </div>
+
+
+        <div class="button-container">
+            <button mat-button color="primary" class="submit-button">Registrar</button>
+        </div>
+
+    </form>
+</div>

@@ -1,7 +1,8 @@
-<div style="width: 400px;height: 400px;">
-<p>{{data.usuario.email}}</p>
-<p>{{data.usuario.nombre}}</p>
-<p>{{data.usuario.apellido_paterno}}</p>
-
-<button (click)="onNoClick()">close</button>
+<div class="info-modal-container">
+    <mat-dialog-content class="info-modal-content">
+        <p class="user-email">{{ data.usuario.email }}</p>
+        <p class="user-name">{{ data.usuario.nombre }}</p>
+        <p class="user-last-name">{{ data.usuario.apellido_paterno }}</p>
+    </mat-dialog-content>
+    <button mat-button (click)="onNoClick()" color="primary" class="close-button">Close</button>
 </div>
