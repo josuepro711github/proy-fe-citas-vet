@@ -1,8 +1,12 @@
-<div class="info-modal-container">
-    <mat-dialog-content class="info-modal-content">
-        <p class="user-email">{{ data.usuario.email }}</p>
-        <p class="user-name">{{ data.usuario.nombre }}</p>
-        <p class="user-last-name">{{ data.usuario.apellido_paterno }}</p>
-    </mat-dialog-content>
-    <button mat-button (click)="onNoClick()" color="primary" class="close-button">Close</button>
-</div>
+<mat-dialog-content class="info-modal-content">
+    <mat-icon class="user-icon" aria-label="User" >person</mat-icon>
+    <p class="user-email"> <strong>Correo electr&oacute;nico:</strong> {{ data.usuario.email }}</p>
+    <p class="user-name"> <strong>Nombres:</strong> {{ data.usuario.nombre }}</p>
+    <p class="user-last-name"> <strong>Apellidos:</strong> {{ data.usuario.apellido_materno }} {{ data.usuario.apellido_paterno }}</p>
+    <p class="user-specialty"> <strong>Especialidad:</strong> {{ data.especialidad.descripcion }}</p>
+    <p class="user-status"> <strong>Estado:</strong> {{ data.estado }}</p>
+</mat-dialog-content>
+
+<button mat-button (click)="onNoClick()" color="primary" class="close-button">
+    <mat-icon class="close-icon" color="primary" aria-label="Close dialog" >close</mat-icon>
+</button>

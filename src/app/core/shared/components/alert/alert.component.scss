@@ -1,0 +1,87 @@
+.warning-modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+    background: #ffc107; /* Color amarillo para alerta de advertencia */
+    color: #333;
+    padding-top: 40px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease;
+    animation: fadeInUp 0.5s ease;
+    overflow: hidden;
+}
+
+.successful-modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+    background: #28a745; /* Color verde para alerta exitosa */
+    color: #fff;
+    padding-top: 40px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease;
+    animation: fadeInUp 0.5s ease;
+    overflow: hidden;
+}
+
+.close-button {
+    color: #fff;
+    background-color: #007bff; /* Color azul para el botón de cerrar */
+    border: none;
+    border-radius: 5px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.close-button:hover {
+    background-color: #0056b3; /* Cambio de color al pasar el mouse */
+}
+
+.delete-button {
+    color: #fff;
+    background-color: #dc3545; /* Color rojo para el botón de eliminar */
+    border: none;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+    background-color: #bd2130; /* Cambio de color al pasar el mouse */
+}
+.mat-icon {
+    font-size: 24px;
+    margin-right: 8px;
+}
+
+.successful-icon {
+    color: #fff;
+}
+
+.warning-icon {
+    font-size: 43px;
+    width: auto;
+    height: auto;
+}
+
+.close-icon {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0px;
+}

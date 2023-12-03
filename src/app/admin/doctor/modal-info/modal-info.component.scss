@@ -1,25 +1,67 @@
-.info-modal-container {
-    position: relative;
-    width: 400px;
-    height: 400px;
-}
-
 .info-modal-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+    align-items: flex-start;
+    
+    padding: 50px;
+    
+    position: relative;
+    background: linear-gradient(135deg, #db1919, #0666c7);
+    color: #fff;
+    
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease;
+    animation: fadeInUp 0.5s ease;
+    overflow: hidden;
 }
 
-.user-email,
-.user-name,
-.user-last-name {
-    margin-bottom: 10px;
+.user-icon {
+    font-size: 72px;
+    margin-bottom: 20px;
+    width: auto;
+    height: auto;
+}
+
+.user-info {
+    font-size: 28px;
+    margin-bottom: 15px;
 }
 
 .close-button {
+    
+    background:  #005fbe;
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 20px;
+    right: 20px;
+    transition: background-color 0.3s ease;
+    
+    padding: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+
+    .close-icon {
+        color: #fff;
+        margin-right: 0;
+
+
+    }
+}
+
+.close-button:hover {
+    background: #db1919;
+    
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
