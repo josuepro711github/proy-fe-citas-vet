@@ -48,7 +48,7 @@ export class PedirCitaComponent {
       {
        
         // width: '500px',
-        width: '40%',
+        width: '60%',
         // backdrop
         panelClass: 'custom-dialog-container',
         

@@ -1,50 +1,66 @@
 <div class="contenido">
-    <h1 class="titulo">LISTAR CITAS</h1>
+  <h1 class="titulo">LISTAR CITAS</h1>
 
 
 
-    <div class=" mat-elevation-z8">
-        <mat-table #table [dataSource]="dataSource">
+  <div class=" mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource">
 
-            <!-- Position Column -->
-            <ng-container matColumnDef="position">
-              <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-            </ng-container>
-        
-            <!-- Name Column -->
-            <ng-container matColumnDef="name">
-              <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-            </ng-container>
-        
-            <!-- Weight Column -->
-            <ng-container matColumnDef="weight">
-              <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
-            </ng-container>
-        
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="symbol">
-              <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+      <!-- Dueño Column -->
+      <ng-container matColumnDef="duenio">
+        <mat-header-cell *matHeaderCellDef> Dueño </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.duenio}} </mat-cell>
+      </ng-container>
 
-              <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
-            </ng-container>
+      <!-- Mascota Column -->
+      <ng-container matColumnDef="mascota">
+        <mat-header-cell *matHeaderCellDef> Mascota </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.mascota}} </mat-cell>
+      </ng-container>
 
-            <!-- Status Column -->
-            <ng-container matColumnDef="status">
-              <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
-            </ng-container>
-        
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-          </mat-table>
+      <!-- Motivo Column -->
+      <ng-container matColumnDef="motivo">
+        <mat-header-cell *matHeaderCellDef> Motivo </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.motivo}} </mat-cell>
+      </ng-container>
 
-        <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
-        </mat-paginator>
+      <!-- Fecha Column -->
+      <ng-container matColumnDef="fecha">
+        <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
 
-    </div>
+        <mat-cell *matCellDef="let element"> {{element.fecha}} </mat-cell>
+      </ng-container>
+
+      <!-- Hora Column -->
+      <ng-container matColumnDef="hora">
+        <mat-header-cell *matHeaderCellDef> Hora </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.hora}} </mat-cell>
+      </ng-container>
+
+      <!-- Estado Column -->
+      <ng-container matColumnDef="estado">
+        <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.estado}} </mat-cell>
+      </ng-container>
+
+      <!-- Acciones Column -->
+      <ng-container matColumnDef="acciones">
+        <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <mat-icon class="eliminar" (click)="cancelar(element)">cancel</mat-icon>
+          <mat-icon class="informacion" (click)="mostrarMas(element)">more_vert</mat-icon>
+        </mat-cell>
+      </ng-container>
+
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+    </mat-paginator>
+
+  </div>
 
 
 

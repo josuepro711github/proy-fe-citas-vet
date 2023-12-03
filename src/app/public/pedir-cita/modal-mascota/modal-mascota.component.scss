@@ -45,6 +45,9 @@ $shadow-color: rgba(0, 0, 0, 0.1);
 
     .input_imagen {
         width: 100%;
+        align-items: start;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .input_mascota {
@@ -68,6 +71,7 @@ $shadow-color: rgba(0, 0, 0, 0.1);
 .image-container {
     text-align: center;
     margin-bottom: 10px; // Espaciado inferior
+    
 }
 
 .submit-button {

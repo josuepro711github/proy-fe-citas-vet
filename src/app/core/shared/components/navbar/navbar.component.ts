@@ -21,7 +21,7 @@ import { Observable } from 'rxjs';
 export class NavbarComponent implements OnInit {
   pintar: number = 0;
   ruta: string = '';
-  listaNavbar: string[] = ['Inicio', 'Nosotros', 'Servicios', 'Consultorios'];
+  listaNavbar: string[] = ['Inicio', 'Nosotros'];
   rutasAdmin: string[] = ['/doctores', '/citas'];
   rutaActiva: string = '';
   rol: number = 0;
@@ -96,14 +96,7 @@ export class NavbarComponent implements OnInit {
         this.pintar = 3;
         this.ruta = '/pedir-cita';
         break;
-      case 4:
-        this.pintar = 4;
-        this.ruta = '/servicios';
-        break;
-      case 5:
-        this.pintar = 5;
-        this.ruta = '/consultorios';
-        break;
+      
       case 6:
         this.pintar = 6;
         this.ruta = '/login-registro';
@@ -113,6 +106,13 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
+    sessionStorage.removeItem('token');
+
+    // emitir evento
+    this.eventEmitterService.notificarActualizacion('token');
+
+
+    this.router.navigate(['/login-registro']);
 
   }
 
