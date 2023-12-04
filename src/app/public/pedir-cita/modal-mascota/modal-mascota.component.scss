@@ -1,0 +1,91 @@
+// Colores
+$primary-color: #10365a;
+$shadow-color: rgba(0, 0, 0, 0.1);
+
+.modal-title {
+    text-align: center;
+    color: $primary-color;
+    font-size: 2.25rem;
+    line-height: 3.375rem;
+    font-family: Sailec-Bold !important;
+    margin: 20px 0; // Ajuste de margen
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px $shadow-color;
+}
+
+.btn-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: $primary-color;
+}
+
+.full-width {
+    width: 100%; // Cambiado a 100%
+    margin-bottom: 15px;
+}
+
+.registration-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    width: 100%;
+
+    .input_mascota {
+        width: 100%;
+    }
+
+    .input_imagen {
+        width: 100%;
+        align-items: start;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .input_mascota {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .input_imagen {
+        display: grid;
+        gap: 15px;
+    }
+
+    .button-container{
+        grid-column: 1 / span 2;
+        text-align: center;
+    }
+
+}
+
+.image-container {
+    text-align: center;
+    margin-bottom: 10px; // Espaciado inferior
+    
+}
+
+.submit-button {
+    width: 80%;
+     // Establecer un ancho máximo
+    height: 3.75rem;
+    font-weight: bold;
+    color: white;
+    margin-top: 10px;
+    background-color: $primary-color;
+    margin-bottom: 20px;
+
+    &:hover {
+        background-color: darken($primary-color, 10%); // Oscurecer ligeramente al pasar el ratón
+        transition: 0.1s;
+    }
+}

@@ -1,205 +1,99 @@
-<!-- <main class="grid_login">
-    <div class="formulario">
-      <form [formGroup]="form" (ngSubmit)="submitForm()">
-  
-        <h1 class="titulo">{{ tipo_form }} Cita</h1>
-  
-        <div class="tipo_registro">
-
-            
-  
-          <div class="input_fecha">
-            <mat-form-field appearance="outline">
-              <mat-label>Fecha de la cita</mat-label>
-              <input matInput [matDatepicker]="fechaPicker" (dateChange)="onDateSelected()" />
-              <mat-datepicker-toggle matIconSuffix [for]="fechaPicker"></mat-datepicker-toggle>
-              <mat-datepicker #fechaPicker></mat-datepicker>
-            </mat-form-field>
-            <div class="mat_error" *ngIf="validFormName('fecha')">
-              <mat-error *ngIf="validHasError('fecha') === 1">Este campo es requerido</mat-error>
-            </div>
-          </div>
-  
-          <div class="input_hora">
-            <mat-form-field class="example-full-width" appearance="outline">
-              <mat-label>Hora de la cita</mat-label>
-              <input matInput formControlName="horaCita" />
-            </mat-form-field>
-            <div class="mat_error" *ngIf="validFormName('horaCita')">
-              <mat-error *ngIf="validHasError('horaCita') === 1">Este campo es requerido</mat-error>
-            </div>
-          </div>
-  
-          <div class="input_motivo">
-            <mat-form-field class="example-full-width" appearance="outline">
-              <mat-label>Motivo de la cita</mat-label>
-              <input matInput formControlName="motivo" />
-            </mat-form-field>
-            <div class="mat_error" *ngIf="validFormName('motivo')">
-              <mat-error *ngIf="validHasError('motivo') === 1">Este campo es requerido</mat-error>
-            </div>
-          </div>
-  
-          <div class="input_observaciones">
-            <mat-form-field class="example-full-width" appearance="outline">
-              <mat-label>Observaciones</mat-label>
-              <input matInput formControlName="observaciones" />
-            </mat-form-field>
-            <div class="mat_error" *ngIf="validFormName('observaciones')">
-              <mat-error *ngIf="validHasError('observaciones') === 1">Este campo es requerido</mat-error>
-            </div>
-          </div>
-  
-          <div class="input_estado">
-            <mat-form-field class="example-full-width" appearance="outline">
-              <mat-label>Estado</mat-label>
-              <input matInput formControlName="estado" />
-            </mat-form-field>
-            <div class="mat_error" *ngIf="validFormName('estado')">
-              <mat-error *ngIf="validHasError('estado') === 1">Este campo es requerido</mat-error>
-            </div>
-          </div>
-  
-          <div class="input_nombre_paciente">
-            <mat-form-field class="example-full-width" appearance="outline">
-              <mat-label>Nombre del paciente</mat-label>
-              <input matInput formControlName="nombrePaciente" />
-            </mat-form-field>
-            <div class="mat_error" *ngIf="validFormName('nombrePaciente')">
-              <mat-error *ngIf="validHasError('nombrePaciente') === 1">Este campo es requerido</mat-error>
-            </div>
-          </div>
-  
-          <div class="input_direccion">
-            <mat-form-field class="example-full-width" appearance="outline">
-              <mat-label>Dirección</mat-label>
-              <input matInput formControlName="direccion" />
-            </mat-form-field>
-            <div class="mat_error" *ngIf="validFormName('direccion')">
-              <mat-error *ngIf="validHasError('direccion') === 1">Este campo es requerido</mat-error>
-            </div>
-          </div>
-  
-          
-  
-        </div>
-  
-        <button mat-raised-button class="btn-login" color="primary" type="submit">Enviar</button>
-      </form>
-    </div>
-  </main> 
-  form!: FormGroup;
-  tipo_form = "Registrar"
-  fecha_cita = ""
-  constructor(private fb: FormBuilder) {}
-
-  ngOnInit() {
-    this.form = this.fb.group({
-      fecha: ['', Validators.required],
-      horaCita: ['', Validators.required],
-      motivo: ['', Validators.required],
-      observaciones: ['', Validators.required],
-      estado: ['', Validators.required],
-      nombrePaciente: ['', Validators.required],
-      direccion: ['', Validators.required]
-    });
-  }
-
-  submitForm() {
-    if (this.form.valid) {
-      // Aquí puedes enviar la información al servidor o realizar otras acciones
-      console.log(this.form.value);
-    }
-  }
-
-  validFormName(val: string): boolean {
-    let esInvalido = false;
-    if (this.form.get(val)?.invalid && this.form.get(val)?.touched) {
-      esInvalido = true;
-    }
-    return esInvalido;
-  }
-
-  validHasError(val: string): number {
-    let error = 0;
-    if (this.form.get(val)?.hasError('required')) {
-      error = 1;
-    }
-    if (this.form.get(val)?.hasError('email')) {
-      error = 2;
-    }
-    return error;
-  }
-  formatoFecha(date: Date) {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    this.fecha_cita= `${year}-${month}-${day}`;
-
-  }
-
-  onDateSelected() {
-    let fecha  = this.form.get('fecha')?.value
-    this.formatoFecha(fecha)
-  }
-
-
--->
-
-
 <div class="contenido">
   <h1 class="titulo">LISTAR CITAS</h1>
 
-
-
-  <div class=" mat-elevation-z8">
-    <mat-table #table [dataSource]="dataSource">
-
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
       <!-- ID Cita Column -->
       <ng-container matColumnDef="idCita">
-        <mat-header-cell *matHeaderCellDef> ID Cita </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.idCita}} </mat-cell>
+        <th mat-header-cell class="custom-header-cell" *matHeaderCellDef>
+          ID Cita
+        </th>
+        <td mat-cell *matCellDef="let element" class="custom-cell">
+          {{ element.idCita }}
+        </td>
+      </ng-container>
+
+      <!-- Nombre Column -->
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell class="custom-header-cell" *matHeaderCellDef>
+          Nombre
+        </th>
+        <td mat-cell *matCellDef="let element" class="custom-cell">
+          {{ element.nombre }}
+        </td>
       </ng-container>
 
       <!-- Fecha Column -->
       <ng-container matColumnDef="fecha">
-        <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.fecha | date:'short'}} </mat-cell>
+        <th mat-header-cell class="custom-header-cell" *matHeaderCellDef>
+          Fecha
+        </th>
+        <td mat-cell *matCellDef="let element" class="custom-cell">
+          {{ element.fecha | date:'short' }}
+        </td>
       </ng-container>
 
       <!-- Hora Cita Column -->
       <ng-container matColumnDef="horaCita">
-        <mat-header-cell *matHeaderCellDef> Hora Cita </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.horaCita}} </mat-cell>
+        <th mat-header-cell class="custom-header-cell" *matHeaderCellDef>
+          Hora Cita
+        </th>
+        <td mat-cell *matCellDef="let element" class="custom-cell">
+          {{ element.horaCita }}
+        </td>
       </ng-container>
 
       <!-- Motivo Column -->
       <ng-container matColumnDef="motivo">
-        <mat-header-cell *matHeaderCellDef> Motivo </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.motivo}} </mat-cell>
+        <th mat-header-cell class="custom-header-cell" *matHeaderCellDef>
+          Motivo
+        </th>
+        <td mat-cell *matCellDef="let element" class="custom-cell">
+          {{ element.motivo }}
+        </td>
       </ng-container>
 
       <!-- Estado Column -->
       <ng-container matColumnDef="estado">
-        <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.estado}} </mat-cell>
+        <th mat-header-cell class="custom-header-cell" *matHeaderCellDef>
+          Estado
+        </th>
+        <td mat-cell *matCellDef="let element" class="custom-cell">
+          {{ element.estado }}
+        </td>
       </ng-container>
 
       <!-- Doctor Column -->
       <ng-container matColumnDef="doctor">
-        <mat-header-cell *matHeaderCellDef> Doctor </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.doctor}} </mat-cell>
+        <th mat-header-cell class="custom-header-cell" *matHeaderCellDef>
+          Doctor
+        </th>
+        <td mat-cell *matCellDef="let element" class="custom-cell">
+          {{ element.doctor }}
+        </td>
       </ng-container>
 
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
+      <!-- Icons Column -->
+      <ng-container matColumnDef="icons">
+        <th mat-header-cell class="custom-header-cell" *matHeaderCellDef>
+          <div class="titulo_icons">
+            <div class="eliminar">Eliminar</div>
+            <div class="informacion">Información</div>
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let element" class="custom-cell">
+          <div class="icons">
+            <div class="eliminar" (click)="cancelarCita()"><mat-icon>delete</mat-icon></div>
+            <div class="informacion" (click)="abrirDetalle( element)"><mat-icon>info</mat-icon></div>
+          </div>
+        </td>
+      </ng-container>
 
-    <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" class="custom-header-row"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns" class="custom-row"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[3, 6, 9]" showFirstLastButtons aria-label="Select page of periodic elements">
     </mat-paginator>
-
   </div>
-
-
-
 </div>

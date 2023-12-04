@@ -8,6 +8,8 @@ import { CitasComponent } from './citas/citas.component';
 import { SharedModule } from '../core/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MascotaComponent } from './mascota/mascota.component';
+import { InfocitaClienteComponent } from './citas/infocita-cliente/infocita-cliente.component';
+
 
 
 @NgModule({
@@ -15,7 +17,8 @@ import { MascotaComponent } from './mascota/mascota.component';
     ClientComponent,
     PerfilComponent,
     CitasComponent,
-    MascotaComponent
+    MascotaComponent,
+    InfocitaClienteComponent
   ],
   imports: [
     SharedModule,

@@ -11,6 +11,7 @@ import { ConsultoriosComponent } from "./consultorios/containers/consultorios.co
 import { AuthService } from "./services/auth.service";
 import { PedirCitaComponent } from './pedir-cita/containers/pedir-cita.component';
 import { LoginRegistroComponent } from './login-registro/containers/login-registro.component';
+import { ModalMascotaComponent } from './pedir-cita/modal-mascota/modal-mascota.component';
 
 @NgModule({
     imports: [
@@ -27,7 +28,8 @@ import { LoginRegistroComponent } from './login-registro/containers/login-regist
         ServiciosComponent,
         ConsultoriosComponent,
         PedirCitaComponent,
-        LoginRegistroComponent
+        LoginRegistroComponent,
+        ModalMascotaComponent
     ],
     exports: [],
     providers: [
