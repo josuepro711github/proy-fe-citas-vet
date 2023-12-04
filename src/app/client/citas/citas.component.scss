@@ -1,5 +1,6 @@
 .contenido {
   padding: 2.5%;
+
   .titulo {
     font-size: 2rem;
     color: #ff4d4d;
@@ -8,48 +9,84 @@
     line-height: 2.5;
     border-bottom: 2px solid #ff4d4d;
   }
-}
 
-table {
-  width: 100%;
-}
+  .mat-elevation-z8 {
+    overflow-x: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease;
+    animation: fadeInUp 0.5s ease;
+    overflow: hidden;
 
-.titulo_icons {
-  display: flex;
-  .actualizar, .eliminar{
-    margin-right: 15%;
-  }
-}
-.icons{
-  display: flex;
-  .actualizar, .eliminar, .informacion{
-    margin-left: 5%;
-    margin-right: 18%;
-  }
-  .actualizar{
-    mat-icon{
-      cursor: pointer;
-      color: #FFC300;
-      &:hover{
-     
+    table {
+      width: 100%;
+      border-collapse: collapse;
+
+      th, td {
+        padding: 12px;
+        text-align: left;
+      }
+
+      .custom-header-cell, .custom-cell {
+        border-bottom: 2px solid #f2f2f2;
+      }
+
+      .custom-row {
+        &:hover {
+          background-color: #f9f9f9;
+        }
       }
     }
-  }
-  .eliminar{
-    mat-icon{
-      cursor: pointer;
-      color: red;
-      &:hover{
-        
-      }
+
+    .mat-paginator {
+      margin-top: 20px;
     }
   }
-  .informacion{
-    mat-icon{
-      cursor: pointer;
-      color: skyblue;
-      &:hover{
-        
+
+  .titulo_icons {
+    display: flex;
+
+    .actualizar, .eliminar {
+      margin-right: 15%;
+    }
+  }
+
+  .icons {
+    display: flex;
+
+    .actualizar, .eliminar, .informacion {
+      margin-left: 5%;
+      margin-right: 18%;
+
+      mat-icon {
+        cursor: pointer;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: #FFC300;
+        }
+      }
+    }
+
+    .eliminar {
+      mat-icon {
+        cursor: pointer;
+        color: red;
+
+        &:hover {
+          color: darkred;
+        }
+      }
+    }
+
+    .informacion {
+      mat-icon {
+        cursor: pointer;
+        color: skyblue;
+
+        &:hover {
+          color: deepskyblue;
+        }
       }
     }
   }

@@ -1,67 +1,69 @@
 <div class="contenido">
   <h1 class="titulo">LISTAR CITAS</h1>
 
-
-
-  <div class=" mat-elevation-z8">
-    <mat-table #table [dataSource]="dataSource">
+  <div class="mat-elevation-z8">
+    <table mat-table #table [dataSource]="dataSource">
 
       <!-- Dueño Column -->
       <ng-container matColumnDef="duenio">
-        <mat-header-cell *matHeaderCellDef> Dueño </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.duenio}} </mat-cell>
+        <th mat-header-cell class="custom-header-cell" *matHeaderCellDef> Dueño </th>
+        <td mat-cell *matCellDef="let element" class="custom-cell"> {{ element.duenio }} </td>
       </ng-container>
+      
 
       <!-- Mascota Column -->
       <ng-container matColumnDef="mascota">
-        <mat-header-cell *matHeaderCellDef> Mascota </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.mascota}} </mat-cell>
+        <th mat-header-cell class="custom-header-cell" *matHeaderCellDef> Mascota </th>
+        <td mat-cell *matCellDef="let element" class="custom-cell"> {{ element.mascota }} </td>
       </ng-container>
 
       <!-- Motivo Column -->
       <ng-container matColumnDef="motivo">
-        <mat-header-cell *matHeaderCellDef> Motivo </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.motivo}} </mat-cell>
+        <th mat-header-cell class="custom-header-cell" *matHeaderCellDef> Motivo </th>
+        <td mat-cell *matCellDef="let element" class="custom-cell"> {{ element.motivo }} </td>
       </ng-container>
 
       <!-- Fecha Column -->
       <ng-container matColumnDef="fecha">
-        <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
-
-        <mat-cell *matCellDef="let element"> {{element.fecha}} </mat-cell>
+        <th mat-header-cell class="custom-header-cell" *matHeaderCellDef> Fecha </th>
+        <td mat-cell *matCellDef="let element" class="custom-cell"> {{ element.fecha }} </td>
       </ng-container>
 
       <!-- Hora Column -->
       <ng-container matColumnDef="hora">
-        <mat-header-cell *matHeaderCellDef> Hora </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.hora}} </mat-cell>
+        <th mat-header-cell class="custom-header-cell" *matHeaderCellDef> Hora </th>
+        <td mat-cell *matCellDef="let element" class="custom-cell"> {{ element.hora }} </td>
       </ng-container>
+      
+      
 
       <!-- Estado Column -->
       <ng-container matColumnDef="estado">
-        <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.estado}} </mat-cell>
+        <th mat-header-cell class="custom-header-cell" *matHeaderCellDef> Estado </th>
+        <td mat-cell *matCellDef="let element" class="custom-cell"> {{ element.estado }} </td>
       </ng-container>
 
-      <!-- Acciones Column -->
-      <ng-container matColumnDef="acciones">
-        <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
-        <mat-cell *matCellDef="let element">
-          <mat-icon class="eliminar" (click)="cancelar(element)">cancel</mat-icon>
-          <mat-icon class="informacion" (click)="mostrarMas(element)">more_vert</mat-icon>
-        </mat-cell>
+      <!-- Icons Column -->
+      <ng-container matColumnDef="icons">
+        <th mat-header-cell class="custom-header-cell" *matHeaderCellDef>
+          <div class="titulo_icons">
+            <div class="eliminar">Cancelar</div>
+            <div class="informacion">Información</div>
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let element" class="custom-cell">
+          <div class="icons">
+            <div class="eliminar" (click)="cancelarCita()"><mat-icon>cancel</mat-icon></div>
+            <div class="informacion" (click)="abrirDetalle()"><mat-icon>info</mat-icon></div>
+          </div>
+        </td>
       </ng-container>
 
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" class="custom-header-row"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="custom-row"></tr>
+    </table>
 
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-
-    <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
     </mat-paginator>
-
   </div>
-
-
-
 </div>

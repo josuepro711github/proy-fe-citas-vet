@@ -10,7 +10,7 @@ import { lastValueFrom } from 'rxjs';
   styleUrls: ['./listar.component.scss']
 })
 export class ListarComponent {
-  displayedColumns = ['duenio', 'mascota', 'motivo', 'fecha', 'hora', 'estado', 'acciones'];
+  displayedColumns = ['duenio', 'mascota', 'motivo', 'fecha', 'hora', 'estado', 'icons'];
 
   dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
 
@@ -22,13 +22,13 @@ export class ListarComponent {
   }
 
 
-  cancelar(element: Element) {
-    console.log('Cancelar cita: ', element);
+  cancelarCita() {
+    console.log('Cancelar cita: ');
     // Aquí puedes agregar el código para cancelar la cita
   }
   
-  mostrarMas(element: Element) {
-    console.log('Mostrar más detalles: ', element);
+  abrirDetalle() {
+    console.log('Mostrar más detalles: ');
     // Aquí puedes agregar el código para mostrar más detalles
   }
 

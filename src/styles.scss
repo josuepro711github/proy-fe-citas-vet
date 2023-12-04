@@ -37,6 +37,23 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background-color:  #fff3cd !important;
 }
 
+// DIALOG CUSTOM
+.custom-dialog-container {
+    background: linear-gradient(135deg, #db1919, #0666c7);
+    border-radius: 10px;
+    
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease;
+    animation: fadeInUp 0.5s ease;
+    overflow: hidden;
+    .mat-mdc-dialog-surface, .mdc-dialog__surface{
+        background: transparent !important;
+
+    }
+}
+
+
+
 //FONT FAMILY SAILEC
 @font-face {
     font-family: 'Sailec-Light';
@@ -59,4 +76,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     src: url('./assets/fonts/Sailec-Thin.ttf') format('truetype');
 }
 
-
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

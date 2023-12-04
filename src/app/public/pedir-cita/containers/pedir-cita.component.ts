@@ -49,8 +49,7 @@ export class PedirCitaComponent {
        
         // width: '500px',
         width: '60%',
-        // backdrop
-        panelClass: 'custom-dialog-container',
+        
         
       });
     console.log('Agregar mascota:', this.form.value.mascota);
