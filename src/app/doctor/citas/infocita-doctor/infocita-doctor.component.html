@@ -1,1 +1,25 @@
-<p>infocita-doctor works!</p>
+<mat-dialog-content class="info-modal-content">
+    <mat-icon class="cita-icon" aria-label="Cita">event</mat-icon>
+    <p class="cita-first"><strong>ID Cita:</strong> {{ cita.idCita }}</p>
+    <p class="cita-info"><strong>Nombre:</strong> {{ cita.nombre }}</p>
+    <p class="cita-info"><strong>Fecha:</strong> {{ cita.fecha | date:'medium' }}</p>
+    <p class="cita-info"><strong>Hora:</strong> {{ cita.horaCita }}</p>
+    <p class="cita-info"><strong>Motivo:</strong> {{ cita.motivo }}</p>
+    <p class="cita-info"><strong>Estado:</strong> {{ cita.estado }}</p>
+    <p class="cita-info"><strong>Doctor:</strong> {{ cita.doctor }}</p>
+    <p class="cita-info"><strong>Observaciones:</strong> </p>
+    
+    <!-- <form >
+        <p class="cita-info"><strong>Observaciones:</strong></p>
+        <mat-form-field class="cita-obs">
+          <textarea matInput placeholder="Observaciones" [(ngModel)]="observaciones"></textarea>
+        </mat-form-field>
+      
+        <button mat-raised-button color="primary" (click)="guardarCita(cita)">Guardar</button>
+      </form> -->
+    
+  </mat-dialog-content>
+  
+  <button mat-button (click)="onNoClick()" color="primary" class="close-button">
+    <mat-icon class="close-icon" color="primary" aria-label="Close dialog">close</mat-icon>
+  </button>
