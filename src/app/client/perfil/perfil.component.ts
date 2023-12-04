@@ -11,7 +11,8 @@ export class PerfilComponent {
   tipo_form = "Ver"
   fecha_cita = ""
   isFormEditable = false;
-  imagenSeleccionada: string | ArrayBuffer | null = "../../../../../assets/icons/hueso.png";
+  imagenFile: File | null = null;
+  clienteActualizar:any;
 
 
 
@@ -50,6 +51,7 @@ export class PerfilComponent {
       fechaNacimiento: [this.cliente.fechaNacimiento, Validators.required],
       telefono: [this.cliente.telefono, Validators.required],
       email: [this.cliente.email, [Validators.required, Validators.email]],
+      imagen: [''],
       // Agrega otros campos según sea necesario
     });
 
@@ -115,6 +117,24 @@ export class PerfilComponent {
     }
   }
 
+  imagenSeleccionada: string | ArrayBuffer | null = null;
+  imagenFileSeleccionado(event: any): void {
+    const file: File = event.target.files[0];
+
+    if (file) {
+      this.imagenFile = file;
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagenSeleccionada = reader.result;
+
+      };
+      reader.readAsDataURL(file);
+      if(this.tipo_form=="Actualizar"){
+        this.clienteActualizar.usuario.imagen = "cambiado"
+      }
+
+    }
+  }
 
 
 }
