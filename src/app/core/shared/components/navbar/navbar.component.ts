@@ -11,7 +11,6 @@ import {
 import { Router } from '@angular/router';
 import { EventEmitterService } from '../../services/event-emitter.service';
 import { AuthService } from 'src/app/public/services/auth.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -61,11 +60,6 @@ export class NavbarComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    console.log("rol: ", this.rol)
-    if(this.rol===3){
-      this.listaNavbar.splice(2,0,'Pedir Cita');
-      console.log("Lista navbar: ", this.listaNavbar)
-    }
   }
 
   traerImagenCliente(token: any) {
@@ -113,7 +107,11 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-
+    sessionStorage.removeItem('token');
+    this.router.navigate(['/login-registro']);
+    this.imagenSeleccionada = null;
+    this.mostrarSubMenu = false
+    this.listaNavbar.splice(2,1);
   }
 
   cuenta() {
