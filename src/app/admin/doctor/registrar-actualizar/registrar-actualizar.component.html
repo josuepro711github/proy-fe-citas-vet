@@ -148,6 +148,18 @@
           </div> -->
         </div>
 
+        <div class="input_descripcion_perfil">
+          <mat-form-field class="example-full-width" appearance="outline" [ngClass]="{
+              mat_error_border_color: validFormName('email')
+            }">
+            <mat-label>Descripción del Perfil</mat-label>
+            <textarea  formControlName="descripcion_perfil" type="descripcion_perfil" rows="4" matInput >
+
+            </textarea>
+          </mat-form-field>
+
+        </div>
+
         <div class="input_imagen">
           <ng-container>
             <mat-form-field class="example-full-width" appearance="outline" [ngClass]="{
@@ -166,7 +178,7 @@
         </div>
       </div>
 
- 
+
       <button mat-raised-button class="btn-login" color="primary" (click)="executeForm()">
         {{ tipo_form }}
       </button>
