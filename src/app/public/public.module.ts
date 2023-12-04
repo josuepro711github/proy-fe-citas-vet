@@ -12,6 +12,9 @@ import { AuthService } from "./services/auth.service";
 import { PedirCitaComponent } from './pedir-cita/containers/pedir-cita.component';
 import { LoginRegistroComponent } from './login-registro/containers/login-registro.component';
 import { ModalMascotaComponent } from './pedir-cita/modal-mascota/modal-mascota.component';
+import { DoctorService } from "../admin/services/doctor.service";
+import { CitaService } from "../client/services/cita.service";
+import { MascotaService } from "../client/services/mascota.service";
 
 @NgModule({
     imports: [
@@ -33,7 +36,10 @@ import { ModalMascotaComponent } from './pedir-cita/modal-mascota/modal-mascota.
     ],
     exports: [],
     providers: [
-        AuthService
+        AuthService,
+        DoctorService,
+        CitaService,
+        MascotaService
     ]
 })
 

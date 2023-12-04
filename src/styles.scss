@@ -37,11 +37,52 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background-color:  #fff3cd !important;
 }
 
+
+.header-icono{
+  text-align: center !important;
+}
+.center-icono {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.icono-terminar{
+  color:#4CAF50;
+
+  mat-icon{
+    cursor: pointer;
+  }
+}
+.icono-terminar mat-icon:hover {
+  color: #1B5E20;
+}
+.icono-cancelar{
+  color: red;
+  mat-icon{
+    cursor: pointer;
+  }
+}
+.icono-cancelar mat-icon:hover {
+  color: darkred;
+}
+
+.icono-informacion{
+  color: skyblue;
+  mat-icon {
+    cursor: pointer;
+  }
+}
+.icono-informacion mat-icon:hover {
+  color: deepskyblue;
+}
+
 // DIALOG CUSTOM
 .custom-dialog-container {
     background: linear-gradient(135deg, #db1919, #0666c7);
     border-radius: 10px;
-    
+
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
     transition: transform 0.3s ease;
     animation: fadeInUp 0.5s ease;

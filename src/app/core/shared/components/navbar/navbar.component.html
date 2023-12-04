@@ -23,7 +23,7 @@
             <span *ngIf="token!=null" class="nombre-usuario ">{{token.nombre }}</span>
             <img *ngIf="token!=null" [src]="imagenSeleccionada"  alt="" class="img-usuario">
           </div>
-          <div  *ngIf="mostrarSubMenu  " class="sub_perfil">
+          <div  *ngIf="mostrarSubMenu" class="sub_perfil">
             <ul>
               <li class="ir_cuenta" (click)="cuenta()" >Ir a tu cuenta </li>
               <li class="cerrar_sesion" (click)="logout()">Cerrar Sesi&oacute;n</li>
@@ -31,6 +31,7 @@
           </div>
         </div>
       </a>
+
       </div>
 
     </div>

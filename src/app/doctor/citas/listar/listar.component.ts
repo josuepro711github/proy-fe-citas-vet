@@ -2,6 +2,9 @@ import { AfterViewInit, Component, Inject, OnInit, ViewChild } from '@angular/co
 import { MatPaginator } from '@angular/material/paginator';
 import { MatCellDef, MatTableDataSource } from '@angular/material/table';
 import { lastValueFrom } from 'rxjs';
+import { CitaService } from 'src/app/client/services/cita.service';
+import { Pageable } from 'src/app/core/models/Pageable';
+import { AuthService } from 'src/app/public/services/auth.service';
 
 
 @Component({
@@ -10,43 +13,46 @@ import { lastValueFrom } from 'rxjs';
   styleUrls: ['./listar.component.scss']
 })
 export class ListarComponent {
-  displayedColumns = ['duenio', 'mascota', 'motivo', 'fecha', 'hora', 'estado', 'icons'];
 
-  dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
-
+  displayedColumns = ['idCita', 'fecha','horaCita',  'motivo', 'estado', 'cliente' , 'evaluar','cancelar','informacion'];
+  dataSource = new MatTableDataSource<any>();
+  citas:any[]=[]
+  pageable: Pageable = {
+    page: 0,
+    size: 10,
+    orderParameter: 'Cita.fecha',
+    typeOrder: 'ASC',
+  };
   @ViewChild(MatPaginator) paginator!: MatPaginator ;
 
-  ngAfterViewInit() {
-  
+  usuarioLogueado:any
+  constructor(private citaService:CitaService,private authService:AuthService){
+    this.usuarioLogueado = this.authService.obtenerToken()
+    this.traerCitas()
+  }
+
+  async traerCitas(){
+    const response = await lastValueFrom(this.citaService.listarCitasCliente(this.pageable,this.usuarioLogueado.id_doctor))
+    this.citas = response.content
+    console.log(response)
+    this.dataSource = new MatTableDataSource(this.citas);
     this.dataSource.paginator = this.paginator;
   }
+  estado= ["Pendiente","Terminado","Cancelado"]
 
 
-  cancelarCita() {
-    console.log('Cancelar cita: ');
-    // Aquí puedes agregar el código para cancelar la cita
-  }
-  
-  abrirDetalle() {
-    console.log('Mostrar más detalles: ');
-    // Aquí puedes agregar el código para mostrar más detalles
+  async terminarCita(id_cita:number){
+    await lastValueFrom(this.citaService.terminarCita(id_cita))
+    this.traerCitas()
   }
 
+  async cancelarCita(id_cita:number){
+    await lastValueFrom(this.citaService.cancelarCita(id_cita))
+    this.traerCitas()
+  }
 
+  infoCita(citaMascota:any){
 
-}
-export interface Element {
-  duenio: string;
-  mascota: string;
-  motivo: string;
-  fecha: string;
-  hora: string;
-  estado: string;
+  }
 }
 
-
-const ELEMENT_DATA: Element[] = [
-  {duenio: 'Juan', mascota: 'Firulais', motivo: 'Chequeo', fecha: '2023-12-03', hora: '15:00', estado: 'Confirmado'},
-{duenio: 'Maria', mascota: 'Manchas', motivo: 'Vacunación', fecha: '2023-12-04', hora: '10:00', estado: 'Pendiente'},
-  
-];

@@ -9,6 +9,8 @@ import { SharedModule } from '../core/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MascotaComponent } from './mascota/mascota.component';
 import { InfocitaClienteComponent } from './citas/infocita-cliente/infocita-cliente.component';
+import { CitaService } from './services/cita.service';
+import { AuthService } from '../public/services/auth.service';
 
 
 
@@ -25,6 +27,8 @@ import { InfocitaClienteComponent } from './citas/infocita-cliente/infocita-clie
     CommonModule,
     ClientRoutingModule,
     ReactiveFormsModule
+  ],providers:[
+    CitaService,AuthService
   ]
 })
 export class ClientModule { }

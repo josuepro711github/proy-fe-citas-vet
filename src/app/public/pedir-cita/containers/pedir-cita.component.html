@@ -11,7 +11,7 @@
                 <div class="input_fecha">
                     <mat-form-field appearance="outline">
                         <mat-label>Fecha de la cita</mat-label>
-                        <input matInput [matDatepicker]="fechaPicker" (dateChange)="onDateSelected()" />
+                        <input matInput [matDatepicker]="fechaPicker" (dateChange)="onDateSelected()" formControlName="fecha_cita"/>
                         <mat-datepicker-toggle matIconSuffix [for]="fechaPicker"></mat-datepicker-toggle>
                         <mat-datepicker #fechaPicker></mat-datepicker>
                     </mat-form-field>
@@ -48,7 +48,7 @@
                     </mat-form-field>
                 </div>
 
-                
+
 
                 <div class="input_mascota">
                     <!-- Selector de mascotas -->
@@ -56,21 +56,21 @@
                       <mat-label>Mascota</mat-label>
                       <mat-select formControlName="mascota" name="mascota">
                         <!-- Generar opciones de mascotas desde la lista definida en TypeScript -->
-                        <mat-option *ngFor="let mascota of mascotas" [value]="mascota">{{ mascota }}</mat-option>
+                        <mat-option *ngFor="let mascota of mascotas" [value]="mascota" (click)="seleccionarMascota(mascota)">{{ mascota.alias }}</mat-option>
                       </mat-select>
                     </mat-form-field>
-                  
+
                     <!-- Botón de agregar mascota -->
                     <button mat-raised-button class="btn_agregar btn-login" color="primary" (click)="agregarMascota()">
                       <mat-icon>add</mat-icon>
                     </button>
-                  
+
                     <!-- Error si el nombre del paciente es requerido -->
                     <div class="mat_error" *ngIf="validFormName('nombrePaciente')">
                       <mat-error *ngIf="validHasError('nombrePaciente') === 1">Este campo es requerido</mat-error>
                     </div>
                   </div>
-                  
+
                   <div class="input_motivo">
                     <mat-form-field class="example-full-width" appearance="outline">
                         <mat-label>Motivo de la cita</mat-label>
