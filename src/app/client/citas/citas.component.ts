@@ -14,7 +14,7 @@ import { lastValueFrom } from 'rxjs';
 })
 export class CitasComponent {
 
-  displayedColumns = ['idCita', 'fecha','horaCita',  'motivo', 'estado', 'doctor'];
+  displayedColumns = ['idCita', 'fecha','horaCita',  'motivo', 'estado', 'doctor','informacion'];
   // dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
   dataSource = new MatTableDataSource<any>();
 
@@ -40,8 +40,13 @@ export class CitasComponent {
     this.dataSource = new MatTableDataSource(this.citasCliente);
     this.dataSource.paginator = this.paginator;
   }
- 
+
   estado= ["Pendiente","Terminado","Cancelado"]
+
+
+  infoCita(citaMascota:any){
+
+  }
   // ngAfterViewInit() {
   //   this.dataSource.paginator = this.paginator;
   // }

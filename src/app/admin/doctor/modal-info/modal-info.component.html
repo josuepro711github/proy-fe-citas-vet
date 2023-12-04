@@ -1,7 +1,12 @@
-<div style="width: 400px;height: 400px;">
-<p>{{data.usuario.email}}</p>
-<p>{{data.usuario.nombre}}</p>
-<p>{{data.usuario.apellido_paterno}}</p>
+<mat-dialog-content class="info-modal-content">
+    <mat-icon class="user-icon" aria-label="User" >person</mat-icon>
+    <p class="user-info "> <strong>Correo electr&oacute;nico:</strong> {{ data.usuario.email }}</p>
+    <p class="user-info "> <strong>Nombres:</strong> {{ data.usuario.nombre }}</p>
+    <p class="user-info "> <strong>Apellidos:</strong> {{ data.usuario.apellido_materno }} {{ data.usuario.apellido_paterno }}</p>
+    <p class="user-info "> <strong>Especialidad:</strong> {{ data.especialidad.descripcion }}</p>
+    <p class="user-info "> <strong>Estado:</strong> {{ data.estado }}</p>
+</mat-dialog-content>
 
-<button (click)="onNoClick()">close</button>
-</div>
+<button mat-button (click)="onNoClick()" color="primary" class="close-button">
+    <mat-icon class="close-icon" color="primary" aria-label="Close dialog" >close</mat-icon>
+</button>

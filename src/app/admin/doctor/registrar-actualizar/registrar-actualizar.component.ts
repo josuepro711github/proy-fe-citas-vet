@@ -30,7 +30,7 @@ export class RegistrarActualizarComponent {
      private serviceDoctor: DoctorService,
      private activatedRoute:ActivatedRoute
     ) {
-
+ 
       this.activatedRoute.params.subscribe(params =>{
         let idDoctor = params['idDoctor']
         if(idDoctor){

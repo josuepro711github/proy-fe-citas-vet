@@ -164,7 +164,7 @@
       <!-- Fecha Column -->
       <ng-container matColumnDef="fecha">
         <mat-header-cell *matHeaderCellDef class="custom-header-cell"> FECHA </mat-header-cell>
-        <mat-cell class="custom-cell" *matCellDef="let element"> {{element.cita.fecha | date:'short'}} </mat-cell>
+        <mat-cell class="custom-cell" *matCellDef="let element"> {{element.cita.fecha | date:'dd/MM/yyyy'}} </mat-cell>
       </ng-container>
 
       <!-- Hora Cita Column -->
@@ -193,11 +193,11 @@
       </ng-container>
 
 
-       <!-- Terminar Column -->
-       <ng-container matColumnDef="terminar">
+       <!-- Evaluar Column -->
+       <ng-container matColumnDef="evaluar">
         <mat-header-cell *matHeaderCellDef class="custom-header-cell header-icono">
           <div class="center-icono">
-            TERMINAR
+            EVALUAR
           </div>
         </mat-header-cell>
         <mat-cell class="custom-cell icono-terminar" *matCellDef="let element">
@@ -217,6 +217,20 @@
         <mat-cell class="custom-cell icono-cancelar" *matCellDef="let element">
           <div class="center-icono">
             <mat-icon (click)="cancelarCita(element.cita.id_cita)">delete</mat-icon>
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Informacion Column -->
+      <ng-container matColumnDef="informacion">
+        <mat-header-cell *matHeaderCellDef class="custom-header-cell header-icono">
+          <div class="center-icono">
+            INFORMACIÓN
+          </div>
+        </mat-header-cell>
+        <mat-cell class="custom-cell icono-informacion" *matCellDef="let element">
+          <div class="center-icono">
+            <mat-icon (click)="infoCita(element)">info</mat-icon>
           </div>
         </mat-cell>
       </ng-container>

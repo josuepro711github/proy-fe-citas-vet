@@ -164,7 +164,7 @@
       <!-- Fecha Column -->
       <ng-container matColumnDef="fecha">
         <mat-header-cell *matHeaderCellDef class="custom-header-cell">  FECHA </mat-header-cell>
-        <mat-cell *matCellDef="let element"  class="custom-cell"> {{element.cita.fecha | date:'short'}} </mat-cell>
+        <mat-cell *matCellDef="let element"  class="custom-cell"> {{element.cita.fecha | date:'dd/MM/yyyy'}} </mat-cell>
       </ng-container>
 
       <!-- Hora Cita Column -->
@@ -190,6 +190,21 @@
         <mat-header-cell *matHeaderCellDef class="custom-header-cell"> DOCTOR </mat-header-cell>
         <mat-cell *matCellDef="let element"  class="custom-cell"> {{element.cita.doctor.usuario.nombre +" "+
           element.cita.doctor.usuario.apellido_paterno+" "+element.cita.doctor.usuario.apellido_materno}} </mat-cell>
+      </ng-container>
+
+
+       <!-- Informacion Column -->
+      <ng-container matColumnDef="informacion">
+        <mat-header-cell *matHeaderCellDef class="custom-header-cell header-icono">
+          <div class="center-icono">
+            INFORMACIÓN
+          </div>
+        </mat-header-cell>
+        <mat-cell class="custom-cell icono-informacion" *matCellDef="let element">
+          <div class="center-icono">
+            <mat-icon (click)="infoCita(element)">info</mat-icon>
+          </div>
+        </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"   class="custom-header-row"></mat-header-row>

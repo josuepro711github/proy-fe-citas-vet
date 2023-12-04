@@ -33,4 +33,9 @@ export class CitaService {
   terminarCita(id_cita:number):Observable<void>{
     return this.http.put<void>(this.urlApi+'api/vet/petlife/v1.0.0/cita/terminarCita/'+id_cita,null);
   }
+
+
+  registrarCita(citaMascota:any):Observable<any>{
+    return this.http.post<any>(this.urlApi+'api/vet/petlife/v1.0.0/cita/registrarCita',citaMascota);
+  }
 }

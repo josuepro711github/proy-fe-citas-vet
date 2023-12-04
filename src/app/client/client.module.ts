@@ -8,8 +8,10 @@ import { CitasComponent } from './citas/citas.component';
 import { SharedModule } from '../core/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MascotaComponent } from './mascota/mascota.component';
+import { InfocitaClienteComponent } from './citas/infocita-cliente/infocita-cliente.component';
 import { CitaService } from './services/cita.service';
 import { AuthService } from '../public/services/auth.service';
+
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import { AuthService } from '../public/services/auth.service';
     ClientComponent,
     PerfilComponent,
     CitasComponent,
-    MascotaComponent
+    MascotaComponent,
+    InfocitaClienteComponent
   ],
   imports: [
     SharedModule,
@@ -25,8 +28,7 @@ import { AuthService } from '../public/services/auth.service';
     ClientRoutingModule,
     ReactiveFormsModule
   ],providers:[
-    CitaService,
-    AuthService
+    CitaService,AuthService
   ]
 })
 export class ClientModule { }
