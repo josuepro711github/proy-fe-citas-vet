@@ -6,6 +6,8 @@ import { ListarComponent } from './citas/listar/listar.component';
 import { DoctorComponent } from './doctor.component';
 import { SharedModule } from '../core/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CitaService } from '../client/services/cita.service';
+import { AuthService } from '../public/services/auth.service';
 
 
 @NgModule({
@@ -21,7 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   exports: [],
   providers: [
-    
+    CitaService,AuthService
   ],
 })
 export class DoctorModule {

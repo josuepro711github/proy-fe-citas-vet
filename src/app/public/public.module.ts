@@ -11,6 +11,7 @@ import { ConsultoriosComponent } from "./consultorios/containers/consultorios.co
 import { AuthService } from "./services/auth.service";
 import { PedirCitaComponent } from './pedir-cita/containers/pedir-cita.component';
 import { LoginRegistroComponent } from './login-registro/containers/login-registro.component';
+import { DoctorService } from "../admin/services/doctor.service";
 
 @NgModule({
     imports: [
@@ -31,7 +32,8 @@ import { LoginRegistroComponent } from './login-registro/containers/login-regist
     ],
     exports: [],
     providers: [
-        AuthService
+        AuthService,
+        DoctorService
     ]
 })
 

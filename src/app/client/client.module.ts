@@ -8,6 +8,8 @@ import { CitasComponent } from './citas/citas.component';
 import { SharedModule } from '../core/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MascotaComponent } from './mascota/mascota.component';
+import { CitaService } from './services/cita.service';
+import { AuthService } from '../public/services/auth.service';
 
 
 @NgModule({
@@ -22,6 +24,9 @@ import { MascotaComponent } from './mascota/mascota.component';
     CommonModule,
     ClientRoutingModule,
     ReactiveFormsModule
+  ],providers:[
+    CitaService,
+    AuthService
   ]
 })
 export class ClientModule { }
