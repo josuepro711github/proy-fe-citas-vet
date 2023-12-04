@@ -85,6 +85,7 @@ export class ListarComponent implements OnInit {
     this.dialog.open(ModalInfoComponent, {
       data: doctor,
       panelClass: 'custom-dialog-container',
+      disableClose: true,
     });
   }
 }
