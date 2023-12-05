@@ -108,7 +108,7 @@ export class PedirCitaComponent {
         observaciones:".",
         estado:"0",
         doctor:{
-          id_doctor:8
+          id_doctor:2
         }
       },
     }

@@ -1,10 +1,12 @@
 import { AfterViewInit, Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatCellDef, MatTableDataSource } from '@angular/material/table';
 import { lastValueFrom } from 'rxjs';
 import { CitaService } from 'src/app/client/services/cita.service';
 import { Pageable } from 'src/app/core/models/Pageable';
 import { AuthService } from 'src/app/public/services/auth.service';
+import { InfocitaDoctorComponent } from '../infocita-doctor/infocita-doctor.component';
 
 
 @Component({
@@ -26,13 +28,17 @@ export class ListarComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator ;
 
   usuarioLogueado:any
-  constructor(private citaService:CitaService,private authService:AuthService){
+  constructor(
+    private citaService:CitaService,
+    private authService:AuthService,
+    private dialog:MatDialog
+    ){
     this.usuarioLogueado = this.authService.obtenerToken()
     this.traerCitas()
   }
 
   async traerCitas(){
-    const response = await lastValueFrom(this.citaService.listarCitasCliente(this.pageable,this.usuarioLogueado.id_doctor))
+    const response = await lastValueFrom(this.citaService.listarCitasPorDoctor(this.pageable,this.usuarioLogueado.id_doctor))
     this.citas = response.content
     console.log(response)
     this.dataSource = new MatTableDataSource(this.citas);
@@ -52,7 +58,10 @@ export class ListarComponent {
   }
 
   infoCita(citaMascota:any){
-
+    this.dialog.open(InfocitaDoctorComponent, {
+      data: citaMascota,
+      panelClass: 'custom-dialog-container',
+    })
   }
 }
 

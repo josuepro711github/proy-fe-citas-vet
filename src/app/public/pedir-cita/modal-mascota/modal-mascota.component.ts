@@ -33,7 +33,7 @@ export class ModalMascotaComponent {
     this.traerEspecies()
   }
 
-  genero:string[] = ['Masculino','Femenino']
+  genero:string[] = ['Macho','Hembra']
 
   constructor (private fb: FormBuilder, public dialogRef: MatDialogRef<ModalMascotaComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,private authService:AuthService,private mascotaService:MascotaService){

@@ -1,0 +1,77 @@
+.info-modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    
+    padding: 20px 40px;
+    color: #fff;
+    
+    position: relative;
+    background: transparent;
+
+
+
+    
+    
+}
+
+.cita-icon {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    font-size: 50px;
+    margin-bottom: 20px;
+    width: 45px;
+    height: 45px;
+
+    
+}
+
+.cita-info {
+    font-size: 28px;
+    margin-bottom: 25px;
+    
+}
+.cita-first {
+    font-size: 28px;
+    margin-bottom: 25px;
+    margin-top: 60px ;
+}
+
+.cita-obs {
+    font-size: 24px;
+    margin-bottom: 25px;
+    width: 100% !important;
+    
+
+    
+
+}
+
+.close-button {
+    
+    background:  #005fbe;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    transition: background-color 0.3s ease;
+    
+    padding: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+
+    .close-icon {
+        color: #fff;
+        margin-right: 0;
+
+
+    }
+}
+
+.close-button:hover {
+    background: #db1919;
+    
+}
