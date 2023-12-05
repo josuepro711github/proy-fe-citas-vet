@@ -1,0 +1,75 @@
+
+<main class="grid_login">
+  <div class="formulario">
+      <form >
+
+          <h1 class="titulo">Derivar Cita</h1>
+
+          <div class="tipo_registro">
+
+            <div class="input_especialidad">
+
+
+              <mat-form-field class="example-full-width" appearance="outline" >
+                <mat-label>Especialidad</mat-label>
+                <mat-select formControlName="especialidad" name="especialidad">
+                  <mat-option *ngFor="let es of especialidades" [value]="es">{{es.descripcion}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+            </div>
+
+
+              <div class="input_fecha">
+                  <mat-form-field appearance="outline">
+                      <mat-label>Fecha de la cita</mat-label>
+                      <input matInput [matDatepicker]="fechaPicker" (dateChange)="onDateSelected()" formControlName="fecha_cita"/>
+                      <mat-datepicker-toggle matIconSuffix [for]="fechaPicker"></mat-datepicker-toggle>
+                      <mat-datepicker #fechaPicker></mat-datepicker>
+                  </mat-form-field>
+
+              </div>
+
+              <div class="input_hora">
+                  <!-- Selector de hora -->
+                  <mat-form-field class="example-full-width input_hora" appearance="outline">
+                      <mat-label>Hora</mat-label>
+                      <mat-select formControlName="hora" name="hora">
+                          <mat-option *ngFor="let hour of hours" [value]="hour">{{ hour | number:'2.0' }}</mat-option>
+                      </mat-select>
+                  </mat-form-field>
+
+                  <!-- Selector de minuto -->
+                  <mat-form-field class="example-full-width input_minuto" appearance="outline">
+                      <mat-label>Minuto</mat-label>
+                      <mat-select formControlName="minuto" name="minuto">
+                          <mat-option *ngFor="let minute of minutes" [value]="minute">{{ minute | number:'2.0'
+                              }}</mat-option>
+                      </mat-select>
+                  </mat-form-field>
+
+                  <!-- Selector de AM/PM -->
+                  <mat-form-field class="example-full-width input_am_pm" appearance="outline">
+                      <mat-label>AM/PM</mat-label>
+                      <mat-select formControlName="amPm" name="amPm">
+                          <mat-option value="AM">AM</mat-option>
+                          <mat-option value="PM">PM</mat-option>
+                      </mat-select>
+                  </mat-form-field>
+              </div>
+
+                <div class="input_motivo">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                      <mat-label>Observaciones</mat-label>
+                      <textarea matInput rows="3" formControlName="observaciones" > </textarea>
+                  </mat-form-field>
+
+              </div>
+
+          </div>
+
+          <button mat-raised-button class="btn-login" color="primary" type="submit">Enviar</button>
+          <br><br>
+      </form>
+  </div>
+</main>

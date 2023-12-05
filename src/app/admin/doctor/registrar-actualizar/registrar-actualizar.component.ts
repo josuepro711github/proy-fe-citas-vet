@@ -95,7 +95,8 @@ export class RegistrarActualizarComponent {
         dni: ['', Validators.required],
         telefono: ['', Validators.required],
         imagen: [''],
-        especialidad:['']
+        especialidad:[''],
+        descripcion_perfil:['']
       });
 
 
@@ -134,6 +135,7 @@ export class RegistrarActualizarComponent {
     let apellido_materno  = this.form.get('apellido_materno')?.value
     let dni  = this.form.get('dni')?.value
     let telefono  = this.form.get('telefono')?.value
+    let descripcion_perfil  = this.form.get('descripcion_perfil')?.value
     let doctor = {
       id_doctor: 0,
       usuario:{
@@ -143,7 +145,8 @@ export class RegistrarActualizarComponent {
           tipo_rol:"DOCTOR"
         }},
         especialidad:this.form.get('especialidad')?.value,
-        estado:"activo"
+        estado:"activo",
+        descripcion_perfil:descripcion_perfil
     }
 
     if(this.tipo_form == "Registrar"){

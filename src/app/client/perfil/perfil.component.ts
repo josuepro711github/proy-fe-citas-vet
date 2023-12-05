@@ -11,21 +11,22 @@ export class PerfilComponent {
   tipo_form = "Ver"
   fecha_cita = ""
   isFormEditable = false;
-  imagenSeleccionada: string | ArrayBuffer | null = "../../../../../assets/icons/hueso.png";
+  imagenFile: File | null = null;
+  clienteActualizar:any;
 
 
 
   // es un ejemplo de objeto cliente usando el interfaz line 123
   cliente = {
-    nombre: 'Juan',
-    apellidoPaterno: 'Pérez',
-    apellidoMaterno: 'Gómez',
-    dni: '12345678',
-    fechaNacimiento: '01/01/1990',
-    telefono: '987654321',
-    imagen: 'url-de-la-imagen.jpg',
-    email: 'juan@example.com',
-    contrasenia: '********' // No deberías mostrar la contraseña en el frontend en un entorno real
+    nombre: '',
+    apellidoPaterno: '',
+    apellidoMaterno: '',
+    dni: '',
+    fechaNacimiento: '',
+    telefono: '',
+    imagen: '',
+    email: '',
+    contrasenia: '' // No deberías mostrar la contraseña en el frontend en un entorno real
   };
   constructor(private fb: FormBuilder) {
     let token = JSON.parse(sessionStorage.getItem('token')?.toString() || '{}');
@@ -33,10 +34,10 @@ export class PerfilComponent {
     // Asignar los valores del token al objeto cliente || aqui se tiene que implementar el service
     if (token != null) {
       this.cliente.nombre = token.nombre;
-      this.cliente.apellidoPaterno = token['apellido paterno'];
-      this.cliente.apellidoMaterno = token['apellido materno'];
+      this.cliente.apellidoPaterno = token.apellido_paterno;
+      this.cliente.apellidoMaterno = token.apellido_materno;
       this.cliente.dni = token.dni;
-      this.cliente.fechaNacimiento = token['fecha y hora'];
+      this.cliente.fechaNacimiento = token.fecha_hora;
       this.cliente.telefono = token.telefono;
       this.cliente.email = token.email;
     }
@@ -50,6 +51,7 @@ export class PerfilComponent {
       fechaNacimiento: [this.cliente.fechaNacimiento, Validators.required],
       telefono: [this.cliente.telefono, Validators.required],
       email: [this.cliente.email, [Validators.required, Validators.email]],
+      imagen: [''],
       // Agrega otros campos según sea necesario
     });
 
@@ -115,6 +117,24 @@ export class PerfilComponent {
     }
   }
 
+  imagenSeleccionada: string | ArrayBuffer | null = null;
+  imagenFileSeleccionado(event: any): void {
+    const file: File = event.target.files[0];
+
+    if (file) {
+      this.imagenFile = file;
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagenSeleccionada = reader.result;
+
+      };
+      reader.readAsDataURL(file);
+      if(this.tipo_form=="Actualizar"){
+        this.clienteActualizar.usuario.imagen = "cambiado"
+      }
+
+    }
+  }
 
 
 }

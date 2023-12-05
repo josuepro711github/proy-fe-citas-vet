@@ -21,10 +21,10 @@ export class InfocitaDoctorComponent {
 
   constructor(
     public dialogRef: MatDialogRef<InfocitaDoctorComponent>,
-    @Inject(MAT_DIALOG_DATA) public cita: any, private fb: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public citaMascota: any, private fb: FormBuilder,
   ) { 
     
-    console.log("Cita: ", cita);
+    console.log("Cita: ", citaMascota);
   }
 
   guardarCita(cita: any) {

@@ -100,11 +100,15 @@
           grid-column: 1 / span 2;
         }
         .input_imagen{
-          grid-row: 7;
+          grid-row: 8;
           grid-column: 1 / span 2;
         }
         .input_especialidad{
           grid-row: 6;
+          grid-column: 1 / span 2;
+        }
+        .input_descripcion_perfil{
+          grid-row: 7;
           grid-column: 1 / span 2;
         }
       }

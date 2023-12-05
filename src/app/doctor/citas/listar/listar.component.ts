@@ -1,8 +1,13 @@
 import { AfterViewInit, Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatCellDef, MatTableDataSource } from '@angular/material/table';
 import { lastValueFrom } from 'rxjs';
+import { CitaService } from 'src/app/client/services/cita.service';
+import { Pageable } from 'src/app/core/models/Pageable';
+import { AlertComponent } from 'src/app/core/shared/components/alert/alert.component';
+import { AuthService } from 'src/app/public/services/auth.service';
+import { FormTerminarDerivarComponent } from '../form-terminar-derivar/form-terminar-derivar.component';
 import { InfocitaDoctorComponent } from '../infocita-doctor/infocita-doctor.component';
 
 
@@ -12,58 +17,70 @@ import { InfocitaDoctorComponent } from '../infocita-doctor/infocita-doctor.comp
   styleUrls: ['./listar.component.scss']
 })
 export class ListarComponent {
-  displayedColumns = ['duenio', 'mascota', 'motivo', 'fecha', 'hora', 'estado', 'icons'];
 
-  dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
-
+  displayedColumns = ['idCita', 'fecha','horaCita',  'motivo', 'estado', 'cliente' , 'finalizar','derivar','cancelar','informacion'];
+  dataSource = new MatTableDataSource<any>();
+  citas:any[]=[]
+  pageable: Pageable = {
+    page: 0,
+    size: 10,
+    orderParameter: 'Cita.fecha',
+    typeOrder: 'ASC',
+  };
   @ViewChild(MatPaginator) paginator!: MatPaginator ;
 
-  ngAfterViewInit() {
-  
+  usuarioLogueado:any
+  constructor(private citaService:CitaService,private authService:AuthService,  public dialog: MatDialog){
+    this.usuarioLogueado = this.authService.obtenerToken()
+    this.traerCitas()
+  }
+
+  async traerCitas(){
+    const response = await lastValueFrom(this.citaService.listarCitasPorDoctor(this.pageable,this.usuarioLogueado.id_doctor))
+    this.citas = response.content
+    console.log(response)
+    this.dataSource = new MatTableDataSource(this.citas);
     this.dataSource.paginator = this.paginator;
   }
+  estado= ["Pendiente","Terminado","Cancelado"]
 
-  constructor( public dialog: MatDialog) {
-    
+
+  async terminarCita(id_cita:number){
+    await lastValueFrom(this.citaService.terminarCita(id_cita))
+    this.traerCitas()
   }
 
-
-  cancelarCita() {
-    console.log('Cancelar cita: ');
-    // Aquí puedes agregar el código para cancelar la cita
+  async cancelarCita(id_cita:number){
+    const dialogRef = this.dialog.open(AlertComponent, {
+      data: {tipo:"warning",mensaje:"Desea cancelar la cita!",boton:"Cancelar"},
+      disableClose: true,
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result)
+      if(result){
+        this.citaService.cancelarCita(id_cita).subscribe(response =>  this.traerCitas())
+      }
+    });
   }
-  
-  abrirDetalle(element: any) {
-    
-    // Aquí puedes agregar el código para mostrar más detalles
+
+  async derivarCita(cita:any){
+    const dialogRef = this.dialog.open(FormTerminarDerivarComponent, {
+      data: cita,
+      disableClose: true,
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result)
+      if(result){
+        // this.citaService.agregarObservacionCita(cita).subscribe(response =>  this.traerCitas())
+      }
+    });
   }
 
-  diagnosticarCita( element: any) {
-    // agregar el modal
+  infoCita(citaMascota:any){
     this.dialog.open(InfocitaDoctorComponent, {
-      data: element,
-      minWidth: '60%',
-      // panelClass: transparente
+      data: citaMascota,
       panelClass: 'custom-dialog-container',
-    })
+    });
   }
-
-
-
-}
-export interface Element {
-  duenio: string;
-  mascota: string;
-  motivo: string;
-  fecha: string;
-  hora: string;
-  estado: string;
-  observaciones: string;
 }
 
-
-const ELEMENT_DATA: Element[] = [
-  {duenio: 'Juan', mascota: 'Firulais', motivo: 'Chequeo', fecha: '2023-12-03', hora: '15:00', estado: 'Confirmado', observaciones: 'La mascota se encuentra en buenas condiciones'},
-{duenio: 'Maria', mascota: 'Manchas', motivo: 'Vacunación', fecha: '2023-12-04', hora: '10:00', estado: 'Pendiente' , observaciones: 'La mascota se encuentra en buenas condiciones'},
-  
-];

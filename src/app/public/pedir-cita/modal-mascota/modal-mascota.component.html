@@ -12,37 +12,52 @@
                 <mat-label>Alias</mat-label>
                 <input formControlName="alias" type="text" matInput />
             </mat-form-field>
-    
-            <mat-form-field class="full-width" appearance="outline">
-                <mat-label>Género</mat-label>
-                <input formControlName="genero" type="text" matInput />
+
+
+             <!-- Selector de razas -->
+             <mat-form-field class="example-full-width input_nombre" appearance="outline">
+              <mat-label>Genero</mat-label>
+              <mat-select formControlName="genero" name="genero">
+
+                <mat-option *ngFor="let g of genero" [value]="g">{{ g }}</mat-option>
+              </mat-select>
             </mat-form-field>
-    
+
             <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Fecha de Nacimiento</mat-label>
-                <input matInput [matDatepicker]="fechaPicker" (dateChange)="onDateSelected()" />
+                <input matInput [matDatepicker]="fechaPicker" (dateChange)="onDateSelected()" formControlName="fecha_nacimiento" />
                 <mat-datepicker-toggle matSuffix [for]="fechaPicker"></mat-datepicker-toggle>
                 <mat-datepicker #fechaPicker></mat-datepicker>
             </mat-form-field>
-    
-            <mat-form-field class="full-width" appearance="outline">
-                <mat-label>Raza</mat-label>
-                <input formControlName="raza" type="text" matInput />
+
+            <!-- Selector de especies -->
+            <mat-form-field class="example-full-width input_nombre" appearance="outline">
+              <mat-label>Especies</mat-label>
+              <mat-select formControlName="especie" name="especie">
+
+                <mat-option *ngFor="let e of especies" [value]="e" (click)="traerRazasPorEspecie(e.id_especie)">{{ e.descripcion }}</mat-option>
+              </mat-select>
             </mat-form-field>
-    
-            <mat-form-field class="full-width" appearance="outline">
-                <mat-label>Especie</mat-label>
-                <input formControlName="especie" type="text" matInput />
+
+             <!-- Selector de razas -->
+             <mat-form-field class="example-full-width input_nombre" appearance="outline">
+              <mat-label>Razas</mat-label>
+              <mat-select formControlName="raza" name="raza">
+
+                <mat-option *ngFor="let r of razas" [value]="r">{{ r.descripcion }}</mat-option>
+              </mat-select>
             </mat-form-field>
+
+
         </div>
 
         <div class="input_imagen">
             <mat-form-field class="full-width" appearance="outline">
                 <input matInput readonly style="display: none" />
                 <input type="file" (change)="imagenFileSeleccionado($event)" accept="image/*" style="margin-bottom: 5px"
-                    formControlName="imagen" />
+                    formControlName="imagen" name="imagen"/>
             </mat-form-field>
-    
+
             <div class="image-container full-width" style="text-align: center;">
                 <img *ngIf="imagenSeleccionada" [src]="imagenSeleccionada" alt="Imagen seleccionada"
                     style="width: 200px;" />
@@ -51,7 +66,7 @@
 
 
         <div class="button-container">
-            <button mat-button color="primary" class="submit-button">Registrar</button>
+            <button mat-button color="primary" class="submit-button" (click)="agregarMascota()">Registrar</button>
         </div>
 
     </form>
