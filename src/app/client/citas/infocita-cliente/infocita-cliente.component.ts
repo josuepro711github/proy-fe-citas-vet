@@ -10,9 +10,9 @@ export class InfocitaClienteComponent {
 
   constructor(
     public dialogRef: MatDialogRef<InfocitaClienteComponent>,
-    @Inject(MAT_DIALOG_DATA) public cita: any
-  ) { 
-    console.log("Cita: ", this.cita);
+    @Inject(MAT_DIALOG_DATA) public citaMascota: any
+  ) {
+    console.log("Cita: ", this.citaMascota);
   }
 
 

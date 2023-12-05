@@ -8,6 +8,7 @@ import { Pageable } from 'src/app/core/models/Pageable';
 import { AuthService } from '../../services/auth.service';
 import { CitaService } from 'src/app/client/services/cita.service';
 import { Router } from '@angular/router';
+import { DoctorService } from 'src/app/admin/services/doctor.service';
 
 @Component({
   selector: 'app-pedir-cita',
@@ -26,7 +27,7 @@ export class PedirCitaComponent {
   amPmOptions: string[] = ['AM', 'PM'];
 
   mascotas: any[] = []
-
+  doctor:any
   pageable: Pageable = {
     page: 0,
     size: 10,
@@ -35,7 +36,7 @@ export class PedirCitaComponent {
   };
 
   userLogueado:any
-  constructor(private fb: FormBuilder,public dialog: MatDialog,private mascotaService:MascotaService,
+  constructor(private fb: FormBuilder,public dialog: MatDialog,private mascotaService:MascotaService,private doctorService:DoctorService,
     private authService:AuthService,private citaService:CitaService, private router: Router,) {
     this.userLogueado = this.authService.obtenerToken()
   }
@@ -52,12 +53,23 @@ export class PedirCitaComponent {
     });
 
     this.traerMascotas()
+    this.traerDoctores()
+
   }
 
   async traerMascotas(){
     const response = await lastValueFrom(this.mascotaService.listarMascotas(this.userLogueado.id_cliente,this.pageable))
     console.log(response)
     this.mascotas = response.content
+  }
+
+  async traerDoctores(){
+    const response = await lastValueFrom(this.doctorService.listar(this.pageable))
+    const doctores:any[] = response.content
+    console.log(doctores)
+    this.doctor = doctores.filter(doctor => doctor.especialidad.descripcion.toUpperCase() === 'MEDICINA GENERAL');
+    console.log(this.doctor)
+
   }
 
   agregarMascota() {
@@ -108,7 +120,7 @@ export class PedirCitaComponent {
         observaciones:".",
         estado:"0",
         doctor:{
-          id_doctor:8
+          id_doctor:this.doctor.id_doctor
         }
       },
     }

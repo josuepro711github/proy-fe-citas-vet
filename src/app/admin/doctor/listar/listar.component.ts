@@ -66,11 +66,17 @@ export class ListarComponent implements OnInit {
     // let doctorEliminado = await lastValueFrom(this.serviceDoctor.eliminarDoctor(idDoctor));
 
     const dialogRef = this.dialog.open(AlertComponent, {
-      data: {tipo:"warning",mensaje:"Desea eliminar al usuario "+nombre,idDoctor:idDoctor},
+      data: {tipo:"warning",mensaje:"Desea eliminar al usuario "+nombre,boton:"Eliminar"},
       disableClose: true,
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.listarDoctores();
+      console.log(result)
+      console.log(idDoctor)
+      if(result){
+        this.serviceDoctor.eliminarDoctor(idDoctor).subscribe(response=>{
+          this.listarDoctores();
+        })
+      }
     });
 
   }

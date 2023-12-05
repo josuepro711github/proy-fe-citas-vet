@@ -193,29 +193,43 @@
       </ng-container>
 
 
-       <!-- Evaluar Column -->
-       <ng-container matColumnDef="evaluar">
+       <!-- Finalizar Column -->
+       <ng-container matColumnDef="finalizar">
         <mat-header-cell *matHeaderCellDef class="custom-header-cell header-icono">
           <div class="center-icono">
-            EVALUAR
+            FINALIZAR
           </div>
         </mat-header-cell>
         <mat-cell class="custom-cell icono-terminar" *matCellDef="let element">
-          <div class="center-icono">
+          <div class="center-icono" *ngIf="element.cita.estado==0">
             <mat-icon (click)="terminarCita(element.cita.id_cita)">check</mat-icon>
           </div>
         </mat-cell>
       </ng-container>
 
-      <!-- Terminar Column -->
+      <!-- Finalizar Column -->
+      <ng-container matColumnDef="derivar">
+        <mat-header-cell *matHeaderCellDef class="custom-header-cell header-icono">
+          <div class="center-icono">
+            DERIVAR
+          </div>
+        </mat-header-cell>
+        <mat-cell class="custom-cell icono-terminar" *matCellDef="let element">
+          <div class="center-icono" *ngIf="element.cita.estado==0">
+            <mat-icon (click)="derivarCita(element)">check</mat-icon>
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Cancelar Column -->
       <ng-container matColumnDef="cancelar">
         <mat-header-cell *matHeaderCellDef class="custom-header-cell header-icono">
           <div class="center-icono">
             CANCELAR
           </div>
         </mat-header-cell>
-        <mat-cell class="custom-cell icono-cancelar" *matCellDef="let element">
-          <div class="center-icono">
+        <mat-cell class="custom-cell icono-cancelar" *matCellDef="let element" >
+          <div class="center-icono" *ngIf="element.cita.estado==0">
             <mat-icon (click)="cancelarCita(element.cita.id_cita)">delete</mat-icon>
           </div>
         </mat-cell>

@@ -6,6 +6,8 @@ import { CitaService } from '../services/cita.service';
 import { Pageable } from 'src/app/core/models/Pageable';
 import { AuthService } from 'src/app/public/services/auth.service';
 import { lastValueFrom } from 'rxjs';
+import { InfocitaClienteComponent } from './infocita-cliente/infocita-cliente.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-citas',
@@ -19,7 +21,7 @@ export class CitasComponent {
   dataSource = new MatTableDataSource<any>();
 
   usuarioLogueado:any
-  constructor(private citaService:CitaService,private authService:AuthService){
+  constructor(private citaService:CitaService,private authService:AuthService, public dialog:MatDialog){
     this.usuarioLogueado = this.authService.obtenerToken()
     this.traerCitasCliente()
   }
@@ -45,7 +47,10 @@ export class CitasComponent {
 
 
   infoCita(citaMascota:any){
-
+    this.dialog.open(InfocitaClienteComponent, {
+      data: citaMascota,
+      panelClass: 'custom-dialog-container',
+    });
   }
   // ngAfterViewInit() {
   //   this.dataSource.paginator = this.paginator;

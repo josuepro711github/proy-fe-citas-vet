@@ -7,9 +7,9 @@
   <mat-icon class="mat-icon warning-icon">warning</mat-icon>
   <p><strong> ¡Alerta de advertencia! {{data.mensaje}} </strong></p>
   <div>
-      <button (click)="eliminarDoctor()" class="delete-button">
+      <button (click)="eliminar()" class="delete-button">
           <mat-icon class="mat-icon">delete</mat-icon>
-          Eliminar
+          {{data.boton}}
       </button>
   </div>
 </div>

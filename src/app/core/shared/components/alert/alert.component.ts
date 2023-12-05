@@ -19,13 +19,13 @@ export class AlertComponent {
     this.alerta = data
     console.log(data)
   }
+ 
+  async eliminar(){
 
-  async eliminarDoctor(){
-    let doctorEliminado = await lastValueFrom(this.serviceDoctor.eliminarDoctor(this.alerta.idDoctor));
-    this.dialogRef.close();
+    this.dialogRef.close(true);
   }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 }

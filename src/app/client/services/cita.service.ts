@@ -38,4 +38,8 @@ export class CitaService {
   registrarCita(citaMascota:any):Observable<any>{
     return this.http.post<any>(this.urlApi+'api/vet/petlife/v1.0.0/cita/registrarCita',citaMascota);
   }
+
+  agregarObservacionCita(citaMascota:any):Observable<any>{
+    return this.http.post<any>(this.urlApi+'api/vet/petlife/v1.0.0/cita/actualizarCita',citaMascota);
+  }
 }

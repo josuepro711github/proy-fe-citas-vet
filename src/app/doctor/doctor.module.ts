@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { InfocitaDoctorComponent } from './citas/infocita-doctor/infocita-doctor.component';
 import { AuthService } from '../public/services/auth.service';
 import { CitaService } from '../client/services/cita.service';
+import { FormTerminarDerivarComponent } from './citas/form-terminar-derivar/form-terminar-derivar.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { CitaService } from '../client/services/cita.service';
     DoctorComponent,
     ListarComponent,
     InfocitaDoctorComponent,
+    FormTerminarDerivarComponent,
   ],
   imports: [
     SharedModule,
