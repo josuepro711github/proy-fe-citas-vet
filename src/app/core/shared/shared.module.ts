@@ -10,6 +10,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { AlertComponent } from './components/alert/alert.component';
+import { DoctorService } from 'src/app/admin/services/doctor.service';
 
 
 @NgModule({
@@ -37,7 +38,7 @@ import { AlertComponent } from './components/alert/alert.component';
     SidenavComponent,
     AlertComponent
   ],
-  providers: []
+  providers: [DoctorService]
 })
 
 export class SharedModule {

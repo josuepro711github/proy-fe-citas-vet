@@ -5,8 +5,9 @@ import { MatCellDef, MatTableDataSource } from '@angular/material/table';
 import { lastValueFrom } from 'rxjs';
 import { CitaService } from 'src/app/client/services/cita.service';
 import { Pageable } from 'src/app/core/models/Pageable';
+import { AlertComponent } from 'src/app/core/shared/components/alert/alert.component';
 import { AuthService } from 'src/app/public/services/auth.service';
-import { InfocitaDoctorComponent } from '../infocita-doctor/infocita-doctor.component';
+import { FormTerminarDerivarComponent } from '../form-terminar-derivar/form-terminar-derivar.component';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { InfocitaDoctorComponent } from '../infocita-doctor/infocita-doctor.comp
 })
 export class ListarComponent {
 
-  displayedColumns = ['idCita', 'fecha','horaCita',  'motivo', 'estado', 'cliente' , 'evaluar','cancelar','informacion'];
+  displayedColumns = ['idCita', 'fecha','horaCita',  'motivo', 'estado', 'cliente' , 'finalizar','derivar','cancelar','informacion'];
   dataSource = new MatTableDataSource<any>();
   citas:any[]=[]
   pageable: Pageable = {
@@ -28,11 +29,7 @@ export class ListarComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator ;
 
   usuarioLogueado:any
-  constructor(
-    private citaService:CitaService,
-    private authService:AuthService,
-    private dialog:MatDialog
-    ){
+  constructor(private citaService:CitaService,private authService:AuthService,  public dialog: MatDialog){
     this.usuarioLogueado = this.authService.obtenerToken()
     this.traerCitas()
   }
@@ -53,15 +50,33 @@ export class ListarComponent {
   }
 
   async cancelarCita(id_cita:number){
-    await lastValueFrom(this.citaService.cancelarCita(id_cita))
-    this.traerCitas()
+    const dialogRef = this.dialog.open(AlertComponent, {
+      data: {tipo:"warning",mensaje:"Desea cancelar la cita!",boton:"Cancelar"},
+      disableClose: true,
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result)
+      if(result){
+        this.citaService.cancelarCita(id_cita).subscribe(response =>  this.traerCitas())
+      }
+    });
+  }
+
+  async derivarCita(cita:any){
+    const dialogRef = this.dialog.open(FormTerminarDerivarComponent, {
+      data: cita,
+      disableClose: true,
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result)
+      if(result){
+        // this.citaService.agregarObservacionCita(cita).subscribe(response =>  this.traerCitas())
+      }
+    });
   }
 
   infoCita(citaMascota:any){
-    this.dialog.open(InfocitaDoctorComponent, {
-      data: citaMascota,
-      panelClass: 'custom-dialog-container',
-    })
+
   }
 }
 
