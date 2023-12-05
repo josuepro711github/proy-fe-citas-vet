@@ -8,6 +8,7 @@ import { Pageable } from 'src/app/core/models/Pageable';
 import { AlertComponent } from 'src/app/core/shared/components/alert/alert.component';
 import { AuthService } from 'src/app/public/services/auth.service';
 import { FormTerminarDerivarComponent } from '../form-terminar-derivar/form-terminar-derivar.component';
+import { InfocitaDoctorComponent } from '../infocita-doctor/infocita-doctor.component';
 
 
 @Component({
@@ -76,7 +77,10 @@ export class ListarComponent {
   }
 
   infoCita(citaMascota:any){
-
+    this.dialog.open(InfocitaDoctorComponent, {
+      data: citaMascota,
+      panelClass: 'custom-dialog-container',
+    });
   }
 }
 
