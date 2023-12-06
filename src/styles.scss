@@ -58,6 +58,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .icono-terminar mat-icon:hover {
   color: #1B5E20;
 }
+.icono-derivar{
+  color:#3498db;
+
+  mat-icon{
+
+    cursor: pointer;
+  }
+}
+.icono-derivar mat-icon:hover {
+  color: #1f618d;
+}
+
 .icono-cancelar{
   color: red;
   mat-icon{

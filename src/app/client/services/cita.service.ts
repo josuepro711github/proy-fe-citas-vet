@@ -40,6 +40,6 @@ export class CitaService {
   }
 
   agregarObservacionCita(citaMascota:any):Observable<any>{
-    return this.http.post<any>(this.urlApi+'api/vet/petlife/v1.0.0/cita/actualizarCita',citaMascota);
+    return this.http.put<any>(this.urlApi+'api/vet/petlife/v1.0.0/cita/actualizarCita',citaMascota);
   }
 }

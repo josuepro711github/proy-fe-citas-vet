@@ -1,26 +1,42 @@
 
 <main class="grid_login">
+  <button class="close" mat-fab color="primary" (click)="onNoClick()">
+    <mat-icon>close</mat-icon>
+  </button>
   <div class="formulario">
-      <form >
+      <form [formGroup]="form" >
 
-          <h1 class="titulo">Derivar Cita</h1>
+          <h1 class="titulo">{{data.tipo}} Cita</h1>
 
           <div class="tipo_registro">
 
-            <div class="input_especialidad">
+            <div class="input_especialidad" *ngIf="data.tipo=='Derivar'">
 
 
               <mat-form-field class="example-full-width" appearance="outline" >
                 <mat-label>Especialidad</mat-label>
                 <mat-select formControlName="especialidad" name="especialidad">
-                  <mat-option *ngFor="let es of especialidades" [value]="es">{{es.descripcion}}</mat-option>
+                  <mat-option *ngFor="let es of especialidades" [value]="es" (click)="traerDoctoresPorEspecialidad(es.id_especialidad)">{{es.descripcion}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+            </div>
+            <div class="input_doctores" *ngIf="data.tipo=='Derivar'">
+
+
+              <mat-form-field class="example-full-width" appearance="outline" >
+                <mat-label>Doctores</mat-label>
+                <mat-select formControlName="doctores" name="doctores">
+                  <mat-option *ngFor="let d of doctores" [value]="d" (click)="elegirDoctor(d)">{{d.usuario.nombre+" "+
+                                   d.usuario.apellido_paterno+" "+ d.usuario.apellido_materno}}
+                  </mat-option>
                 </mat-select>
               </mat-form-field>
 
             </div>
 
 
-              <div class="input_fecha">
+              <div class="input_fecha" *ngIf="data.tipo=='Derivar'">
                   <mat-form-field appearance="outline">
                       <mat-label>Fecha de la cita</mat-label>
                       <input matInput [matDatepicker]="fechaPicker" (dateChange)="onDateSelected()" formControlName="fecha_cita"/>
@@ -30,28 +46,28 @@
 
               </div>
 
-              <div class="input_hora">
+              <div class="input_hora" *ngIf="data.tipo=='Derivar'">
                   <!-- Selector de hora -->
                   <mat-form-field class="example-full-width input_hora" appearance="outline">
                       <mat-label>Hora</mat-label>
-                      <mat-select formControlName="hora" name="hora">
-                          <mat-option *ngFor="let hour of hours" [value]="hour">{{ hour | number:'2.0' }}</mat-option>
+                      <mat-select  [formControl]="formControlHora" >
+                          <mat-option *ngFor="let hour of hours" [value]="hour.valor" [disabled]="hour.disabled" (click)="elegirHora(hour)">{{ hour.valor }}</mat-option>
                       </mat-select>
                   </mat-form-field>
 
                   <!-- Selector de minuto -->
-                  <mat-form-field class="example-full-width input_minuto" appearance="outline">
+                  <!-- <mat-form-field class="example-full-width input_minuto" appearance="outline">
                       <mat-label>Minuto</mat-label>
                       <mat-select formControlName="minuto" name="minuto">
                           <mat-option *ngFor="let minute of minutes" [value]="minute">{{ minute | number:'2.0'
                               }}</mat-option>
                       </mat-select>
-                  </mat-form-field>
+                  </mat-form-field> -->
 
                   <!-- Selector de AM/PM -->
                   <mat-form-field class="example-full-width input_am_pm" appearance="outline">
                       <mat-label>AM/PM</mat-label>
-                      <mat-select formControlName="amPm" name="amPm">
+                      <mat-select [formControl]="formControl" >
                           <mat-option value="AM">AM</mat-option>
                           <mat-option value="PM">PM</mat-option>
                       </mat-select>
@@ -61,15 +77,18 @@
                 <div class="input_motivo">
                   <mat-form-field class="example-full-width" appearance="outline">
                       <mat-label>Observaciones</mat-label>
-                      <textarea matInput rows="3" formControlName="observaciones" > </textarea>
+                      <textarea matInput rows="3" cols="9" formControlName="observaciones" > </textarea>
                   </mat-form-field>
 
               </div>
 
           </div>
 
-          <button mat-raised-button class="btn-login" color="primary" type="submit">Enviar</button>
+          <button mat-raised-button class="btn-login" color="primary" type="submit" (click)="submitForm()">{{data.tipo}}</button>
           <br><br>
       </form>
   </div>
 </main>
+
+
+

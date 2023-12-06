@@ -16,7 +16,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class CitasComponent {
 
-  displayedColumns = ['idCita', 'fecha','horaCita',  'motivo', 'estado', 'doctor','informacion'];
+  displayedColumns = ['idCita', 'fecha','horaCita',  'motivo', 'estado', 'doctor','especialidad','informacion'];
   // dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
   dataSource = new MatTableDataSource<any>();
 
@@ -39,11 +39,22 @@ export class CitasComponent {
     const response = await lastValueFrom(this.citaService.listarCitasCliente(this.pageable,this.usuarioLogueado.id_cliente))
     this.citasCliente = response.content
     console.log(response)
+
+    this.citasCliente.sort((a:any, b:any) => {
+
+      const comparacionFecha = a.cita.fecha.localeCompare(b.cita.fecha);
+      if (comparacionFecha === 0) {
+        return a.cita.hora_cita - b.cita.hora_cita;
+      }
+      return comparacionFecha;
+    });
+
+    console.log(response)
     this.dataSource = new MatTableDataSource(this.citasCliente);
     this.dataSource.paginator = this.paginator;
   }
 
-  estado= ["Pendiente","Terminado","Cancelado"]
+  estado= ["Pendiente","Terminado","Derivado","Cancelado"]
 
 
   infoCita(citaMascota:any){
