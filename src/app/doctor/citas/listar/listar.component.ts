@@ -8,7 +8,7 @@ import { Pageable } from 'src/app/core/models/Pageable';
 import { AlertComponent } from 'src/app/core/shared/components/alert/alert.component';
 import { AuthService } from 'src/app/public/services/auth.service';
 import { FormTerminarDerivarComponent } from '../form-terminar-derivar/form-terminar-derivar.component';
-import { InfocitaDoctorComponent } from '../infocita-doctor/infocita-doctor.component';
+import { InfocitaClienteComponent } from 'src/app/client/citas/infocita-cliente/infocita-cliente.component';
 
 
 @Component({
@@ -33,22 +33,30 @@ export class ListarComponent {
   constructor(private citaService:CitaService,private authService:AuthService,  public dialog: MatDialog){
     this.usuarioLogueado = this.authService.obtenerToken()
     this.traerCitas()
+
   }
 
   async traerCitas(){
     const response = await lastValueFrom(this.citaService.listarCitasPorDoctor(this.pageable,this.usuarioLogueado.id_doctor))
     this.citas = response.content
+
+    this.citas.sort((a:any, b:any) => {
+
+      const comparacionFecha = a.cita.fecha.localeCompare(b.cita.fecha);
+      if (comparacionFecha === 0) {
+        return a.cita.hora_cita - b.cita.hora_cita;
+      }
+      return comparacionFecha;
+    });
+    // this.citas = this.citas.filter((f) => f.cita.estado == 0|| f.cita.estado ==2)
     console.log(response)
     this.dataSource = new MatTableDataSource(this.citas);
     this.dataSource.paginator = this.paginator;
   }
-  estado= ["Pendiente","Terminado","Cancelado"]
+  estado= ["Pendiente","Terminado","Derivado","Cancelado"]
 
 
-  async terminarCita(id_cita:number){
-    await lastValueFrom(this.citaService.terminarCita(id_cita))
-    this.traerCitas()
-  }
+
 
   async cancelarCita(id_cita:number){
     const dialogRef = this.dialog.open(AlertComponent, {
@@ -63,9 +71,21 @@ export class ListarComponent {
     });
   }
 
-  async derivarCita(cita:any){
+  async derivarCita(cita_mascota:any){
     const dialogRef = this.dialog.open(FormTerminarDerivarComponent, {
-      data: cita,
+      data: {cita_mascota:cita_mascota,tipo:"Derivar"},
+      disableClose: true,
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result)
+      if(result){
+        this.traerCitas()
+      }
+    });
+  }
+  async terminarCita(cita_mascota:any){
+    const dialogRef = this.dialog.open(FormTerminarDerivarComponent, {
+      data: {cita_mascota:cita_mascota,tipo:"Terminar"},
       disableClose: true,
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -77,7 +97,8 @@ export class ListarComponent {
   }
 
   infoCita(citaMascota:any){
-    this.dialog.open(InfocitaDoctorComponent, {
+
+    this.dialog.open(InfocitaClienteComponent, {
       data: citaMascota,
       panelClass: 'custom-dialog-container',
     });

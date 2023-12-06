@@ -170,7 +170,7 @@
       <!-- Hora Cita Column -->
       <ng-container matColumnDef="horaCita">
         <mat-header-cell *matHeaderCellDef class="custom-header-cell"> HORA CITA </mat-header-cell>
-        <mat-cell *matCellDef="let element"  class="custom-cell"> {{element.cita.hora_cita}} </mat-cell>
+        <mat-cell *matCellDef="let element"  class="custom-cell"> {{element.cita.hora_cita+":00"}} </mat-cell>
       </ng-container>
 
       <!-- Motivo Column -->
@@ -191,6 +191,12 @@
         <mat-cell *matCellDef="let element"  class="custom-cell"> {{element.cita.doctor.usuario.nombre +" "+
           element.cita.doctor.usuario.apellido_paterno+" "+element.cita.doctor.usuario.apellido_materno}} </mat-cell>
       </ng-container>
+
+        <!-- Especialidad Column -->
+        <ng-container matColumnDef="especialidad">
+          <mat-header-cell *matHeaderCellDef class="custom-header-cell"> ESPECIALIDAD </mat-header-cell>
+          <mat-cell *matCellDef="let element"  class="custom-cell"> {{element.cita.doctor.especialidad.descripcion }}</mat-cell>
+        </ng-container>
 
 
        <!-- Informacion Column -->

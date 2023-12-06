@@ -14,6 +14,7 @@ export class InfocitaClienteComponent {
   ) {
     console.log("Cita: ", this.citaMascota);
   }
+  estado= ["Pendiente","Terminado","Derivado","Cancelado"]
 
 
   onNoClick(): void {

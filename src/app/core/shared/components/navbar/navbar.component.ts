@@ -55,17 +55,18 @@ export class NavbarComponent implements OnInit {
   }
 
   mostrarPedirCita(rol:number){
-    if(rol===3 || this.token !=null){
-      this.listaNavbar.splice(2,0,'Pedir Cita');
-      console.log("Lista navbar: ", this.listaNavbar)
-    }
+    // if(rol===3 || this.token !=null){
+    //   this.listaNavbar.splice(2,0,'Pedir Cita');
+    //   console.log("Lista navbar: ", this.listaNavbar)
+    // }
   }
   ngOnInit(): void {
     console.log("rol: ", this.rol)
-    if(this.rol===3){
-      this.listaNavbar.splice(2,0,'Pedir Cita');
-      console.log("Lista navbar: ", this.listaNavbar)
-    }
+    // if(this.rol===3){
+    //   this.listaNavbar.splice(2,0,'Pedir Cita');
+    //   console.log("Lista navbar: ", this.listaNavbar)
+    // }
+    console.log(this.listaNavbar)
   }
 
   traerImagenCliente(token: any) {
@@ -96,7 +97,7 @@ export class NavbarComponent implements OnInit {
         this.pintar = 3;
         this.ruta = '/pedir-cita';
         break;
-      
+
       case 6:
         this.pintar = 6;
         this.ruta = '/login-registro';

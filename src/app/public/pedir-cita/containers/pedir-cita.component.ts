@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalMascotaComponent } from '../modal-mascota/modal-mascota.component';
 import { MascotaService } from 'src/app/client/services/mascota.service';
@@ -22,9 +22,15 @@ export class PedirCitaComponent {
   fecha_cita = ""
   mascota:any
 
-  hours: number[] = Array.from({ length: 12 }, (_, i) => i + 1); // 1 a 12
-  minutes: number[] = Array.from({ length: 12 }, (_, i) => i * 5); // 0 a 59
+  hours: { valor: number; disabled: boolean }[] = Array.from({ length: 12 }, (_, i) => ({
+    valor: i + 8,
+    disabled: false
+  }));
+  // minutes: number[] = Array.from({ length: 12 }, (_, i) => i * 5); // 0 a 59
   amPmOptions: string[] = ['AM', 'PM'];
+
+  formControlHora = new FormControl({ value: '8', disabled: true });
+  formControl = new FormControl({ value: 'AM', disabled: true });
 
   mascotas: any[] = []
   doctor:any
@@ -41,6 +47,36 @@ export class PedirCitaComponent {
     this.userLogueado = this.authService.obtenerToken()
   }
 
+  hora_cita = 0
+  elegirHora(hora:any){
+    console.log(hora)
+    if(!hora.disabled){
+      hora.valor>=12?this.formControl.setValue('PM'):this.formControl.setValue('AM');
+      this.hora_cita = hora.valor
+    }
+  }
+
+  async traerHorarioDoctor(doctor:any){
+    this.refrescarHoras()
+    const citasDoctor = await lastValueFrom(this.citaService.listarCitasPorDoctor(this.pageable,doctor.id_doctor))
+    console.log(citasDoctor.content)
+
+    for(let cd of citasDoctor.content){
+      console.log(cd.cita.hora_cita)
+      console.log(cd.cita.fecha)
+      for(let h of this.hours){
+
+        if(cd.cita.hora_cita == h.valor && this.fecha_cita== cd.cita.fecha){
+          h.disabled = true
+        }
+      }
+    }
+  }
+  refrescarHoras(){
+    for(let h of this.hours){
+      h.disabled = false
+    }
+  }
   ngOnInit() {
     this.form = this.fb.group({
       fecha_cita: ['', Validators.required],
@@ -48,7 +84,7 @@ export class PedirCitaComponent {
       nombrePaciente: [''],
       mascota: [''],
       hora: [3, Validators.required],
-      minuto: [55, Validators.required],
+      // minuto: [55, Validators.required],
       amPm: ['AM']
     });
 
@@ -67,8 +103,10 @@ export class PedirCitaComponent {
     const response = await lastValueFrom(this.doctorService.listar(this.pageable))
     const doctores:any[] = response.content
     console.log(doctores)
-    this.doctor = doctores.filter(doctor => doctor.especialidad.descripcion.toUpperCase() === 'MEDICINA GENERAL')[0];
-    console.log(this.doctor.id_doctor)
+    this.doctor = doctores.filter(doctor => doctor.especialidad.descripcion.toUpperCase() === 'MEDICINA GENERAL');
+    console.log(this.doctor[0])
+    this.pageable.orderParameter = "cita.fecha"
+
 
   }
 
@@ -79,10 +117,6 @@ export class PedirCitaComponent {
       {
         // width: '500px',
         width: '60%',
-        data: {
-          title: 'Registrar',
-          mascota: null
-        }
 
       });
 
@@ -107,10 +141,6 @@ export class PedirCitaComponent {
 
     let motivo  = this.form.get('motivo')?.value
 
-    let hora  = this.form.get('hora')?.value +":"+this.form.get('minuto')?.value
-
-
-
     let cita = {
       id_cita_mascota: 0,
       mascota:{
@@ -120,11 +150,11 @@ export class PedirCitaComponent {
         id_cita:0,
         fecha:this.fecha_cita,
         motivo:motivo,
-        hora_cita:hora,
-        observaciones:".",
+        hora_cita:this.hora_cita,
+        observaciones:" ",
         estado:"0",
         doctor:{
-          id_doctor:this.doctor.id_doctor
+          id_doctor:this.doctor[0].id_doctor
         }
       },
     }
@@ -165,5 +195,7 @@ export class PedirCitaComponent {
   onDateSelected() {
     let fecha  = this.form.get('fecha_cita')?.value
     this.formatoFecha(fecha)
+    this.traerHorarioDoctor(this.doctor[0])
+    this.formControlHora.enable();
   }
 }

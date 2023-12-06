@@ -7,11 +7,11 @@
   <p class="cita-info"><strong>Fecha:</strong> {{ citaMascota.cita.fecha | date:'yy/mm/dd' }}</p>
   <p class="cita-info"><strong>Hora:</strong> {{ citaMascota.cita.hora_cita }}</p>
   <p class="cita-info"><strong>Motivo:</strong> {{ citaMascota.cita.motivo }}</p>
-  <p class="cita-info"><strong>Estado:</strong> {{ citaMascota.cita.estado }}</p>
+  <p class="cita-info"><strong>Estado:</strong> {{ estado[citaMascota.cita.estado]  }}</p>
   <p class="cita-info text-capitalize"><strong>Doctor:</strong> {{ citaMascota.cita.doctor.usuario.nombre+" "+
                     citaMascota.cita.doctor.usuario.apellido_paterno +" "+ citaMascota.cita.doctor.usuario.apellido_materno }}</p>
   <p class="cita-info"><strong>Observaciones:</strong> </p>
-  <p class="observaciones">{{ citaMascota.cita.observaciones }}</p>
+  <p class="observaciones"  [innerHTML]="citaMascota.cita.observaciones"> </p>
 </mat-dialog-content>
 
 <button mat-button (click)="onNoClick()" color="primary" class="close-button">

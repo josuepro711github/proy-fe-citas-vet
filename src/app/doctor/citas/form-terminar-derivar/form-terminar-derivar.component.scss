@@ -3,15 +3,28 @@
   height: 90%;
   grid-template-columns: 100%;
   grid-template-areas: "form";
+  position: relative;
+  .close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 5px;
+    color: red;
+    background-color: white !important;
+  }
+  .close:hover{
+    color: white;
+    background-color: red !important;
+  }
 
   .formulario {
       grid-area: form;
       background-color: #faf8f9;
-
+      min-width: 500px;
       form {
           display: flex;
           flex-direction: column;
-          margin: 7.6875rem 15% 0;
+          margin: 3.6875rem 15% 0;
 
           .titulo {
               // margin-top: 15%;
@@ -76,7 +89,7 @@
 
           .tipo_login,
           .tipo_registro {
-              margin-top: 5rem;
+              margin-top: 2rem;
 
               mat-form-field {
                   width: 100%;
@@ -114,7 +127,7 @@
                 grid-column: 1;
               }
               .input_fecha {
-                  grid-row: 4;
+                  grid-row: 3;
                   grid-column: 1;
 
               }
@@ -128,7 +141,7 @@
 
               .input_hora {
                   // son 2 inputs de 1 fila y columna
-                  grid-row: 2;
+                  grid-row: 3;
                   grid-column: 2;
                   display: flex; // Utilizar flexbox para alinear los inputs
                   gap: 0 2%; // Espacio entre los inputs

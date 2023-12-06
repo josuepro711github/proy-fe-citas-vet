@@ -42,6 +42,10 @@ export class DoctorService {
     return this.http.get<any[]>(this.urlApi+'api/vet/petlife/v1.0.0/doctor/lista-especialidades')
   }
 
+  listaDoctoresPorEspecialidad(id_especialidad:number):Observable<any[]>{
+
+    return this.http.get<any[]>(this.urlApi+'api/vet/petlife/v1.0.0/doctor/listaDoctoresPorEspecialidad/'+id_especialidad)
+  }
   buscarDoctor(idDoctor:number):Observable<any>{
 
     return this.http.get<any>(this.urlApi+'api/vet/petlife/v1.0.0/doctor/buscar/'+idDoctor)
@@ -52,7 +56,7 @@ export class DoctorService {
   }
 
   eliminarDoctor(idDoctor:number):Observable<any>{
-    
+
     return this.http.delete<any>(this.urlApi+'api/vet/petlife/v1.0.0/doctor/eliminar/'+idDoctor)
   }
 

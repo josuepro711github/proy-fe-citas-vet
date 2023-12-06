@@ -1,58 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
 
-html,
-body {
-  height: 100%;
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+*:not(mat-icon){
+    margin: 0;
+    padding: 0;
+    font-family: Sailec-Thin !important;
 }
 
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+.mat-mdc-cell{
+    font-weight: bold;
 }
-
-*:not(mat-icon) {
-  margin: 0;
-  padding: 0;
-  font-family: Sailec-Thin !important;
-}
-
-.mat-mdc-cell {
-  font-weight: bold;
-}
-
-.mat-mdc-header-cell {
-  font-weight: bolder;
+.mat-mdc-header-cell{
+    font-weight: bolder;
 }
 
 @font-face {
-  font-family: 'Silka-Regular';
-  src: url('./assets/fonts/Sillka-regular.ttf') format('truetype');
+    font-family: 'Silka-Regular';
+    src: url('./assets/fonts/Sillka-regular.ttf') format('truetype');
 }
 
 .custom-header-cell {
   font-weight: bold;
   color: #fff;
 }
-
 .custom-cell {
   padding: 12px;
   border-bottom: 1px solid #ddd;
   transition: background-color 0.3s;
 }
-
 .custom-header-row {
   background-color: #4477aa !important;
 }
-
 .custom-row:hover {
-  background-color: #fff3cd !important;
+  background-color:  #fff3cd !important;
 }
 
 
-.header-icono {
+.header-icono{
   text-align: center !important;
 }
-
 .center-icono {
   display: flex;
   justify-content: center;
@@ -60,125 +48,94 @@ body {
   height: 100%;
   width: 100%;
 }
+.icono-terminar{
+  color:#4CAF50;
 
-.icono-terminar {
-  color: #4CAF50;
-
-  mat-icon {
+  mat-icon{
     cursor: pointer;
   }
 }
-
 .icono-terminar mat-icon:hover {
   color: #1B5E20;
 }
+.icono-derivar{
+  color:#3498db;
 
-.icono-cancelar {
-  color: red;
+  mat-icon{
 
-  mat-icon {
     cursor: pointer;
   }
 }
+.icono-derivar mat-icon:hover {
+  color: #1f618d;
+}
 
+.icono-cancelar{
+  color: red;
+  mat-icon{
+    cursor: pointer;
+  }
+}
 .icono-cancelar mat-icon:hover {
   color: darkred;
 }
 
-.icono-informacion {
+.icono-informacion{
   color: skyblue;
-
   mat-icon {
     cursor: pointer;
   }
 }
-
 .icono-informacion mat-icon:hover {
   color: deepskyblue;
 }
 
 // DIALOG CUSTOM
 .custom-dialog-container {
-  background: linear-gradient(135deg, #db1919, #0666c7);
-  border-radius: 10px;
+    background: linear-gradient(135deg, #db1919, #0666c7);
+    border-radius: 10px;
 
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-  transition: transform 0.3s ease;
-  animation: fadeInUp 0.5s ease;
-  overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease;
+    animation: fadeInUp 0.5s ease;
+    overflow: hidden;
+    .mat-mdc-dialog-surface, .mdc-dialog__surface{
+        background: transparent !important;
 
-  .mat-mdc-dialog-surface,
-  .mdc-dialog__surface {
-    background: transparent !important;
-
-  }
-}
-
-.custom-dialog-success {
-  background: #28a745;
-  border-radius: 10px;
-
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-  transition: transform 0.3s ease;
-  //animation: eraser 4s ease;
-  animation-name: fadeInUp; /* Nombre del keyframe */
-  animation-duration: 0.5s; /* Duración de la animación */
-  animation-delay: 1s; /* Tiempo de espera antes de iniciar la animación */
-  animation-timing-function: steps(1); /* Función de tiempo que hace el cambio de opacidad de forma directa */
-  animation-fill-mode: forwards; /* Estilo que se aplica al elemento después de la animación */
-  overflow: hidden;
-
-  .mat-mdc-dialog-surface,
-  .mdc-dialog__surface {
-    background: transparent !important;
-
-  }
+    }
 }
 
 
 
 //FONT FAMILY SAILEC
 @font-face {
-  font-family: 'Sailec-Light';
-  src: url('./assets/fonts/Sailec-Light.ttf') format('truetype');
+    font-family: 'Sailec-Light';
+    src: url('./assets/fonts/Sailec-Light.ttf') format('truetype');
 }
-
 @font-face {
-  font-family: 'Sailec-Medium';
-  src: url('./assets/fonts/Sailec-Medium.ttf') format('truetype');
+    font-family: 'Sailec-Medium';
+    src: url('./assets/fonts/Sailec-Medium.ttf') format('truetype');
 }
-
 @font-face {
-  font-family: 'Sailec-Bold';
-  src: url('./assets/fonts/Sailec-Bold.ttf') format('truetype');
+    font-family: 'Sailec-Bold';
+    src: url('./assets/fonts/Sailec-Bold.ttf') format('truetype');
 }
-
 @font-face {
-  font-family: 'Sailec-Regular-Italic';
-  src: url('./assets/fonts/Sailec-Regular-Italic.ttf') format('truetype');
+    font-family: 'Sailec-Regular-Italic';
+    src: url('./assets/fonts/Sailec-Regular-Italic.ttf') format('truetype');
 }
-
 @font-face {
-  font-family: 'Sailec-Thin';
-  src: url('./assets/fonts/Sailec-Thin.ttf') format('truetype');
+    font-family: 'Sailec-Thin';
+    src: url('./assets/fonts/Sailec-Thin.ttf') format('truetype');
 }
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes eraser {
-  from {
-    opacity: 1;
-  } to {
-    opacity: 0;
-  }
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

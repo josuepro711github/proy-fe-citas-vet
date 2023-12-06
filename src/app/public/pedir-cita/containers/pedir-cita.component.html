@@ -21,31 +21,32 @@
                 </div>
 
                 <div class="input_hora">
-                    <!-- Selector de hora -->
-                    <mat-form-field class="example-full-width input_hora" appearance="outline">
+
+                      <!-- Selector de hora -->
+                      <mat-form-field class="example-full-width input_hora" appearance="outline">
                         <mat-label>Hora</mat-label>
-                        <mat-select formControlName="hora" name="hora">
-                            <mat-option *ngFor="let hour of hours" [value]="hour">{{ hour | number:'2.0' }}</mat-option>
+                        <mat-select  [formControl]="formControlHora" >
+                            <mat-option *ngFor="let hour of hours" [value]="hour.valor" [disabled]="hour.disabled" (click)="elegirHora(hour)">{{ hour.valor }}</mat-option>
                         </mat-select>
                     </mat-form-field>
 
                     <!-- Selector de minuto -->
-                    <mat-form-field class="example-full-width input_minuto" appearance="outline">
+                    <!-- <mat-form-field class="example-full-width input_minuto" appearance="outline">
                         <mat-label>Minuto</mat-label>
                         <mat-select formControlName="minuto" name="minuto">
                             <mat-option *ngFor="let minute of minutes" [value]="minute">{{ minute | number:'2.0'
                                 }}</mat-option>
                         </mat-select>
-                    </mat-form-field>
+                    </mat-form-field> -->
 
                     <!-- Selector de AM/PM -->
-                    <mat-form-field class="example-full-width input_am_pm" appearance="outline">
-                        <mat-label>AM/PM</mat-label>
-                        <mat-select formControlName="amPm" name="amPm">
-                            <mat-option value="AM">AM</mat-option>
-                            <mat-option value="PM">PM</mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                  <mat-form-field class="example-full-width input_am_pm" appearance="outline">
+                    <mat-label>AM/PM</mat-label>
+                    <mat-select [formControl]="formControl" >
+                        <mat-option value="AM">AM</mat-option>
+                        <mat-option value="PM">PM</mat-option>
+                    </mat-select>
+                </mat-form-field>
                 </div>
 
 

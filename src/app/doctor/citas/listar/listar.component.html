@@ -20,8 +20,8 @@
 
       <!-- Hora Cita Column -->
       <ng-container matColumnDef="horaCita">
-        <mat-header-cell *matHeaderCellDef class="custom-header-cell"> HORA CITA </mat-header-cell>
-        <mat-cell class="custom-cell" *matCellDef="let element"> {{element.cita.hora_cita}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef class="custom-header-cell"> HORA CITA</mat-header-cell>
+        <mat-cell class="custom-cell" *matCellDef="let element"> {{element.cita.hora_cita+":00"}} </mat-cell>
       </ng-container>
 
       <!-- Motivo Column -->
@@ -52,8 +52,8 @@
           </div>
         </mat-header-cell>
         <mat-cell class="custom-cell icono-terminar" *matCellDef="let element">
-          <div class="center-icono" *ngIf="element.cita.estado==0">
-            <mat-icon (click)="terminarCita(element.cita.id_cita)">check</mat-icon>
+          <div class="center-icono" *ngIf="element.cita.estado==0 ||element.cita.estado==2">
+            <mat-icon (click)="terminarCita(element)">check</mat-icon>
           </div>
         </mat-cell>
       </ng-container>
@@ -65,9 +65,9 @@
             DERIVAR
           </div>
         </mat-header-cell>
-        <mat-cell class="custom-cell icono-terminar" *matCellDef="let element">
-          <div class="center-icono" *ngIf="element.cita.estado==0">
-            <mat-icon (click)="derivarCita(element)">check</mat-icon>
+        <mat-cell class="custom-cell icono-derivar" *matCellDef="let element">
+          <div class="center-icono" *ngIf="element.cita.estado==0 ||element.cita.estado==2">
+            <mat-icon (click)="derivarCita(element)">swap_horizz</mat-icon>
           </div>
         </mat-cell>
       </ng-container>
@@ -80,7 +80,7 @@
           </div>
         </mat-header-cell>
         <mat-cell class="custom-cell icono-cancelar" *matCellDef="let element" >
-          <div class="center-icono" *ngIf="element.cita.estado==0">
+          <div class="center-icono" *ngIf="element.cita.estado==0 ||element.cita.estado==2">
             <mat-icon (click)="cancelarCita(element.cita.id_cita)">delete</mat-icon>
           </div>
         </mat-cell>
