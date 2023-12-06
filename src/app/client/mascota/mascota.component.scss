@@ -1,14 +1,5 @@
 
-*{
-  
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 
-  overflow-x: hidden;
-
-
-}
 
 .container{
 
@@ -19,7 +10,7 @@
     height: 3.75rem ;
     font-weight: bold;
     color: white;
-    margin-left: 10px;
+    margin-left: 22px;
     position: absolute;
     left: 12%;
     top: 6.5rem;
@@ -43,22 +34,29 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
+  
 
   /* Ajusta según sea necesario */
   
 
-  mat-card-header {
+  .example-card {
+    max-width: 395px;
+    /* Ajusta aquí sea necesario */
+    
+
+    mat-card-header {
 
 
 
-    mat-card-title {
-      font-family: Sailec-Medium !important;
-      font-size: 1.2rem;
-      line-height: 1.5rem;
-      color: #10365a;
+      mat-card-title {
+        font-family: Sailec-Medium !important;
+        font-size: 1.2rem;
+        line-height: 1.5rem;
+        color: #10365a;
+      }
+  
+  
     }
-
-
   }
 
   p {

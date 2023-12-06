@@ -65,6 +65,7 @@ export class RegistrarActualizarComponent {
     this.doctorActualizar = await lastValueFrom(
       this.serviceDoctor.buscarDoctor(idDoctor)
     );
+    console.log(this.doctorActualizar);
     this.form.get('email')?.setValue(this.doctorActualizar.usuario.email);
     this.form.get('nombres')?.setValue(this.doctorActualizar.usuario.nombre);
     this.form
@@ -77,6 +78,7 @@ export class RegistrarActualizarComponent {
     this.form.get('telefono')?.setValue(this.doctorActualizar.usuario.telefono);
 
     this.form.get('password')?.setValue('****');
+    this.form.get('descripcion_perfil')?.setValue(this.doctorActualizar.descripcion_perfil);
     this.form
       .get('fecha_nacimiento')
       ?.setValue(this.doctorActualizar.usuario.fecha_nacimiento);
