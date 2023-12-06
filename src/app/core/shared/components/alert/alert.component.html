@@ -1,6 +1,6 @@
 <div *ngIf="data.tipo=='successful'" class="successful-modal-content">
   <mat-icon class="mat-icon successful-icon">check_circle</mat-icon>
-  <p>¡Alerta exitosa!</p>
+  <p> <strong> ¡Alerta exitosa! {{data.mensaje}} </strong></p>
 </div>
 
 <div *ngIf="data.tipo=='warning'" class="warning-modal-content">
@@ -14,6 +14,6 @@
   </div>
 </div>
 
-<button (click)="onNoClick()" class="close-button">
+<button *ngIf="data.tipo=='warning'" (click)="onNoClick()" class="close-button">
   <mat-icon class="mat-icon close-icon">close</mat-icon>
 </button>

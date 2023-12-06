@@ -84,6 +84,9 @@ export class ListarComponent implements OnInit {
   actualizar(idDoctor: any){
     this.router.navigate(['admin-actualizar-doctor/'+idDoctor]);
     console.log('id doctor: ' , idDoctor)
+    
+  
+    
   }
 
 

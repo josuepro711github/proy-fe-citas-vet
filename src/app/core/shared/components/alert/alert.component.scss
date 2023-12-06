@@ -21,12 +21,12 @@
     justify-content: center;
     padding: 20px;
     position: relative;
-    background: #28a745; /* Color verde para alerta exitosa */
+    background: transparent; /* Color verde para alerta exitosa */
     color: #fff;
     padding-top: 40px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
     transition: transform 0.3s ease;
-    animation: fadeInUp 0.5s ease;
+    //animation: fadeInUp 0.5s ease;
     overflow: hidden;
 }
 

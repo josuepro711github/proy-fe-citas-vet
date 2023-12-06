@@ -67,8 +67,8 @@ export class PedirCitaComponent {
     const response = await lastValueFrom(this.doctorService.listar(this.pageable))
     const doctores:any[] = response.content
     console.log(doctores)
-    this.doctor = doctores.filter(doctor => doctor.especialidad.descripcion.toUpperCase() === 'MEDICINA GENERAL');
-    console.log(this.doctor)
+    this.doctor = doctores.filter(doctor => doctor.especialidad.descripcion.toUpperCase() === 'MEDICINA GENERAL')[0];
+    console.log(this.doctor.id_doctor)
 
   }
 
@@ -79,6 +79,10 @@ export class PedirCitaComponent {
       {
         // width: '500px',
         width: '60%',
+        data: {
+          title: 'Registrar',
+          mascota: null
+        }
 
       });
 
