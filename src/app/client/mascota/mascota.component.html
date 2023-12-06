@@ -1,5 +1,9 @@
 <div class="container">
     <h1>Listado de Mascotas</h1>
+
+    <!-- boton para agregarMascota()-->
+    <button mat-button class="btn-add"  (click)="agregarMascota()"> Agregar Nueva mascota <mat-icon>add</mat-icon></button>
+    
     <div class="card-container">
 
         <mat-card *ngFor="let mascota of mascotas" class="example-card">

@@ -1,33 +1,36 @@
-// <h2>Listado de Mascotas</h2>
 
-// <div class="card-container">
+*{
+  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 
-//     <mat-card *ngFor="let mascota of mascotas" class="example-card">
-//         <mat-card-header>
-//           <mat-card-title>{{ mascota.alias }}</mat-card-title>
-//           <mat-card-subtitle>{{ mascota.genero }} - {{ mascota.raza }}</mat-card-subtitle>
-//         </mat-card-header>
-//         <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-//         <mat-card-content>
-//             <p><strong>Género:</strong> {{ mascota.genero }}</p>
-//             <p><strong>Fecha de Nacimiento:</strong> {{ mascota.fechaNacimiento }}</p>
-//         </mat-card-content>
-//         <mat-card-actions>
-//           <button mat-button>LIKE</button>
-//           <button mat-button>SHARE</button>
-//         </mat-card-actions>
-//       </mat-card>
+  overflow-x: hidden;
 
 
-// </div>
+}
 
 .container{
+
+  width: 80%;
   margin: 7rem 12% 0;
+
+  .btn-add{
+    height: 3.75rem ;
+    font-weight: bold;
+    color: white;
+    margin-left: 10px;
+    position: absolute;
+    left: 12%;
+    top: 6.5rem;
+    background-color: #10365a;
+
+  }
 
 
   h1 {
 
-    margin-bottom: 0 auto;
+    margin: 0 auto;
     font-size: 2.25rem;
     line-height: 3.375rem;
     font-family: Sailec-Bold !important;
@@ -76,3 +79,13 @@
 }
 }
 
+@media (max-width: 1170px) {
+  .container {
+    .btn-add{
+      
+      top: 3.5rem;
+
+  
+    }
+  }
+}

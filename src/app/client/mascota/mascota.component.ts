@@ -43,6 +43,14 @@ export class MascotaComponent {
       });
   }
 
+  agregarMascota(){
+    const dialogRef = this.dialog.open(MEditarMascotaComponent,
+      {
+        // width: '500px',
+        width: '60%',
+        data : null
+      });
+  }
 
 
 

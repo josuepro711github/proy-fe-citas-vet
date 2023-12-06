@@ -11,6 +11,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class MEditarMascotaComponent {
   fecha_nacimiento = ""
 
+  isFormRegisted : boolean = true;
+  title: string = "Registre";
+
+
   form!: FormGroup ;
   mascota:any = null;
 
@@ -21,6 +25,8 @@ export class MEditarMascotaComponent {
 
   ngOnInit(): void {
     if(this.mascota != null){
+      this.isFormRegisted = false;
+      this.title = "Edite"
       this.form = this.fb.group({
         alias: [this.mascota.alias, Validators.required],
         genero: [this.mascota.genero, Validators.required],
@@ -30,6 +36,8 @@ export class MEditarMascotaComponent {
         especie: [this.mascota.especie]
       })
     } else {
+      this.title = "Registre";
+      this.isFormRegisted = true;
       this.form = this.fb.group({
         alias: ['', Validators.required],
         genero: ['', Validators.required],
@@ -88,7 +96,7 @@ export class MEditarMascotaComponent {
 
   }
 
-  agregarMascota(){
+  registrarMascota(){
     if(!this.form.valid){
       return
     }
@@ -123,6 +131,39 @@ export class MEditarMascotaComponent {
     //   this.dialogRef.close();
     // })
 
+  }
+
+  editarMascota(){
+    if(!this.form.valid){
+      return
+    }
+
+    let alias  = this.form.get('alias')?.value
+    let genero  = this.form.get('genero')?.value
+
+    let raza  = this.form.get('raza')?.value
+    console.log(raza)
+    let especie  = this.form.get('especie')?.value
+
+    let mascota = {
+      id_mascota: 0,
+      alias:alias,
+      genero:genero,
+      fecha_nacimiento:this.fecha_nacimiento,
+      imagen:"...",
+      raza:{
+        id_raza:raza.id_raza,
+        descripcion:"....",
+        especie:{
+          id_especie:especie.id_especie,
+          descripcion:"...."
+        }
+      },
+      cliente:{
+        id_cliente:this.usuarioLogueado.id_cliente,
+      }
+    }
+    console.log(mascota)
   }
 
   async traerEspecies(){

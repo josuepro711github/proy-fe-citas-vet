@@ -1,5 +1,5 @@
 <!-- Modal registro mascota-->
-<h2 class="modal-title">Registre su mascota</h2>
+<h2 class="modal-title">{{ title }} su mascota</h2>
 <button mat-button mat-dialog-close color="primary" class="btn-close" (click)="onNoClick()">
     <mat-icon>close</mat-icon>
 </button>
@@ -65,8 +65,12 @@
         </div>
 
 
-        <div class="button-container">
-            <button mat-button color="primary" class="submit-button" (click)="agregarMascota()">Registrar</button>
+        <div class="button-container" *ngIf="isFormRegisted">
+            <button mat-button color="primary" class="submit-button" (click)="registrarMascota()">Registrar</button>
+        </div>
+
+        <div class="button-container" *ngIf="!isFormRegisted">
+            <button mat-button color="primary" class="submit-button" (click)="editarMascota()">Editar</button>
         </div>
 
     </form>
