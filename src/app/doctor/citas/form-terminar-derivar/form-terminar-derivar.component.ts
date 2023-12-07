@@ -66,6 +66,8 @@ export class FormTerminarDerivarComponent {
 
   async traerDoctoresPorEspecialidad(id_especialidad:number){
     this.doctores =  await lastValueFrom(this.serviceDoctor.listaDoctoresPorEspecialidad(id_especialidad))
+
+    this.doctores = this.doctores.filter(d => d.estado =="activo")
     console.log(this.doctores)
   }
 

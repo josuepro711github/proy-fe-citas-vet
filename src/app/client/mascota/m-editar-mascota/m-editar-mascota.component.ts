@@ -1,6 +1,10 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MascotaService } from '../../services/mascota.service';
+import { lastValueFrom } from 'rxjs';
+import { DoctorService } from 'src/app/admin/services/doctor.service';
+import { AuthService } from 'src/app/public/services/auth.service';
 //import { MascotaService } from '../../services/mascota.service';
 
 @Component({
@@ -29,12 +33,47 @@ export class MEditarMascotaComponent {
       this.title = "Edite"
       this.form = this.fb.group({
         alias: [this.mascota.alias, Validators.required],
-        genero: [this.mascota.genero, Validators.required],
+        genero: [new FormControl(''), Validators.required],
         fecha_nacimiento: [this.mascota.fecha_nacimiento, Validators.required],
         imagen:[''],
-        raza: [this.mascota.raza],
-        especie: [this.mascota.especie]
+        raza:  new FormControl(''),
+        especie:  new FormControl('')
       })
+
+      this.mascotaService.listaEspecies().subscribe(response=>{
+        this.especies = response
+        const especieMasc = this.especies.find(especie => especie.descripcion.toUpperCase() === this.mascota.raza.especie.descripcion.toUpperCase());
+        console.log(especieMasc)
+        if (especieMasc) {
+          this.form.get('especie')?.setValue(especieMasc);
+        }
+
+      })
+
+      this.mascotaService.listarRazasPorEspecie(this.mascota.raza.especie.id_especie).subscribe(response=>{
+        this.razas = response
+        const razaMasc = this.razas.find(raza => raza.descripcion.toUpperCase() === this.mascota.raza.descripcion.toUpperCase());
+        console.log(razaMasc)
+        if (razaMasc) {
+          this.form.get('raza')?.setValue(razaMasc);
+        }
+      })
+      console.log(this.mascota.genero)
+      const generoMasc = this.genero.find(gen => gen.toUpperCase() === this.mascota.genero.toUpperCase());
+      console.log(generoMasc)
+      if (generoMasc) {
+        this.form.get('genero')?.setValue(generoMasc);
+      }
+
+      this.fecha_nacimiento = this.mascota.fecha_nacimiento
+      this.traerImagenMascota()
+
+      // this.form.get('especie')?.setValue(this.mascota.raza.especie);
+      // console.log(this.form.get('especie')?.value)
+      // const especieControl = this.form.get('especie') as FormControl;
+      // console.log(this.mascota.raza.especie)
+      // especieControl.setValue(this.mascota.raza.especie);
+
     } else {
       this.title = "Registre";
       this.isFormRegisted = true;
@@ -47,20 +86,42 @@ export class MEditarMascotaComponent {
         especie: ['']
       })
     }
-    
-    this.traerEspecies()
+
+
   }
 
+  async traerImagenMascota(){
+    try {
+      const response = await lastValueFrom(
+        this.mascotaService.traerImagenMascota(
+          this.mascota.imagen
+        )
+      );
+      const reader = new FileReader();
+      //aqui↓
+      this.imagenFile = new File(
+        [response],
+        this.mascota.imagen,
+        { type: response.type }
+      );
+      reader.onload = () => {
+        this.imagenSeleccionada = reader.result;
+      };
+      reader.readAsDataURL(response);
+    } catch (e) {
+      console.log(e);
+    }
+  }
   genero:string[] = ['Macho','Hembra']
 
   constructor (private fb: FormBuilder, public dialogRef: MatDialogRef<MEditarMascotaComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    //private authService:AuthService,
+    @Inject(MAT_DIALOG_DATA) public data: any, private mascotaService:MascotaService,private serviceDoctor:DoctorService,
+    private authService:AuthService,
     //private mascotaService:MascotaService
     ){
       this.mascota = this.data
       console.log("Data: ", data)
-      //this.usuarioLogueado = this.authService.obtenerToken()
+      this.usuarioLogueado = this.authService.obtenerToken()
   }
 
   imagenSeleccionada: string | ArrayBuffer | null = null;
@@ -75,7 +136,9 @@ export class MEditarMascotaComponent {
 
       };
       reader.readAsDataURL(file);
-
+      if ( this.title == 'Edite') {
+        this.mascota.imagen = 'cambiado';
+      }
     }
   }
 
@@ -127,13 +190,14 @@ export class MEditarMascotaComponent {
       }
     }
     console.log(mascota)
-    // this.mascotaService.registrarMascota(mascota,this.imagenFile).subscribe(response=>{
-    //   this.dialogRef.close();
-    // })
+    this.mascotaService.registrarMascota(mascota,this.imagenFile).subscribe(response=>{
+      this.dialogRef.close();
+    })
 
   }
 
   editarMascota(){
+
     if(!this.form.valid){
       return
     }
@@ -146,11 +210,11 @@ export class MEditarMascotaComponent {
     let especie  = this.form.get('especie')?.value
 
     let mascota = {
-      id_mascota: 0,
+      id_mascota: this.mascota.id_mascota,
       alias:alias,
       genero:genero,
       fecha_nacimiento:this.fecha_nacimiento,
-      imagen:"...",
+      imagen:this.mascota.imagen,
       raza:{
         id_raza:raza.id_raza,
         descripcion:"....",
@@ -163,18 +227,17 @@ export class MEditarMascotaComponent {
         id_cliente:this.usuarioLogueado.id_cliente,
       }
     }
-    console.log(mascota)
+
+    this.mascotaService.actualizarMascota(mascota,this.imagenFile).subscribe(response=>{
+      this.dialogRef.close();
+    })
   }
 
-  async traerEspecies(){
 
-    // this.especies = await lastValueFrom(this.mascotaService.listaEspecies())
-    // console.log(this.especies)
-  }
 
   async traerRazasPorEspecie(id_especie:number){
-    // this.razas = await lastValueFrom(this.mascotaService.listarRazasPorEspecie(id_especie))
-    // console.log(this.razas)
+    this.razas = await lastValueFrom(this.mascotaService.listarRazasPorEspecie(id_especie))
+    console.log(this.razas)
 
   }
 

@@ -12,7 +12,6 @@ import { InfocitaClienteComponent } from './citas/infocita-cliente/infocita-clie
 import { CitaService } from './services/cita.service';
 import { AuthService } from '../public/services/auth.service';
 import { MEditarMascotaComponent } from './mascota/m-editar-mascota/m-editar-mascota.component';
-import { ClienteService } from './services/cliente.service';
 import { MascotaService } from './services/mascota.service';
 
 
@@ -32,7 +31,7 @@ import { MascotaService } from './services/mascota.service';
     ClientRoutingModule,
     ReactiveFormsModule
   ],providers:[
-    CitaService,AuthService,ClienteService,MascotaService
+    CitaService,AuthService,MascotaService
   ]
 })
 export class ClientModule { }

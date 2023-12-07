@@ -30,6 +30,18 @@ export class MascotaService {
     return this.http.post<any>(this.urlApi+'api/vet/petlife/v1.0.0/mascota/registrarMascota',formData);
   }
 
+
+
+  actualizarMascota(mascota:any,imagen:any):Observable<any>{
+    let mascotaGson =JSON.stringify(mascota, null, 0);
+    var formData: any = new FormData();
+    formData.append('mascota', mascotaGson);
+    formData.append('imagen', imagen);
+    return this.http.put<any>(this.urlApi+'api/vet/petlife/v1.0.0/mascota/actualizarMascota',formData);
+  }
+
+
+
   listarRazasPorEspecie(id_especie:number):Observable<any[]>{
 
     return this.http.get<any[]>(this.urlApi+'api/vet/petlife/v1.0.0/mascota/listarRazasPorEspecie/'+id_especie)
@@ -43,7 +55,12 @@ export class MascotaService {
 
   eliminarMascota(id_mascota:number):Observable<any[]>{
 
-    return this.http.get<any[]>(this.urlApi+'api/vet/petlife/v1.0.0/mascota/eliminarMascota/'+id_mascota)
+    return this.http.delete<any[]>(this.urlApi+'api/vet/petlife/v1.0.0/mascota/eliminarMascota/'+id_mascota)
+  }
+
+
+  traerImagenMascota(nombre_imagen:string){
+    return this.http.get(`${this.urlApi}api/vet/petlife/v1.0.0/imagen/mascotas/${nombre_imagen}`, { responseType: 'blob' });
   }
 
 }
