@@ -39,4 +39,11 @@ export class MascotaService {
 
     return this.http.get<any[]>(this.urlApi+'api/vet/petlife/v1.0.0/mascota/listarEspecies')
   }
+
+
+  eliminarMascota(id_mascota:number):Observable<any[]>{
+
+    return this.http.get<any[]>(this.urlApi+'api/vet/petlife/v1.0.0/mascota/eliminarMascota/'+id_mascota)
+  }
+
 }
