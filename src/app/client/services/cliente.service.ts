@@ -18,8 +18,12 @@ export class ClienteService {
     var formData: any = new FormData();
     formData.append('cliente', doctorGson);
     formData.append('imagen', imagen);
-    return this.http.put<any>(this.urlApi+'api/vet/petlife/v1.0.0/cliente/actualizarCliente' ,formData)
+    return this.http.post<any>(this.urlApi+'api/vet/petlife/v1.0.0/cliente/actualizarCliente' ,formData)
   }
 
+
+  traerImagenCliente(nombre_imagen:string){
+    return this.http.get(`${this.urlApi}api/vet/petlife/v1.0.0/imagen/clientes/${nombre_imagen}`, { responseType: 'blob' });
+  }
 
 }

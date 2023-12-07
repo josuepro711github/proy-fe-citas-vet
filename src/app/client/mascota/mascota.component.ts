@@ -4,6 +4,7 @@ import {MatCardModule} from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
 import { MEditarMascotaComponent } from './m-editar-mascota/m-editar-mascota.component';
 import { AlertComponent } from 'src/app/core/shared/components/alert/alert.component';
+import { ModalMascotaComponent } from 'src/app/public/pedir-cita/modal-mascota/modal-mascota.component';
 
 
 @Component({
@@ -44,12 +45,12 @@ export class MascotaComponent {
   }
 
   agregarMascota(){
-    const dialogRef = this.dialog.open(MEditarMascotaComponent,
+    const dialogRef = this.dialog.open(ModalMascotaComponent,
       {
         // width: '500px',
         width: '60%',
         data : null
-      });
+      });  
   }
 
 

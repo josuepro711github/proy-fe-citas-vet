@@ -216,6 +216,7 @@ export class RegistrarActualizarComponent {
             // Navegar a la ruta que quieras
             this.router.navigate(['admin-listar-doctor']);
           });
+          
         });
     }
   }
