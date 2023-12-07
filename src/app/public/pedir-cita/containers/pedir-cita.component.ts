@@ -94,6 +94,7 @@ export class PedirCitaComponent {
   }
 
   async traerMascotas(){
+    console.log(this.userLogueado)
     let pag:Pageable = {
       page:0,
       size:10,
@@ -118,7 +119,7 @@ export class PedirCitaComponent {
 
   agregarMascota() {
     // Lógica para agregar una nueva mascota
-
+    console.log(12121212)
     const dialogRef = this.dialog.open(ModalMascotaComponent,
       {
         // width: '500px',
@@ -139,13 +140,11 @@ export class PedirCitaComponent {
 
 
   submitForm() {
-
-    console.log("doctor: ", this.doctor)
-    console.log("gaaaaaaaaaaaaaaa");
-
+    console.log("asdasgaaaaaaaaaa")
     if (!this.form.valid) {
+      // Aquí puedes enviar la información al servidor o realizar otras acciones
       console.log(this.form.value);
-      return;
+      return
     }
 
     let motivo  = this.form.get('motivo')?.value
