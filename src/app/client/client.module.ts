@@ -13,6 +13,7 @@ import { CitaService } from './services/cita.service';
 import { AuthService } from '../public/services/auth.service';
 import { MEditarMascotaComponent } from './mascota/m-editar-mascota/m-editar-mascota.component';
 import { MascotaService } from './services/mascota.service';
+import { ClienteService } from './services/cliente.service';
 
 
 
@@ -31,7 +32,7 @@ import { MascotaService } from './services/mascota.service';
     ClientRoutingModule,
     ReactiveFormsModule
   ],providers:[
-    CitaService,AuthService,MascotaService
+    CitaService,AuthService,MascotaService,ClienteService
   ]
 })
 export class ClientModule { }
