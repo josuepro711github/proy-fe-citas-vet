@@ -1,1 +1,29 @@
-<p>infocita-doctor works!</p>
+<mat-dialog-content class="info-modal-content">
+    <mat-icon class="cita-icon" aria-label="Cita">event</mat-icon>
+    <p class="cita-first"><strong>ID Cita:</strong> {{ citaMascota.cita.id_cita }}</p>
+    <p class="cita-info text-capitalize"><strong>Cliente:</strong> {{ citaMascota.mascota.cliente.usuario.nombre+" "
+                            + citaMascota.mascota.cliente.usuario.apellido_paterno+" "+citaMascota.mascota.cliente.usuario.apellido_materno }}</p>
+    <p class="cita-info text-capitalize"><strong>Mascota:</strong> {{ citaMascota.mascota.alias }}</p>
+    <p class="cita-info"><strong>Fecha:</strong> {{ citaMascota.cita.fecha | date:'yy/mm/dd' }}</p>
+    <p class="cita-info"><strong>Hora:</strong> {{ citaMascota.cita.hora_cita }}</p>
+    <p class="cita-info"><strong>Motivo:</strong> {{ citaMascota.cita.motivo }}</p>
+    <p class="cita-info"><strong>Estado:</strong> {{ citaMascota.cita.estado }}</p>
+    <p class="cita-info text-capitalize"><strong>Doctor:</strong> {{ citaMascota.cita.doctor.usuario.nombre+" "+
+                      citaMascota.cita.doctor.usuario.apellido_paterno +" "+ citaMascota.cita.doctor.usuario.apellido_materno }}</p>
+    <p class="cita-info"><strong>Observaciones:</strong> </p>
+    <p class="observaciones">{{ citaMascota.cita.observaciones }}</p>
+    
+    <!-- <form >
+        <p class="cita-info"><strong>Observaciones:</strong></p>
+        <mat-form-field class="cita-obs">
+          <textarea matInput placeholder="Observaciones" [(ngModel)]="observaciones"></textarea>
+        </mat-form-field>
+      
+        <button mat-raised-button color="primary" (click)="guardarCita(cita)">Guardar</button>
+      </form> -->
+    
+  </mat-dialog-content>
+  
+  <button mat-button (click)="onNoClick()" color="primary" class="close-button">
+    <mat-icon class="close-icon" color="primary" aria-label="Close dialog">close</mat-icon>
+  </button>

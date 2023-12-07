@@ -1,33 +1,27 @@
-// <h2>Listado de Mascotas</h2>
-
-// <div class="card-container">
-
-//     <mat-card *ngFor="let mascota of mascotas" class="example-card">
-//         <mat-card-header>
-//           <mat-card-title>{{ mascota.alias }}</mat-card-title>
-//           <mat-card-subtitle>{{ mascota.genero }} - {{ mascota.raza }}</mat-card-subtitle>
-//         </mat-card-header>
-//         <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-//         <mat-card-content>
-//             <p><strong>Género:</strong> {{ mascota.genero }}</p>
-//             <p><strong>Fecha de Nacimiento:</strong> {{ mascota.fechaNacimiento }}</p>
-//         </mat-card-content>
-//         <mat-card-actions>
-//           <button mat-button>LIKE</button>
-//           <button mat-button>SHARE</button>
-//         </mat-card-actions>
-//       </mat-card>
 
 
-// </div>
 
 .container{
+
+  width: 80%;
   margin: 7rem 12% 0;
+
+  .btn-add{
+    height: 3.75rem ;
+    font-weight: bold;
+    color: white;
+    margin-left: 22px;
+    position: absolute;
+    left: 12%;
+    top: 6.5rem;
+    background-color: #10365a;
+
+  }
 
 
   h1 {
 
-    margin-bottom: 0 auto;
+    margin: 0 auto;
     font-size: 2.25rem;
     line-height: 3.375rem;
     font-family: Sailec-Bold !important;
@@ -40,22 +34,29 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
+  
 
   /* Ajusta según sea necesario */
   
 
-  mat-card-header {
+  .example-card {
+    max-width: 395px;
+    /* Ajusta aquí sea necesario */
+    
+
+    mat-card-header {
 
 
 
-    mat-card-title {
-      font-family: Sailec-Medium !important;
-      font-size: 1.2rem;
-      line-height: 1.5rem;
-      color: #10365a;
+      mat-card-title {
+        font-family: Sailec-Medium !important;
+        font-size: 1.2rem;
+        line-height: 1.5rem;
+        color: #10365a;
+      }
+  
+  
     }
-
-
   }
 
   p {
@@ -76,3 +77,13 @@
 }
 }
 
+@media (max-width: 1170px) {
+  .container {
+    .btn-add{
+      
+      top: 3.5rem;
+
+  
+    }
+  }
+}

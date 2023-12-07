@@ -81,6 +81,24 @@
             <mat-error *ngIf="validHasError('email') === 2">Email incorrecto</mat-error>
           </div>
         </div>
+
+        <div class="input_imagen">
+          <ng-container>
+            <mat-form-field class="example-full-width" appearance="outline" [ngClass]="{
+                mat_error_border_color: validFormName('imagen')
+              }">
+              <input matInput readonly style="display: none" />
+              <input type="file" (change)="imagenFileSeleccionado($event)" accept="image/*" style="margin-bottom: 5px"
+                formControlName="imagen" />
+            </mat-form-field>
+
+            <div class="image-container" style="text-align: center;">
+              <img *ngIf="imagenSeleccionada" [src]="imagenSeleccionada" alt="Imagen seleccionada"
+                style="width: 200px;" />
+            </div>
+          </ng-container>
+        </div>
+
       </div>
 
       <button mat-raised-button class="btn-login" color="primary" type="submit" [hidden]="!isFormEditable">Guardar Cambios</button>

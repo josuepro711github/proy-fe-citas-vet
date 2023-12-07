@@ -104,6 +104,7 @@ export class PedirCitaComponent {
     const response = await lastValueFrom(this.mascotaService.listarMascotas(this.userLogueado.id_cliente,pag))
     console.log(response)
     this.mascotas = response.content
+    this.mascotas = this.mascotas.filter(mas => mas.estado !="eliminado")
   }
 
   async traerDoctores(){

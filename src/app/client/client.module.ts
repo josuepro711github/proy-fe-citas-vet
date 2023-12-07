@@ -11,6 +11,8 @@ import { MascotaComponent } from './mascota/mascota.component';
 import { InfocitaClienteComponent } from './citas/infocita-cliente/infocita-cliente.component';
 import { CitaService } from './services/cita.service';
 import { AuthService } from '../public/services/auth.service';
+import { MEditarMascotaComponent } from './mascota/m-editar-mascota/m-editar-mascota.component';
+import { MascotaService } from './services/mascota.service';
 
 
 
@@ -20,7 +22,8 @@ import { AuthService } from '../public/services/auth.service';
     PerfilComponent,
     CitasComponent,
     MascotaComponent,
-    InfocitaClienteComponent
+    InfocitaClienteComponent,
+    MEditarMascotaComponent,
   ],
   imports: [
     SharedModule,
@@ -28,7 +31,7 @@ import { AuthService } from '../public/services/auth.service';
     ClientRoutingModule,
     ReactiveFormsModule
   ],providers:[
-    CitaService,AuthService
+    CitaService,AuthService,MascotaService
   ]
 })
 export class ClientModule { }

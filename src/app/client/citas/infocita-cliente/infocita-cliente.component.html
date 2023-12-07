@@ -1,4 +1,5 @@
 <mat-dialog-content class="info-modal-content">
+  <div class="cita-modal-header">
   <mat-icon class="cita-icon" aria-label="Cita">event</mat-icon>
   <p class="cita-first"><strong>ID Cita:</strong> {{ citaMascota.cita.id_cita }}</p>
   <p class="cita-info text-capitalize"><strong>Cliente:</strong> {{ citaMascota.mascota.cliente.usuario.nombre+" "
@@ -11,7 +12,15 @@
   <p class="cita-info text-capitalize"><strong>Doctor:</strong> {{ citaMascota.cita.doctor.usuario.nombre+" "+
                     citaMascota.cita.doctor.usuario.apellido_paterno +" "+ citaMascota.cita.doctor.usuario.apellido_materno }}</p>
   <p class="cita-info"><strong>Observaciones:</strong> </p>
+  
+
+  </div>
+
+  <div class="cita-modal-body">
+    <img class="cita-img" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+  </div>
   <p class="observaciones"  [innerHTML]="citaMascota.cita.observaciones"> </p>
+
 </mat-dialog-content>
 
 <button mat-button (click)="onNoClick()" color="primary" class="close-button">
