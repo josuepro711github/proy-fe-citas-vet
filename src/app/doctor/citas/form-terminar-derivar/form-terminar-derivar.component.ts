@@ -59,6 +59,9 @@ export class FormTerminarDerivarComponent {
 
   async traerEspecialidades(){
     this.especialidades =  await lastValueFrom(this.serviceDoctor.listaEspecialidades())
+    this.especialidades = this.especialidades.filter(esp => {
+      return esp.descripcion !== "Medicina General";
+    });
   }
 
   async traerDoctoresPorEspecialidad(id_especialidad:number){

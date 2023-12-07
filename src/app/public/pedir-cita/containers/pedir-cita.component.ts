@@ -94,7 +94,13 @@ export class PedirCitaComponent {
   }
 
   async traerMascotas(){
-    const response = await lastValueFrom(this.mascotaService.listarMascotas(this.userLogueado.id_cliente,this.pageable))
+    let pag:Pageable = {
+      page:0,
+      size:10,
+      orderParameter:"cliente",
+      typeOrder:""
+    }
+    const response = await lastValueFrom(this.mascotaService.listarMascotas(this.userLogueado.id_cliente,pag))
     console.log(response)
     this.mascotas = response.content
   }
@@ -134,9 +140,12 @@ export class PedirCitaComponent {
 
   submitForm() {
 
-    if (this.form.valid) {
-      // Aquí puedes enviar la información al servidor o realizar otras acciones
+    console.log("doctor: ", this.doctor)
+    console.log("gaaaaaaaaaaaaaaa");
+
+    if (!this.form.valid) {
       console.log(this.form.value);
+      return;
     }
 
     let motivo  = this.form.get('motivo')?.value
