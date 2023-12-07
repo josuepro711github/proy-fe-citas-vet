@@ -40,6 +40,11 @@
   
 
   .example-card {
+    img {
+      width: 395px;
+      height: 316px;
+      object-fit: cover;
+    }
     max-width: 395px;
     /* Ajusta aquí sea necesario */
     

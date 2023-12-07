@@ -6,7 +6,9 @@
 
       <a class="sidenav-nav-link"  >
 
-        <img class="sidenav-link-icon" src="{{imagenSeleccionada}}" >
+        <img class="sidenav-link-icon" src="http://localhost:8090/api/vet/petlife/v1.0.0/imagen/clientes/{{token.imagen}}" *ngIf="token.rol==3" >
+        <img class="sidenav-link-icon" src="http://localhost:8090/api/vet/petlife/v1.0.0/imagen/doctores/{{token.imagen}}" *ngIf="token.rol==2" >
+        <img class="sidenav-link-icon" src="{{imagenSeleccionada}}" *ngIf="token.imagen=='userJosue.png'">
         <span class="sidenav-link-text text-capitalize">{{name}}</span>
 
       </a>

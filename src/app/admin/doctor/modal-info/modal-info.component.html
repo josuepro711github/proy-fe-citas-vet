@@ -1,5 +1,5 @@
 <mat-dialog-content class="info-modal-content">
-    <img class="user-img" src="{{ imagenSeleccionada }}">
+    <img class="user-img" src="http://localhost:8090/api/vet/petlife/v1.0.0/imagen/doctores/{{imagenSeleccionada}}">
     <p class="user-info "> <strong>Correo electr&oacute;nico:</strong> {{ data.usuario.email }}</p>
     <p class="user-info "> <strong>Nombres:</strong> {{ data.usuario.nombre }}</p>
     <p class="user-info "> <strong>Apellidos:</strong> {{ data.usuario.apellido_materno }} {{ data.usuario.apellido_paterno }}</p>

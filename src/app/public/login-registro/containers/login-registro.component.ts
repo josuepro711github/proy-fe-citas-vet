@@ -144,6 +144,7 @@ export class LoginRegistroComponent {
           usuario.contrasenia = contrasenia;
           this.serviceAuth.login(usuario).subscribe((response) => {
             sessionStorage.setItem('token', JSON.stringify(response));
+            this.eventEmitterService.notificarActualizacion('token');
             this.router.navigate(['']);
             console.log(response);
           });

@@ -22,6 +22,7 @@ export class SidenavComponent {
 
   rol: boolean = false;
   name: string = '';
+  token:any;
 
   imagenSeleccionada: string | ArrayBuffer | null = "../../../../../assets/icons/hueso.png";
 
@@ -31,7 +32,7 @@ export class SidenavComponent {
 
     let token = JSON.parse( sessionStorage.getItem('token')?.toString() || '{}');
     console.log(token)
-
+    this.token = token;
     if(token != null){
       this.rol = token.rol;
       this.name = token.nombre + ' ' + token['apellido_paterno'];

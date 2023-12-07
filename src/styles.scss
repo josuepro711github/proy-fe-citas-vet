@@ -107,6 +107,22 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 
+.custom-dialog-success {
+  background: #28a745;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+  transition: transform 0.3s ease;
+  animation: hide 0.5s steps(1) forwards;
+  animation-delay: 0.5s;
+
+
+  overflow: hidden;
+  .mat-mdc-dialog-surface, .mdc-dialog__surface{
+    background: transparent !important;
+
+}
+}
+
 
 //FONT FAMILY SAILEC
 @font-face {
