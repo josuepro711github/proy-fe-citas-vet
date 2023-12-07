@@ -1,11 +1,14 @@
 .info-modal-content {
     display: grid;
-    grid-template-columns: 40% 57%;
-    gap: 20px;
+    grid-template-columns: 40% 50%;
+
     grid-template-areas: "form imagen" "observaciones observaciones";
 
-    max-width: 60vw;
-    padding: 20px 40px;
+    justify-content: space-between;
+    align-items: start;
+
+    max-width: 80vw;
+    padding: 20px 45px;
     color: #fff;
 
     position: relative;
@@ -23,13 +26,14 @@
 
     .cita-modal-body {
         grid-area: imagen;
-        width: 100%;
+        width: 400px;
         display: flex;
         flex-direction: column;
+        align-items: center;
         margin-top: 48px;
         
         .cita-img {
-            width: 80%;
+            width: 400px;
             height: auto;
             object-fit: cover;
             
@@ -104,5 +108,41 @@
 .close-button:hover {
     background: #db1919;
 
+}
+
+
+@media screen and (max-width: 1920px) {
+    .info-modal-content {
+        max-width: 54vw ;
+    }
+}
+
+@media screen and (max-width: 1500px) {
+    .info-modal-content {
+        max-width: 80vw ;
+    }
+}
+
+@media screen and (max-width: 1366px) {
+    .info-modal-content {
+        max-width: 80vw;
+    }
+
+}
+
+@media screen and (max-width: 1024px) {
+    .info-modal-content {
+        max-width: 80vw;
+        grid-template-columns: 90%;
+        grid-template-areas: "form" "observaciones";
+    }
+
+
+    .cita-modal-body {
+        display: none !important; 
+    
+    }
+
+    
 }
 
