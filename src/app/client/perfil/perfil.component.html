@@ -52,7 +52,8 @@
         <div class="input_fecha_nacimiento">
           <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Fecha de Nacimiento</mat-label>
-            <input matInput [matDatepicker]="fechaNacimientoPicker" (dateChange)="onDateSelected()" formControlName="fechaNacimiento" />
+            <input matInput [matDatepicker]="fechaNacimientoPicker" (dateChange)="onDateSelected()"
+              formControlName="fechaNacimiento" />
             <mat-datepicker-toggle matIconSuffix [for]="fechaNacimientoPicker"></mat-datepicker-toggle>
             <mat-datepicker #fechaNacimientoPicker></mat-datepicker>
           </mat-form-field>
@@ -83,7 +84,7 @@
         </div>
 
         <div class="input_imagen">
-          <ng-container>
+          
             <mat-form-field class="example-full-width" appearance="outline" [ngClass]="{
                 mat_error_border_color: validFormName('imagen')
               }">
@@ -92,16 +93,15 @@
                 formControlName="imagen" />
             </mat-form-field>
 
-            <div class="image-container" style="text-align: center;">
-              <img *ngIf="imagenSeleccionada" [src]="imagenSeleccionada" alt="Imagen seleccionada"
-                style="width: 200px;" />
-            </div>
-          </ng-container>
-        </div>
 
+        </div>
+        <div class="image-container" style="text-align: center;">
+          <img *ngIf="imagenSeleccionada" [src]="imagenSeleccionada" alt="Imagen seleccionada" style="width: 200px;" />
+        </div>
       </div>
 
-      <button mat-raised-button class="btn-login" color="primary" type="submit" [hidden]="!isFormEditable">Guardar Cambios</button>
+      <button mat-raised-button class="btn-login" color="primary" type="submit" [hidden]="!isFormEditable">Guardar
+        Cambios</button>
     </form>
   </div>
 </main>
